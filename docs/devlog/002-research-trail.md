@@ -792,6 +792,110 @@ We refuse to then say "now let's generate Swagger" and stop there.
 
 The model is yours. Add your own traits. Write your own plugins. Generate HTTP handlers, CLI commands, OpenAPI specs, gRPC stubs, GraphQL schemas, Excel reports, documentation sites, test scaffolds — whatever your context demands. We don't know what you need. We don't want to know. That's the point.
 
+## Discovery: ops.go is an IDL, not part of your project
+
+The most common misunderstanding on first read: "Op analyzes my Go project and generates from it." Wrong. Op analyzes `ops.go`. That's it.
+
+`ops.go` is an IDL file. It does not need to live inside a Go application. It can sit next to a PHP monolith, a TypeScript frontend, a Python data pipeline — anything. Go was chosen as the IDL language because it is typed, compiled, and has `go/types` for static analysis. But the file itself is not a dependency of your project. It's a declaration: "here are my operations, here are their inputs, outputs, and traits."
+
+`goop list --json` is the bridge. Any tool in any language can read that JSON and build its own projection. A PHP generator doesn't need to know Go. It needs to know JSON.
+
+**How this differs from Protobuf:**
+
+Protobuf is also an IDL with a plugin ecosystem. `.proto` → `protoc` → plugins. But Protobuf is welded to binary serialization. Wire format, varint encoding, field numbers — that's the core. Everything else — gRPC, grpc-gateway, `google.api.http` — is built on top of "how to serialize bytes." HTTP leaked in through annotations precisely because the core knows "how to serialize," not "what an operation is."
+
+```
+Protobuf:  IDL  +  binary serialization ecosystem
+                   ↑ opinion: "data travels in binary format"
+
+Op:        IDL  +  anything
+                   ↑ no opinion. operation model. projections are yours.
+```
+
+Protobuf says: "I know how to serialize data between services." That's an opinion — strong, proven, but an opinion. Want JSON instead of binary? Possible, but it's an afterthought (`jsonpb`), not a first-class citizen. Want CLI from `.proto`? No standard way. Want Excel documentation? Write a `.proto` parser from scratch.
+
+Op says: "an operation is input, output, context, error." That's a fact. Want binary serialization? Write a plugin. Want HTTP? Plugin. Want CLI? Plugin. Want Excel? Plugin. Want PHP? Plugin. Core doesn't know and doesn't want to know.
+
+## Discovery: official plugins are proof, not convenience
+
+An abstract primitive without official projections is an academic exercise. `func(ctx, I) (*O, error)` without httpplug, swagplug, cobraplug is a beautiful signature that nobody knows how to use.
+
+Official plugins do three things simultaneously:
+
+**Proof** — they demonstrate that the primitive works. `httpplug.Post("/api/dogs")` generating a typed `http.Handler` is not theory — it's working code. Without it, `func(ctx, I) (*O, error)` is an assertion without evidence.
+
+**Reference implementation** — they set the pattern. Want to write your own gRPC plugin? Look at how httpplug is built. Want to write your own listener? Look at how swagplug reads `httpplug.BearerFrom(ctx)`. Without a reference, community plugins will be inconsistent because there is no example to follow.
+
+**Model validation** — if an official plugin doesn't fit the core cleanly, the core is wrong. In the resilience project, the OTEL plugin exposed a bottleneck in the `Events` struct — three hardcoded fields that couldn't be extended. That led to a redesign: `Plugin → Listener`, `Events → Emit(ctx, any)`. Without the official plugin, that defect would not have been found until production.
+
+For Op this means: httpplug, swagplug, cobraplug are not optional "someday" additions. They are part of the core delivery. Without them the model is unproven. With them — the model is validated by three independent projections.
+
+And there is another aspect: official plugins are what separates "too abstract" from "correctly abstract." If the coordinate point is too high, official plugins will be ugly — they'll have to compensate for what the core didn't capture. If the point is right, plugins will be short and obvious. Same principle as resilience — `timeout` is 5 lines not because timeout is simple, but because `func(ctx, call) error` captured exactly what was needed. No more, no less.
+
+## Discovery: ecosystem as explicit dependency
+
+Without a shared model, every cross-tool integration depends on extension points that the other tool's author may not have provided.
+
+A swagger generator needs to know that an endpoint uses Bearer auth. The HTTP framework stores that information internally. The swagger generator can only read it if the framework decided to expose it. If the framework didn't — your options are: fork, monkey-patch, file an issue asking "please add field X to your public API," or hack through reflection on internal structs that break on the next minor release.
+
+In Op's ecosystem this problem does not exist by construction. Data is not hidden inside a library — it lives in the shared model. swagplug imports httpplug and calls `httpplug.BearerFrom(ctx)`. This is not an extension point that someone had to foresee. It's an ordinary Go import. Explicit, typed, compile-time.
+
+The dependency graph is a tree, not a web:
+
+```
+              Op (model)
+             /    |    \
+            /     |     \
+    httpplug  cobraplug  validplug
+    /     \
+swagplug  otelplug
+```
+
+swagplug knows httpplug. httpplug does not know swagplug. Unidirectional. No cycles. No "let's add an optional dependency from httpplug to swagplug so it can read Bearer." Not needed. Bearer is in the context. Whoever wants it — reads it. Whoever doesn't — doesn't know it exists.
+
+This scales. A tenth plugin, written two years later by a community contributor, has exactly the same access to the model as the first official one. Not through an extension point the core author "foresaw." Through context, which is open for reading by definition.
+
+In the world of isolated libraries, every integration is a negotiation between two authors: "will you expose this field?" — "no, it's internal" — "then I'll fork." In an ecosystem with a shared model, integration is an import.
+
+## Discovery: cross-language projections prove the model is universal
+
+The model is not a Go abstraction. It's an abstraction of the operation as such. Go is just the language it's described in. But projections can target any language, because Input and Output are structs with fields and types. Structs with fields and types exist in PHP, TypeScript, Kotlin, Dart, Swift.
+
+The planned projection tree:
+
+```
+goop (core)
+├── goop-http (transport: HTTP)
+│   ├── goop-httpgin (router: Gin)
+│   └── goop-php-http (language: PHP)
+├── goop-ts-types (language: TypeScript)
+├── goop-mermaid (format: diagram)
+├── goop-excel (format: spreadsheet)
+└── ...
+```
+
+Each node knows only its parent. goop-httpgin knows goop-http. goop-http knows goop. goop-excel knows goop. Nobody knows each other horizontally. But all work with one model.
+
+`goop-php-http` and `goop-ts-types` are the most telling. They prove that `func(ctx, I) (*O, error)` survives the language boundary. A Go-described operation model generates typed PHP handlers and TypeScript type definitions. The model outlives its implementation language.
+
+And `goop-php-http` is a killer argument for companies with a mixed stack: "We have a Go backend and a legacy PHP service. Describe operations once in Go, generate handlers for both." No existing tool covers this, because every tool is locked to one language and one transport.
+
+## Discovery: Op as foundation for existing tools
+
+If Op existed 10 years ago, the landscape would look different.
+
+An OpenAPI generator would not need to be a 3000-page specification that simultaneously defines what an operation is, how it maps to HTTP, what types look like, and how security works. It would come to `goop list --json` and get: Name, Tags, InputType, OutputType from core. Route, Bearer from httpplug. It would map that to its JSON format. `paths["/api/dogs"].post` is `httpplug.RouteFrom(ctx)`. `securitySchemes.bearerAuth` is `httpplug.BearerFrom(ctx)`. `schemas.CreateDogInput` is `op.InputType(ctx)` passed through a JSON Schema mapper. OpenAPI becomes a 200-line plugin, not a specification that must reinvent "what is an operation" from scratch.
+
+The same applies to every tool that today must independently answer "what is an operation":
+
+- **oapi-codegen / ogen** — take OpenAPI spec as input and generate Go code. But the spec is already a projection. They build code from a projection, not from the model. With Op they would read the model directly.
+- **gqlgen** — takes GraphQL schema as input. Same story: the schema is a projection of operations onto GraphQL. Without a foundation, gqlgen must invent "what is an operation" in its own format.
+- **ent** — takes a data model and generates CRUD. But CRUD operations are operations. Ent must invent "what is an operation" in ORM terms.
+
+Each of them independently solves the same task: "discover what the operation is." Each builds its own parser, its own model, its own format. And none of them can read each other's data, because there is no shared foundation.
+
+There is a clear boundary between "grab a library for function analysis" and "build a plugin for a convenient cross-projection codegen system with a clear core API and model." The first gives you a capability. The second gives you an ecosystem. Capability scales linearly — everyone builds their own. Ecosystem scales combinatorially — N plugins yield N² interactions through the shared model.
+
 **The operation is fundamental. The context is just your opinion.**
 
 ---
