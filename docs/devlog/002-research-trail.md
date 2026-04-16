@@ -5,7 +5,7 @@ description: "What we found inside Scramble, Huma, go-kit, and Wire — and why 
 
 # Research Trail
 
-Before writing code, we opened the hood on three tools that came closest to what Op is trying to be. Each one discovered something fundamental. Each one stopped short.
+Before writing code, we opened the hood on the tools that came closest to what Op is trying to be — primarily in the Go ecosystem, with detours into PHP and Protobuf. Each one discovered something fundamental. Each one stopped short. The research continues — other languages and ecosystems (Rust, Java/Spring, TypeScript, Elixir) remain unexplored.
 
 This is a frozen snapshot of the research — evidence for the future RFC, not a specification.
 
