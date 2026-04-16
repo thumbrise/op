@@ -1,6 +1,6 @@
 ---
 title: "#2 — Research Trail"
-description: "What we found inside Scramble, Huma, and Wire — and why nobody built the missing layer."
+description: "What we found inside Scramble, Huma, go-kit, and Wire — and why nobody built the missing layer."
 ---
 
 # Research Trail
@@ -106,6 +106,32 @@ Op:    op.New(name, handle, ...) →  go/types  →  plugins → _gen.go files
 
 Same toolchain. Same contract: DSL in, typed code out, compiler verifies. Different domain — dependencies vs operations. And Op adds two projections Wire never had: verify (linter) and describe (structured JSON).
 
+## go-kit: the runtime precedent that died
+
+[go-kit/kit](https://github.com/go-kit/kit) (27.5k stars) is the only Go project that saw the transport-agnostic layer. Service → Endpoint → Transport. Correct idea. Correct architecture. Wrong implementation.
+
+**What they built:**
+
+- `endpoint.Endpoint = func(ctx context.Context, request interface{}) (response interface{}, err error)` — the universal operation signature
+- Transport adapters for HTTP, gRPC, Thrift, NATS — the operation is written once, bound to any transport
+- Middleware as endpoint decorators — logging, rate limiting, circuit breaking, all transport-agnostic
+
+**Why it died:**
+
+- `endpoint.Endpoint` returns `(interface{}, error)` — type assertions at runtime. Every consumer casts. Every cast can panic.
+- Adapters written by hand — `MakeUppercaseEndpoint`, `DecodeRequest`, `EncodeResponse`. Per endpoint. Every time.
+- No DSL, no codegen, no public model, no `go-kit list --json`
+- No verify — no invariants, no static checks
+- Last significant commit 4+ years ago. Silently deprecated. The README still says "active" but the commit log says otherwise.
+
+**The cause of death:** DX killed the project. People wrote 200 lines of adapters per endpoint. The architecture was right — transport-agnostic operations with pluggable bindings. The developer experience was wrong — manual, repetitive, `interface{}`-heavy, zero tooling to reduce the burden.
+
+**What Op inherits and rejects:**
+
+Op inherits the philosophy: an operation exists before any transport touches it. Service → Endpoint → Transport is the correct layering.
+
+Op rejects the implementation: runtime framework, `interface{}`, manual adapters, zero codegen. Same insight, different century. Op is compile-time, typed, generated. Zero manual adapters.
+
 ## The convergence table
 
 | Tool | Discovered | Stopped at | Op takes further |
@@ -113,6 +139,7 @@ Same toolchain. Same contract: DSL in, typed code out, compiler verifies. Differ
 | **Scramble** | Operations can be parsed from source code. Types contain everything. | Entangled with OpenAPI. No public model. Pro paywall. | Explicit DSL instead of auto-parsing. Model is public. Plugins are projections. |
 | **Huma** | Operations are first-class objects. Go types as schema source. | HTTP baked into the descriptor. Runtime only. | Transport-agnostic descriptor. HTTP is a trait, not a field. Compile-time. |
 | **Wire** | Go code as DSL. `go/types` for static analysis. Generated code committed and compiled. | Single projection. Internal model. No generics. | Three projections (verify, generate, describe). Public model. Plugin architecture. |
+| **go-kit** | Transport-agnostic layer. Service → Endpoint → Transport. | Runtime framework. `interface{}`. Manual adapters. Dead from boilerplate. | Compile-time. Typed. Generated. Zero manual adapters. |
 | **Protobuf** | Transport-agnostic IDL. Plugin ecosystem. Community generators. | Not Go. External toolchain. HTTP leaked in via `google.api.http`. | Go types *are* the IDL. No external compiler. Traits instead of annotations. |
 | **swaggo** | Documentation lives in the code. | Asked developers to write it a third time in comments. | Types are the documentation. No annotations. |
 
@@ -151,6 +178,8 @@ Verify runs first. Always. If invariants are violated — generation does not st
 This is possible because Go gives us `go/ssa` — Static Single Assignment form of the entire program. Full call graph. We can trace from the HTTP handler entry point down through every function call and check whether a specific operation (like reading the Authorization header) exists anywhere in the chain.
 
 Every Go HTTP library ultimately calls `r.Header.Get("Authorization")` or equivalent. There is no other way to read a header in Go. The primitive is finite. The analysis is sound.
+
+Critically: **core does not perform this analysis.** Core provides the analysis API (`go/ssa` wrappers, call chain traversal). httpplug performs the check — httpplug knows what "Authorization header" means. Core collects the verdict. See "Discovery: verify is the third plugin-based projection" below.
 
 ## Discovery: Input is everything the operation needs
 
@@ -310,7 +339,9 @@ Same pattern as Wire's `wire.NewSet` — grouping providers. Op groups traits.
 
 ## Discovery: static analysis for route coverage
 
-`goop verify --check-coverage` can compare routes registered in the mux with operations declared in the DSL. Every Go HTTP router ultimately calls a method like `mux.Handle(pattern, handler)` — `go/ssa` sees these calls, extracts patterns, and compares with httpplug traits:
+Route coverage — comparing routes registered in the mux with operations declared in the DSL — is a verify concern. But it's not core's concern. Core doesn't know what a "route" is.
+
+The expected output:
 
 ```
 $ goop verify --check-coverage
@@ -329,7 +360,149 @@ $ goop verify --check-coverage
 
 Not an error — a visibility tool. Like `go test -cover`. Infrastructure endpoints (`/health`, `/metrics`) don't belong in the operation model. But a business endpoint missing from the DSL is a gap — no swagger, no invariants, no verify. `--check-coverage` makes the gap visible.
 
-Router detection is extensible — new routers are added via configuration, not core changes. The pattern is always the same: method call on a router type, pattern string in argument N, handler in argument M. Blind core, extensible through data.
+**Who does the work:** httpplug. Not core. httpplug knows what a route is. httpplug knows that every Go HTTP router ultimately calls a method like `mux.Handle(pattern, handler)`. httpplug knows how to find these calls via `go/ssa`. Core provides the analysis API and collects the results.
+
+The surface API of route registration differs across routers — `e.GET(pattern, handler)` vs `mux.Handle(method+" "+pattern, handler)` vs `r.Get(pattern, handler)`. Three levels of analysis complexity:
+
+1. **Simple** — string match: pattern in mux == pattern in httpplug trait
+2. **Medium** — resolve groups: `r.Group("/api").GET("/posts")` → `GET /api/posts`
+3. **Deep** — dynamic routes: pattern stored in a variable
+
+This is httpplug's problem to solve. Core's job is to make writing such analyzers pleasant — to provide good enough infrastructure that someone brings "here's coverage for 20 routers I know" or even better "here's a smart algorithm that finds any router automatically."
+
+Same philosophy all the way down: core provides primitives, plugins provide expertise.
+
+## Discovery: NIH validation — projections are not foundations
+
+A thorough NIH analysis of the Go ecosystem confirmed the gap. We checked every tool that could plausibly replace Op:
+
+- **ent** — data model, not operation model. Generates CRUD from schema. No concept of "an operation with input/output/context."
+- **oapi-codegen / ogen** — OpenAPI spec as input, HTTP-specific output. The spec is the model. No transport-agnostic layer.
+- **gqlgen** — GraphQL schema as input, GraphQL-specific output. Same pattern, different transport lock-in.
+- **reeflective/flags** — Cobra from struct tags. CLI-specific. No concept of operations beyond "a command."
+- **go-annotation / go-codegen** — generic codegen toolkits. No operation model. You bring your own semantics.
+
+Each of these tools independently solves "discover what the operation is" by building its own parser, its own model, its own format. None of them share a common foundation. If Op existed 10 years ago, each of these could have been a plugin reading `goop list --json` instead of reinventing parsing from scratch.
+
+Key insight from the session: comparing projections with a foundation is like saying "why invent concrete if buildings already exist?" Buildings are projections. Concrete is the foundation. You don't skip the foundation because projections exist.
+
+## Discovery: Op doesn't know "how" — it knows 2+2=4
+
+Op does not say "build HTTP this way." Op says "an operation is input, output, context, error." This is not an opinion. This is a fact. Functional programming formalized it decades ago.
+
+- go-kit said "I know how to build microservices" → opinion → opinion aged → project died
+- Huma said "I know how to do HTTP APIs" → opinion → locked to HTTP → CLI impossible
+- Scramble said "I know you need Swagger" → opinion → locked model → pay for more
+
+Op says: "An operation exists. Here's the model. Do what you want."
+
+The difference between "I know the right answer" and "I know a fundamental fact." The first is arrogance. The second is mathematics. `2+2=4` doesn't expire. `func(ctx, I) (*O, error)` doesn't expire. Transports come and go. The operation remains.
+
+## Discovery: the plugin author's objection — and why it's wrong
+
+Anticipated objection from potential plugin authors: "Why should I use your core? I'll just use `go/types` myself. Zero deps. More reliable."
+
+Answer: you can. `go/types` is stdlib. But you'll build your own parser, your own model, your own descriptor format. So will the next author. And the next. Five tools — five parsers, five models, five incompatible ways to describe the same operation.
+
+Op for operations is what `go/types` is for types. Infrastructure you build on, not compete with.
+
+The user describes operations once. You read. Another plugin reads. A third reads. One DSL — infinite consumers.
+
+## Discovery: footgun analysis — honest trade-offs
+
+Only ONE real trade-off in Op core: `Emit(ctx, any)` accepts anything.
+
+The other "footguns" are not Op's:
+
+- String field names in `Bind` → httpplug territory, not core
+- `go/ssa` not formal proof → verify projection limitation, not core
+- Build tag discipline → Go toolchain, same as Wire
+- Module version sync → solved by Go MVS + gover, not a real footgun
+
+The `any` trade-off is conscious: extensibility > type safety on emit. And it's lintable — see the lint rule below.
+
+## Discovery: lint rule for `any` in Emit
+
+Rule: "Emit accepts only exported structs."
+
+```go
+// ✅ OK — exported struct
+resilience.Emit(ctx, httpplug.BearerResolved{UserID: "usr_123"})
+
+// ❌ FAIL — string
+resilience.Emit(ctx, "something happened")
+
+// ❌ FAIL — int
+resilience.Emit(ctx, 42)
+
+// ❌ FAIL — unexported struct
+resilience.Emit(ctx, internalEvent{})
+
+// ❌ FAIL — anonymous struct
+resilience.Emit(ctx, struct{ Name string }{"Rex"})
+```
+
+Implementation: standard `go/analysis` Analyzer. Find all `Emit(ctx, x)` calls, check that `x` is an exported struct type. One check. Nanoseconds. Can live in `goop verify` or as a standalone `golangci-lint` rule.
+
+Same pattern as `errcheck` — "you passed `any`, but we know what's expected."
+
+## Discovery: verify is the third plugin-based projection
+
+The design session produced a critical realization: verify is not a core feature. It's a projection. The same pattern as generate and describe — plugin-based, all the way down.
+
+Core doesn't know what "Bearer authentication" is. Core doesn't know what "route coverage" is. Core doesn't know what's being verified. Core knows one thing: a plugin can report a violation.
+
+**Core provides:**
+
+- Analysis API — wrappers over `go/ssa`, `go/types` for call graph traversal
+- `ctx.Violate(...)` — "I found a problem"
+- `ctx.Pass(...)` — "all clear"
+- Violation collection and reporting
+
+**Core does NOT know:**
+
+- What a route is
+- What Bearer is
+- What coverage means
+- What is being checked
+
+Each plugin defines its own invariants and checks them:
+
+```go
+// httpplug verify — this is PLUGIN code, not core
+func (p *HTTPPlugin) Verify(ctx op.VerifyContext) {
+    bearer := BearerFrom(ctx)
+    if bearer == nil {
+        return // no Bearer trait — nothing to check
+    }
+
+    // httpplug KNOWS what an Authorization header is
+    // httpplug KNOWS how to search the call chain
+    // core gave it the API for analysis
+    found := ctx.CallChain().Contains(
+        ctx.Analysis().MethodCall("net/http", "Header", "Get"),
+    )
+
+    if !found {
+        ctx.Violate("Bearer declared but no auth check in call chain")
+    }
+}
+```
+
+Core collects violations from all plugins and reports:
+
+```
+$ goop generate
+
+  VERIFY
+    httpplug:  Bearer declared but no auth check (CreateDog)
+
+  FAIL  1 violation
+```
+
+Core is a blind arbiter. Plugins are experts. Each expert knows their domain. Core collects verdicts.
+
+The pattern is consistent to the bottom: generate = plugin-based, describe = plugin-based, verify = plugin-based. Core never gets smarter. Plugins get smarter.
 
 ## Discovery: multi-module architecture
 
@@ -349,21 +522,33 @@ And none of these modules end up in the user's binary — they're behind the `//
 
 ## What we take forward
 
-The research and design session confirmed seven things:
+The research and design sessions confirmed thirteen things:
 
 1. **The fundamental is known.** Everyone who looked at the problem saw the same thing: an operation is a typed unit with input, output, and semantics. This is not a new discovery. It's a formalization of what functional programming knew decades ago.
 
 2. **Nobody separated it.** Every tool welded the fundamental to one subjective output — OpenAPI, HTTP handlers, binary serialization. The model either doesn't exist as a separate layer (Scramble), exists but carries transport specifics (Huma), or lives in a different language entirely (Protobuf, Smithy).
 
-3. **The toolchain is ready.** Wire proved that `go/types` + `go/packages` + code generation + compiler verification is a production-grade pipeline. The gap is not tooling. The gap is that nobody pointed this pipeline at operations.
+3. **The right architecture already existed — and died.** go-kit saw the transport-agnostic layer. Service → Endpoint → Transport. Correct layering. But runtime framework + `interface{}` + manual adapters = death by boilerplate. The architecture was right, the DX was wrong. Op inherits the philosophy, rejects the implementation.
 
-4. **Traits are invariants, not annotations.** A trait is a verifiable statement about the operation's call chain. `go/ssa` can prove or disprove it at compile time. This makes verify a first-class projection — generation does not start until all invariants pass.
+4. **The toolchain is ready.** Wire proved that `go/types` + `go/packages` + code generation + compiler verification is a production-grade pipeline. The gap is not tooling. The gap is that nobody pointed this pipeline at operations.
 
-5. **Minimum responsibility at every layer.** Core knows names, signatures, and traits. Plugins know their transport. Use cases know their domain. Nobody takes more responsibility than needed. Nobody knows more than they should. Extensibility is a consequence of ignorance.
+5. **Traits are invariants, not annotations.** A trait is a verifiable statement about the operation's call chain. `go/ssa` can prove or disprove it at compile time. This makes verify a first-class projection — generation does not start until all invariants pass.
 
-6. **Zero runtime footprint.** Build tags (`//go:build op`) exclude the entire DSL and all plugins from the binary. Generated code is self-contained. Op is a development-time tool, not a runtime dependency. Wire proved this works.
+6. **Minimum responsibility at every layer.** Core knows names, signatures, and traits. Plugins know their transport. Use cases know their domain. Nobody takes more responsibility than needed. Nobody knows more than they should. Extensibility is a consequence of ignorance.
 
-7. **Multi-module, synchronized versions.** One repository, submodules with shared version tags. User imports only what they need. Compatibility guaranteed by version alignment.
+7. **Zero runtime footprint.** Build tags (`//go:build op`) exclude the entire DSL and all plugins from the binary. Generated code is self-contained. Op is a development-time tool, not a runtime dependency. Wire proved this works.
+
+8. **Multi-module, synchronized versions.** One repository, submodules with shared version tags. User imports only what they need. Compatibility guaranteed by version alignment.
+
+9. **No existing tool fills the gap.** NIH analysis confirmed it — ent, oapi-codegen, ogen, gqlgen, reeflective/flags, go-annotation, go-codegen. Each builds its own parser, its own model, its own format. Projections exist. The foundation does not.
+
+10. **Op knows facts, not opinions.** `func(ctx, I) (*O, error)` is not a framework preference. It's a formalization. Opinions expire. Facts don't. go-kit's opinions died. Huma's opinions locked it to HTTP. Op's fact — an operation has input, output, context, error — is timeless.
+
+11. **One real footgun, and it's lintable.** `Emit(ctx, any)` is the only genuine trade-off in core. Extensibility over type safety. Mitigated by a `go/analysis` lint rule: "Emit accepts only exported structs." Same pattern as `errcheck`.
+
+12. **The plugin author objection is wrong.** "I'll just use `go/types` myself" leads to five tools with five parsers, five models, five incompatible descriptors. Op for operations is what `go/types` is for types — infrastructure you build on.
+
+13. **Verify is plugin-based — same pattern to the bottom.** Core is a blind arbiter. It provides analysis API (`go/ssa` wrappers, call chain traversal) and `ctx.Violate(...)`. Plugins define their own invariants, perform their own checks, report their own verdicts. Core collects and reports. Generate = plugin-based. Describe = plugin-based. Verify = plugin-based. Core never gets smarter. Plugins get smarter.
 
 ## What we dream of
 
