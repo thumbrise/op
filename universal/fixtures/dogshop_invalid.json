@@ -1,0 +1,54 @@
+{
+    "$schema": "https://thumbrise.github.io/op/schema/instruction.v1.json",
+    "version": "1.0.0",
+    "operations": [
+        {
+            "comment": "Missing operation id — core schema violation.",
+            "input": [
+                {"id": "breed", "kind": "string"}
+            ],
+            "output": [],
+            "error": [],
+            "trait": [
+                {"id": "github.com/thumbrise/op/universal/http/method", "value": "POST"},
+                {"id": "github.com/thumbrise/op/universal/http/path", "value": "/dogs/buy"}
+            ]
+        },
+        {
+            "id": "ListBreeds",
+            "comment": "Unknown kind 'integere' — core schema violation. Output term without id — core schema violation. Missing leading slash in http/path — universal/http convention violation.",
+            "input": [
+                {"id": "size", "kind": "integere"}
+            ],
+            "output": [
+                {"kind": "string"}
+            ],
+            "error": [],
+            "trait": [
+                {"id": "github.com/thumbrise/op/universal/http/method", "value": "FETCH"},
+                {"id": "github.com/thumbrise/op/universal/http/path", "value": "breeds"}
+            ]
+        },
+        {
+            "id": "GetOrder",
+            "comment": "Enum without 'of' — core schema violation. Term without id inside rail — core schema violation.",
+            "input": [
+                {"id": "orderId", "kind": "string", "required": true}
+            ],
+            "output": [
+                {
+                    "id": "status",
+                    "kind": "enum"
+                },
+                {
+                    "kind": "string"
+                }
+            ],
+            "error": [],
+            "trait": [
+                {"id": "github.com/thumbrise/op/universal/http/method", "value": "GET"},
+                {"id": "github.com/thumbrise/op/universal/http/path", "value": "/orders/{orderId}"}
+            ]
+        }
+    ]
+}
