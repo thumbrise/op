@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: op
-  text: Typed operation model for Go
+  text: Transport-agnostic, language-agnostic application-layer protocol for describing operations. Solves the Expression Problem with traits
   tagline: Separate the fundamental from the subjective.
   actions:
     - theme: brand
