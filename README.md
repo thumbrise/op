@@ -1,14 +1,18 @@
 # op
 
-Typed operation model for Go.
-
-> Separate the fundamental from the subjective.
+Transport-agnostic, language-agnostic application-layer protocol for describing operations. Solves the Expression Problem with traits.
 
 **Status:** forming. No public API yet.
 
 ## What is this
 
-Op is a typed operation model with plugin-based code generation. Operations are described once in Go — plugins project them onto HTTP, CLI, OpenAPI, or anything else. The model does not own your runtime.
+Op (Operations Protocol) is a decentralized interface for operations. An operation is `func(Input) → (Output, error)` — a name, a description, an input type, an output type, and the possibility of failure. Nothing more.
+
+Traits extend operations without changing the core: HTTP routes, gRPC services, authentication, CLI flags — all are namespaced key-value extensions that producers add and consumers read. The core never changes. The ecosystem expands infinitely.
+
+Instructions — versioned, fully resolved units — flow between **producers** (DSL adapters, scripts, handwritten JSON) and **consumers** (code generators, loggers, diagram tools, database migrators) through any transport: stdin, files, HTTP, gRPC, or carrier pigeon.
+
+Op is not a framework, not a compiler, not a DSL. It is the missing layer between business logic and the infinite projections the industry demands.
 
 Read the [devlog](https://thumbrise.github.io/op/devlog/) for the full story.
 
