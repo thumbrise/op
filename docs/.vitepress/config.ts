@@ -2,7 +2,7 @@ import {defineConfig} from 'vitepress'
 
 export default defineConfig({
   title: 'op',
-  description: 'Typed operation model for Go — separate the fundamental from the subjective',
+  description: 'Transport-agnostic, language-agnostic application-layer protocol for describing operations. Solves the Expression Problem with traits.',
   base: '/op/',
   sitemap: {
     hostname: 'https://thumbrise.github.io/op/',
@@ -36,6 +36,9 @@ export default defineConfig({
             {text: '#3e — Pub Bar Role Game: Runtime Autopsy', link: '/devlog/003e-pub-bar-role-game'},
             {text: '#3f — Pub Bar Role Game: The Bar Owner Speaks', link: '/devlog/003f-pub-bar-role-game'},
             {text: '#3g — Pub Bar Role Game: DeepSeek\'s Letter', link: '/devlog/003g-pub-bar-role-game'},
+            {text: '#3h — Pub Bar Role Game: The Epilogue', link: '/devlog/003h-pub-bar-role-game'},
+            {text: '#4 — The Operations Protocol: Formalizing the Missing Foundation', link: '/devlog/004-operations-protocol'},
+            {text: '#5 — To Build the Future, Look at the Past', link: '/devlog/005-history-of-protocols'},
           ],
         },
       ],
