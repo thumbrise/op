@@ -39,6 +39,7 @@ export default defineConfig({
             {text: '#3h — Pub Bar Role Game: The Epilogue', link: '/devlog/003h-pub-bar-role-game'},
             {text: '#4 — The Operations Protocol: Formalizing the Missing Foundation', link: '/devlog/004-operations-protocol'},
             {text: '#5 — To Build the Future, Look at the Past', link: '/devlog/005-history-of-protocols'},
+            {text: '#6 — Fifteen Times the Same Idea', link: '/devlog/006-fifteen-times-the-same-idea'},
           ],
         },
       ],
