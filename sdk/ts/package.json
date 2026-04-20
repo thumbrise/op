@@ -1,0 +1,13 @@
+{
+  "name": "@thumbrise/op",
+  "version": "0.0.0",
+  "description": "Operation Protocol SDK — TypeScript type definitions",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "op.ts",
+  "types": "op.ts",
+  "files": [
+    "op.ts"
+  ],
+  "private": true
+}
