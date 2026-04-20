@@ -42,6 +42,7 @@ export default defineConfig({
             {text: '#6 — Fifteen Times the Same Idea', link: '/devlog/006-fifteen-times-the-same-idea'},
             {text: '#7 — The Contract That Wouldn\'t Break', link: '/devlog/007-contract'},
             {text: '#8 — Three Atoms', link: '/devlog/008-three-atoms'},
+            {text: '#9 — The Operation Comes First', link: '/devlog/009-operation-comes-first'},
           ],
         },
       ],
