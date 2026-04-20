@@ -41,6 +41,7 @@ export default defineConfig({
             {text: '#5 — To Build the Future, Look at the Past', link: '/devlog/005-history-of-protocols'},
             {text: '#6 — Fifteen Times the Same Idea', link: '/devlog/006-fifteen-times-the-same-idea'},
             {text: '#7 — The Contract That Wouldn\'t Break', link: '/devlog/007-contract'},
+            {text: '#8 — Three Atoms', link: '/devlog/008-three-atoms'},
           ],
         },
       ],
