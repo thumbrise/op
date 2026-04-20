@@ -7,6 +7,8 @@ header:
 
   paths:
     - '**/*.go'
+    - '**/*.php'
+    - '**/*.ts'
 
   paths-ignore:
     - 'docs/**'

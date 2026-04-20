@@ -1,0 +1,14 @@
+{
+    "name": "thumbrise/op",
+    "description": "Operation Protocol SDK — PHP type definitions",
+    "license": "Apache-2.0",
+    "type": "library",
+    "autoload": {
+        "files": [
+            "op.php"
+        ]
+    },
+    "require": {
+        "php": ">=8.1"
+    }
+}
