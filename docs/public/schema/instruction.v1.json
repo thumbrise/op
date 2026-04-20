@@ -1,0 +1,112 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://thumbrise.github.io/op/schema/instruction.v1.json",
+    "title": "OP",
+    "description": "Operation Protocol Instruction",
+    "type": "object",
+    "properties": {
+        "version": {
+            "type": "string"
+        },
+        "operations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/operation"
+            }
+        }
+    },
+    "required": [
+        "version",
+        "operations"
+    ],
+    "$defs": {
+        "operation": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Machine-readable operation identifier. For example, full function name."
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "Human-readable comment about the operation."
+                },
+                "input": {
+                    "$ref": "#/$defs/rail"
+                },
+                "output": {
+                    "$ref": "#/$defs/rail"
+                },
+                "errors": {
+                    "$ref": "#/$defs/rail"
+                },
+                "traits": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "description": "Ecosystem extensions. For expression problem resolving."
+                }
+            },
+            "required": [
+                "id",
+                "comment",
+                "input",
+                "output",
+                "errors"
+            ]
+        },
+        "rail": {
+            "type": "array",
+            "description": "Machine-readable, semantically grouped set of terms",
+            "items": {
+                "$ref": "#/$defs/term"
+            }
+        },
+        "term": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": [
+                        "string",
+                        "integer",
+                        "number",
+                        "boolean"
+                    ]
+                },
+                "kind": {
+                    "type": "string",
+                    "enum": [
+                        "string",
+                        "integer",
+                        "float",
+                        "boolean",
+                        "binary",
+                        "datetime",
+                        "array",
+                        "object",
+                        "enum"
+                    ]
+                },
+                "of": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/term"
+                    }
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "dependentRequired": {
+                "of": [
+                    "kind"
+                ],
+                "value": [
+                    "kind"
+                ]
+            }
+        }
+    }
+}
