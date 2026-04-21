@@ -2,14 +2,16 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://thumbrise.github.io/op/schema/instruction.v1.json",
     "title": "OP",
-    "description": "Operation Protocol Instruction",
+    "description": "Operation Protocol Instruction. A fully resolved, versioned unit that describes operations — the fundamental primitives of computation. Five fields per operation. Traits for everything else.",
     "type": "object",
     "properties": {
         "version": {
-            "type": "string"
+            "type": "string",
+            "description": "Instruction format version. Allows receivers to detect breaking changes and choose the correct parser."
         },
         "operations": {
             "type": "array",
+            "description": "The list of operations described by this instruction. Each operation is a complete, self-describing unit — id, comment, input, output, errors — that any receiver can compile into a projection.",
             "items": {
                 "$ref": "#/$defs/operation"
             }
@@ -22,28 +24,32 @@
     "$defs": {
         "operation": {
             "type": "object",
+            "description": "The three atoms of Op are operation, rail, and term. An operation is the fundamental primitive of computation — a named unit of work with typed input, typed output, and the possibility of failure. The same structure appears at every level: transistors, syscalls, functions, services, legal proceedings, speech acts. Op does not invent this structure. Op formalizes it.",
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "Machine-readable operation identifier. For example, full function name."
+                    "description": "Machine-readable identifier. Not a URL. Not a path. A name. Like an opcode names a CPU instruction, or a function name names a unit of work. 'id' was chosen over 'name' because name sounds human and approximate — id is unambiguous. One word. One meaning."
                 },
                 "comment": {
                     "type": "string",
-                    "description": "Human-readable comment about the operation."
+                    "description": "Human-readable note about the operation. Not a spec. Not a definition. A note. 'comment' was chosen over 'description' because description is a reserved keyword in JSON Schema with a different meaning. The comment is the bridge from fact to understanding — without it, the operation describes itself to machines; with it, to people."
                 },
                 "input": {
-                    "$ref": "#/$defs/rail"
+                    "$ref": "#/$defs/rail",
+                    "description": "The input rail. What goes into the operation. A rail is a direction the data takes — not a type, not a field, not a return value. Input rail, output rail, error rail. Three directions. One structure."
                 },
                 "output": {
-                    "$ref": "#/$defs/rail"
+                    "$ref": "#/$defs/rail",
+                    "description": "The output rail. What comes out on success. The happy path. The result the caller hopes for."
                 },
                 "errors": {
-                    "$ref": "#/$defs/rail"
+                    "$ref": "#/$defs/rail",
+                    "description": "The error rail. What comes out on failure. Required — not by design, but by physics. The second law of thermodynamics guarantees that no operation can be performed without the possibility of failure. Any protocol that omits an explicit error path is lying about the nature of reality."
                 },
                 "traits": {
                     "type": "object",
                     "additionalProperties": true,
-                    "description": "Ecosystem extensions. For expression problem resolving."
+                    "description": "Opinions attached from outside. HTTP routes, gRPC services, auth requirements, rate limits, CLI flags — all are traits. Remove a trait — the operation does not change. Add a trait — the operation does not change. Traits are the color of the car, not the engine. Each vendor speaks their own trait language. Receivers that understand a trait use it. Receivers that do not — ignore it silently. No committee. No registry. No OWL."
                 }
             },
             "required": [
@@ -56,16 +62,18 @@
         },
         "rail": {
             "type": "array",
-            "description": "Machine-readable, semantically grouped set of terms",
+            "description": "A direction the result takes. Not a type. Not a struct. A semantic path. A railway switch sends the train left or right — output rail (success) or error rail (failure). What rides on the rail — terms — is the same everywhere. The word 'rail' carries no baggage from any language, framework, or transport. It is new. And it is precise.",
             "items": {
                 "$ref": "#/$defs/term"
             }
         },
         "term": {
             "type": "object",
+            "description": "A unit of meaning. From formal logic — an atomic proposition. 'This thing has a name and a type.' Not tied to any language's concept of field, property, parameter, or argument. 'term' was chosen over 'field' because a field is an element of a data structure — a column, a property, a parameter. A term is neutral. Universal. It works on the input rail, the output rail, and the error rail without changing its nature.",
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The term's identifier. What this piece of data is called. Like 'breed', 'amount', 'userId'. Machine-readable. Unambiguous."
                 },
                 "value": {
                     "type": [
@@ -73,10 +81,12 @@
                         "integer",
                         "number",
                         "boolean"
-                    ]
+                    ],
+                    "description": "An optional concrete value. When present, the term carries not just a type but a specific value — useful for enums, defaults, and constants. Requires 'kind' to be set."
                 },
                 "kind": {
                     "type": "string",
+                    "description": "What kind of data this term represents. Nine kinds — not because we chose nine, but because when we looked at what receivers need to compile code, these nine kept appearing. Boolean is a transistor. Integer is a register interpretation. Float is IEEE 754. String is bytes with encoding. Binary is raw truth. Datetime is Earth's rotation. Array is repetition. Object is composition. Enum is a finite set of states. Formalizations of physics, not programming abstractions.",
                     "enum": [
                         "string",
                         "integer",
@@ -91,6 +101,7 @@
                 },
                 "of": {
                     "type": "array",
+                    "description": "What this term consists of. One word for three containers: object + of = composition (what am I composed of), array + of = repetition (what repeats in me), enum + of = choice (what can I be). Composition, repetition, choice — there is no fourth. Not in physics. Not in mathematics. Not in programming.",
                     "items": {
                         "$ref": "#/$defs/term"
                     }
