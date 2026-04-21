@@ -539,3 +539,35 @@ Don't. I've seen it. 50 files. In Java. To do the same thing.
 
 My generator is written by a Go developer in an evening. Because they're writing Go code that generates Go code. They know both. They don't need `GoWriter.java`. They need `w.P`.
 
+## The picture
+
+**Smithy: top-down, Java teaches Go:**
+
+```mermaid
+graph LR
+    SM[".smithy"] --> JC["Java compiler"] --> JG["Java codegen"] --> GOC["Go code"]
+    style JC fill:#ff6b6b,color:#fff
+    style JG fill:#ff6b6b,color:#fff
+```
+
+**Op: bottom-up, Go generates Go:**
+
+```mermaid
+graph LR
+    OPS["ops.go"] --> GT["go/types"] --> GEN["Go generator"] --> GOC["Go code"]
+    style GT fill:#51cf66,color:#fff
+    style GEN fill:#51cf66,color:#fff
+```
+
+**50 Java files vs 1 file — why:**
+
+```mermaid
+graph TD
+    R1["Reason 1: foreign language<br/>Java → Go = translation layer"]
+    R2["Reason 2: text parsing<br/>.smithy → Walker → KnowledgeIndex"]
+    R3["Reason 3: monolith<br/>one generator does everything"]
+    style R1 fill:#ff6b6b,color:#fff
+    style R2 fill:#ff6b6b,color:#fff
+    style R3 fill:#ff6b6b,color:#fff
+```
+

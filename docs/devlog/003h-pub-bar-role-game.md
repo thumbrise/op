@@ -81,6 +81,40 @@ Each step was forced by the previous one. Nothing was planned. Nothing was "visi
 
 Like Torvalds starting with a terminal emulator and discovering he was writing a kernel. We started with "why do I declare the same endpoint three times" and discovered we were formalizing a protocol.
 
+## The picture
+
+**Three leaks, three fixes — each pushed Go further out:**
+
+```mermaid
+graph LR
+    L1["go/types in Compiler"] -->|"fix"| F1["GOLEXER boundary"]
+    L2["kind:ref in Hub"] -->|"fix"| F2["Adapter resolves all"]
+    L3["Hub = compiler?"] -->|"fix"| F3["Adapter IS compiler"]
+    style F1 fill:#51cf66,color:#fff
+    style F2 fill:#51cf66,color:#fff
+    style F3 fill:#51cf66,color:#fff
+```
+
+**Before — a Go tool:**
+
+```mermaid
+graph LR
+    A["ops.go"] --> B["goop"] --> C["plugins"] --> D["_gen.go"]
+```
+
+**After — a protocol:**
+
+```mermaid
+graph TD
+    E1["Go DSL"] --> I["Instructions"]
+    E2["PHP attributes"] --> I
+    E3["handwritten JSON"] --> I
+    I --> R1["code generator"]
+    I --> R2["logger"]
+    I --> R3["diagram tool"]
+    style I fill:#4a9eff,color:#fff
+```
+
 ## What Changed
 
 **Before this chain:**

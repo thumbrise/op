@@ -520,6 +520,37 @@ All modules share the same version tag. `op@v0.3.0` + `op/httpplug@v0.3.0` — c
 
 And none of these modules end up in the user's binary — they're behind the `//go:build op` tag. Development-time tools, not runtime dependencies.
 
+## The picture
+
+**Each tool discovered the fundamental — and stopped:**
+
+```mermaid
+graph LR
+    SC["Scramble"] -->|"locked to"| OA["OpenAPI"]
+    HU["Huma"] -->|"locked to"| HTTP["HTTP"]
+    WI["Wire"] -->|"locked to"| DI["DI only"]
+    GK["go-kit"] -->|"killed by"| DX["boilerplate"]
+    PB["Protobuf"] -->|"locked to"| BIN["binary wire"]
+    style OA fill:#ff6b6b,color:#fff
+    style HTTP fill:#ff6b6b,color:#fff
+    style DI fill:#ff6b6b,color:#fff
+    style DX fill:#ff6b6b,color:#fff
+    style BIN fill:#ff6b6b,color:#fff
+```
+
+**Op takes the fundamental further — three projections:**
+
+```mermaid
+graph TD
+    OP["Op Model"] --> V["Verify"]
+    OP --> G["Generate"]
+    OP --> D["Describe"]
+    style OP fill:#4a9eff,color:#fff
+    style V fill:#51cf66,color:#fff
+    style G fill:#51cf66,color:#fff
+    style D fill:#51cf66,color:#fff
+```
+
 ## What we take forward
 
 The research and design sessions confirmed thirteen things:

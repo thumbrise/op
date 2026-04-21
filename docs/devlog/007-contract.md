@@ -504,6 +504,43 @@ Five facts. One container for opinions. That's the whole contract.
 
 The contract is a firewall between facts and opinions. Facts live in five fields. Opinions live in traits. The boundary is clear. The boundary is permanent.
 
+## The picture
+
+**Five facts, zero opinions:**
+
+```mermaid
+graph TD
+    OP["Operation"] --> ID["id"]
+    OP --> CM["comment"]
+    OP --> IN["input"]
+    OP --> OUT["output"]
+    OP --> ERR["errors"]
+    style OP fill:#4a9eff,color:#fff
+```
+
+**Opinions live in traits — outside the core:**
+
+```mermaid
+graph LR
+    T["Traits"] --> H["http: POST /dogs"]
+    T --> G["grpc: DogService"]
+    T --> C["cli: buy-dog"]
+    T --> M["mcp: BuyDog tool"]
+    style T fill:#ffd43b,color:#000
+```
+
+**One stream, all artifacts:**
+
+```mermaid
+graph LR
+    E["op-emit"] --> R1["openapi"]
+    E --> R2["laravel"]
+    E --> R3["angular"]
+    E --> R4["mcp"]
+    E --> R5["mermaid"]
+    style E fill:#4a9eff,color:#fff
+```
+
 This is where we are. POC is next.
 
 ---

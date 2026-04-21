@@ -41,4 +41,21 @@ What if the separation was not a discipline but a consequence? What if you descr
 
 I think the operation is the most undervalued primitive in software. We have types, we have data, we have schemas, we have protocols for everything — except for the thing that gives all of them meaning.
 
+## The picture
+
+**The industry describes projections, not operations:**
+
+```mermaid
+graph TD
+    OP["BuyDog"] --> P1["POST /api/dogs"]
+    OP --> P2["rpc BuyDog"]
+    OP --> P3["mutation buyDog"]
+    OP --> P4["buy-dog --breed lab"]
+    style OP fill:#4a9eff,color:#fff
+    style P1 fill:#ffd43b,color:#000
+    style P2 fill:#ffd43b,color:#000
+    style P3 fill:#ffd43b,color:#000
+    style P4 fill:#ffd43b,color:#000
+```
+
 The operation comes first. Everything else is a projection.

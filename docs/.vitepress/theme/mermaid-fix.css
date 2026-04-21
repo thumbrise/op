@@ -1,0 +1,4 @@
+/* Mermaid: fix foreignObject height miscalculation on styled nodes */
+.mermaid foreignObject {
+  overflow: visible !important;
+}

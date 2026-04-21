@@ -183,6 +183,49 @@ Op aims to make the same true for operations.
 
 A natural reaction to this comparison: "OTel has CNCF, Google, and Microsoft behind it. Op has one person with a devlog. Who are you to compare?" Fair — but that criticism targets the author, not the protocol. The valid question is not "who is behind Op" but "is the contract wrong?" Is five fields too few? Do traits fail as an extension mechanism? Is the N×M problem for operations not real? Those are attacks on the foundation. Everything else — team size, funding, corporate backing — is biography, not architecture. SMTP was one man and one RFC. It runs every email on Earth. The protocol does not care who wrote it.
 
+## The picture
+
+**N×M bridges vs N+M through a shared foundation:**
+
+```mermaid
+graph TD
+    OA["OpenAPI"] ---|"bridge"| PB["Protobuf"]
+    OA ---|"bridge"| GQL["GraphQL"]
+    OA ---|"bridge"| MCP["MCP"]
+    PB ---|"bridge"| GQL
+    PB ---|"bridge"| MCP
+    GQL ---|"bridge"| MCP
+    style OA fill:#ff6b6b,color:#fff
+    style PB fill:#ff6b6b,color:#fff
+    style GQL fill:#ff6b6b,color:#fff
+    style MCP fill:#ff6b6b,color:#fff
+```
+
+```mermaid
+graph TD
+    OA["OpenAPI"] --> I["Instructions"]
+    PB["Protobuf"] --> I
+    GQL["GraphQL"] --> I
+    MCP["MCP"] --> I
+    style I fill:#4a9eff,color:#fff
+```
+
+**Fifteen reinventions — each locked to one floor:**
+
+```mermaid
+graph LR
+    DB["D-Bus"] -->|"locked"| L1["Linux IPC"]
+    WSDL["WSDL"] -->|"locked"| L2["SOAP/XML"]
+    GR["gRPC Reflect"] -->|"locked"| L3["gRPC"]
+    GI["GraphQL Intro"] -->|"locked"| L4["GraphQL"]
+    ER["Erlang OTP"] -->|"locked"| L5["Erlang"]
+    style L1 fill:#ff6b6b,color:#fff
+    style L2 fill:#ff6b6b,color:#fff
+    style L3 fill:#ff6b6b,color:#fff
+    style L4 fill:#ff6b6b,color:#fff
+    style L5 fill:#ff6b6b,color:#fff
+```
+
 ## The Open Question
 Can every operation be expressed as a fundamental definition — name, input, output, error — plus traits as the solution to the Expression Problem?
 

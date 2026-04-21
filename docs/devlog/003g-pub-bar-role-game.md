@@ -504,6 +504,35 @@ The bar is closing. Everyone out.
 
 *Behind the counter, glasses clink quietly. Go turns off the light.*
 
+## The picture
+
+**Why Op won't arrive at `any` — generation vs runtime:**
+
+```mermaid
+graph TD
+    RT["Runtime framework<br/>one orchestrate for all ops"] --> ANY["Box dyn Any<br/>type erasure"]
+    style RT fill:#ff6b6b,color:#fff
+    style ANY fill:#ff6b6b,color:#fff
+```
+
+```mermaid
+graph TD
+    GEN["Generation"] --> F1["NewCreateDogHandler<br/>typed"]
+    GEN --> F2["NewDeleteDogHandler<br/>typed"]
+    GEN --> F3["NewListBreedsHandler<br/>typed"]
+    style GEN fill:#51cf66,color:#fff
+```
+
+**NIH vs engineering — the difference is one word:**
+
+```mermaid
+graph LR
+    NIH["Solution exists → rewrite it"] --> BAD["disease"]
+    ENG["Solution doesn't exist → create it"] --> GOOD["work"]
+    style BAD fill:#ff6b6b,color:#fff
+    style GOOD fill:#51cf66,color:#fff
+```
+
 ## What this devlog is
 
 This is a court record. Append-only. Frozen at the time of writing.

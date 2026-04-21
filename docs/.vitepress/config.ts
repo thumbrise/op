@@ -1,9 +1,17 @@
 import {defineConfig} from 'vitepress'
+import {withMermaid} from 'vitepress-plugin-mermaid'
 
-export default defineConfig({
+export default withMermaid(defineConfig({
   title: 'op',
-  description: 'Transport-agnostic, language-agnostic application-layer protocol for describing operations. Solves the Expression Problem with traits.',
+  description: 'Anything-agnostic operations protocol. For operations-driven future.',
   base: '/op/',
+  mermaid: {
+    flowchart: {
+      useMaxWidth: false,
+      htmlLabels: false,
+      padding: 15,
+    },
+  },
   sitemap: {
     hostname: 'https://thumbrise.github.io/op/',
   },
@@ -67,4 +75,4 @@ export default defineConfig({
       message: 'Apache 2.0 · Built in public · Contributions welcome',
     },
   },
-})
+}))
