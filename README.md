@@ -16,11 +16,11 @@ Transport-agnostic, language-agnostic application-layer protocol for describing 
 
 ## What is this
 
-Op (Operations Protocol) is a decentralized interface for operations. An operation is `func(Input) → (Output, error)` — a name, a description, an input type, an output type, and the possibility of failure. Nothing more.
+Op (Operations Protocol) is a decentralized interface for operations. An operation is `func(Input) → (Output, error)` — a name, a comment, an input type, an output type, and the possibility of failure. Nothing more.
 
-Traits extend operations without changing the core: HTTP routes, gRPC services, authentication, CLI flags — all are namespaced key-value extensions that producers add and consumers read. The core never changes. The ecosystem expands infinitely.
+Traits extend operations without changing the core: HTTP routes, gRPC services, authentication, CLI flags — all are namespaced key-value extensions that emitters add and receivers read. The core never changes. The ecosystem expands infinitely.
 
-Instructions — versioned, fully resolved units — flow between **producers** (DSL adapters, scripts, handwritten JSON) and **consumers** (compilers, loggers, diagram tools, database migrators) through any transport: stdin, files, HTTP, gRPC, or carrier pigeon.
+Instructions — versioned, fully resolved units — flow between **emitters** (DSL compilers, scripts, handwritten JSON) and **receivers** (framework compilers, loggers, diagram tools, database migrators) through any transport: stdin, files, HTTP, gRPC, or carrier pigeon.
 
 Op is not a framework, not a compiler, not a DSL. It is the missing layer between business logic and the infinite projections the industry demands.
 
