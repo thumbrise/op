@@ -519,6 +519,29 @@ The point is the single, unified interoperability protocol underneath. Not *an* 
 
 ## The Architecture
 
+**Any producer emits Instructions:**
+
+```mermaid
+graph LR
+    E1["Go DSL"] --> I["Instructions"]
+    E2["PHP attributes"] --> I
+    E3["TS decorators"] --> I
+    E4["handwritten JSON"] --> I
+    style I fill:#4a9eff,color:#fff
+```
+
+**Any consumer reads Instructions:**
+
+```mermaid
+graph LR
+    I["Instructions"] --> R1["openapi"]
+    I --> R2["mcp"]
+    I --> R3["laravel"]
+    I --> R4["ts-types"]
+    I --> R5["mermaid"]
+    style I fill:#4a9eff,color:#fff
+```
+
 ```
 [Producer] → [Instructions] → [Consumer]
 ↑             ↑              ↑

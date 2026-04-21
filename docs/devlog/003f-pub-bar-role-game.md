@@ -516,3 +516,43 @@ Op → OpenAPI is reading and writing. No dictionary needed.
 
 **swagplug:** I'm not broken, father. I'm normal. It's the bridge that's abnormally large. Because the shores are too far apart.
 
+## The picture
+
+**Smithy reinvented what Go gives for free:**
+
+```mermaid
+graph LR
+    S1["Shapes"] --- G1["types"]
+    S2["Shape ID"] --- G2["package.Type"]
+    S3["Traits"] --- G3["typed functions"]
+    S4["Node values"] --- G4["JSON stdlib"]
+    S5["Merging rules"] --- G5["compiler"]
+    S6["Prelude"] --- G6["builtin types"]
+    style S1 fill:#ff6b6b,color:#fff
+    style S2 fill:#ff6b6b,color:#fff
+    style S3 fill:#ff6b6b,color:#fff
+    style S4 fill:#ff6b6b,color:#fff
+    style S5 fill:#ff6b6b,color:#fff
+    style S6 fill:#ff6b6b,color:#fff
+    style G1 fill:#51cf66,color:#fff
+    style G2 fill:#51cf66,color:#fff
+    style G3 fill:#51cf66,color:#fff
+    style G4 fill:#51cf66,color:#fff
+    style G5 fill:#51cf66,color:#fff
+    style G6 fill:#51cf66,color:#fff
+```
+
+**Smithy → OpenAPI: 36 config options. Op → OpenAPI: zero:**
+
+```mermaid
+graph LR
+    SM["Smithy model"] -->|"36 knobs"| OA["OpenAPI"]
+    style SM fill:#ff6b6b,color:#fff
+```
+
+```mermaid
+graph LR
+    OP["Op model"] -->|"direct read"| OA["OpenAPI"]
+    style OP fill:#51cf66,color:#fff
+```
+

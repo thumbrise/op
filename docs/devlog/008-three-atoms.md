@@ -277,6 +277,51 @@ Three atoms. Operation, rail, term. One recursive structure. Nine kinds. Four op
 
 The contract that wouldn't break — now has a machine-readable definition that proves it.
 
+## The picture
+
+**Three atoms — the entire protocol:**
+
+```mermaid
+graph TD
+    OP["Operation"] --> IN["input: Rail"]
+    OP --> OUT["output: Rail"]
+    OP --> ERR["errors: Rail"]
+    style OP fill:#4a9eff,color:#fff
+```
+
+**A rail is an array of terms:**
+
+```mermaid
+graph LR
+    R["Rail"] --> T1["Term: breed"]
+    R --> T2["Term: budget"]
+    R --> T3["Term: DogNotFound"]
+    style R fill:#51cf66,color:#fff
+```
+
+**A term is recursive — four forms:**
+
+```mermaid
+graph TD
+    T["Term"] --> M["Marker: just id"]
+    T --> P["Primitive: id + kind"]
+    T --> C["Container: id + kind + of"]
+    T --> V["Enum variant: id + kind + value"]
+    style T fill:#ffd43b,color:#000
+```
+
+**Three containers exhaust the universe:**
+
+```mermaid
+graph LR
+    OBJ["object + of"] --- L1["composition"]
+    ARR["array + of"] --- L2["repetition"]
+    ENM["enum + of"] --- L3["choice"]
+    style OBJ fill:#4a9eff,color:#fff
+    style ARR fill:#4a9eff,color:#fff
+    style ENM fill:#4a9eff,color:#fff
+```
+
 ## Result
 
 [instruction.v1.json](/schema/instruction.v1.json)

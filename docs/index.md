@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: op
-  text: Transport-agnostic, language-agnostic application-layer protocol
-  tagline: Describes operations. Solves the Expression Problem with traits. Separate the fundamental from the subjective
+  text: Anything-agnostic operations protocol
+  tagline: For operations-driven future. Solves the Expression Problem with traits. Separate the fundamental from the subjective
   actions:
     - theme: brand
       text: Read the Devlog
@@ -13,4 +13,505 @@ hero:
       text: GitHub
       link: https://github.com/thumbrise/op
 ---
+
+## The Problems
+
+### You Write the Same Thing Again and Again
+
+```mermaid
+graph TD
+    OP["⚡ Your operation: BuyDog"]
+
+    subgraph "Projections — write by hand"
+        H["HTTP handler"]
+        CL["CLI command"]
+        GR["gRPC service"]
+        WS["WebSocket handler"]
+        CRON["Cron job"]
+    end
+
+    subgraph "Clients — write by hand"
+        TS["TypeScript client"]
+        DART["Dart client"]
+        SWIFT["Swift client"]
+        MOCK["Mock for frontend"]
+    end
+
+    subgraph "Documentation — write by hand"
+        SW["Swagger annotation"]
+        DOC["Documentation page"]
+        POST["Postman collection"]
+        README["README examples"]
+    end
+
+    subgraph "Contracts — write by hand"
+        VAL["Validation rules"]
+        ERR["Error mapping"]
+        PERM["Permission check"]
+        RATE["Rate limit config"]
+    end
+
+    subgraph "Observability — write by hand"
+        LOG["Logging context"]
+        METRIC["Metric name"]
+        SPAN["Span name"]
+        ALERT["Alert rule"]
+    end
+
+    subgraph "Testing — write by hand"
+        TEST["Integration test"]
+        CONTRACT["Contract test"]
+        E2E["E2E scenario"]
+    end
+
+    subgraph "AI tools — write by hand"
+        MCP["MCP tool definition"]
+        FNCALL["Function calling schema"]
+        AGENT["Agent tool description"]
+    end
+
+    subgraph "Infra bindings — N × M"
+        SDK1["MySQL — 6 language SDKs"]
+        SDK2["Redis — 5 language SDKs"]
+        SDK3["Stripe — 7 language SDKs"]
+        SDK4["AWS — 8 language SDKs"]
+    end
+
+    OP --> H
+    OP --> CL
+    OP --> GR
+    OP --> WS
+    OP --> CRON
+    OP --> TS
+    OP --> DART
+    OP --> SWIFT
+    OP --> MOCK
+    OP --> SW
+    OP --> DOC
+    OP --> POST
+    OP --> README
+    OP --> VAL
+    OP --> ERR
+    OP --> PERM
+    OP --> RATE
+    OP --> LOG
+    OP --> METRIC
+    OP --> SPAN
+    OP --> ALERT
+    OP --> TEST
+    OP --> CONTRACT
+    OP --> E2E
+    OP --> MCP
+    OP --> FNCALL
+    OP --> AGENT
+    OP --> SDK1
+    OP --> SDK2
+    OP --> SDK3
+    OP --> SDK4
+
+    H -.->|"drifts"| SW
+    SW -.->|"drifts"| DOC
+    TS -.->|"drifts"| H
+    VAL -.->|"drifts"| ERR
+    TEST -.->|"drifts"| MOCK
+    LOG -.->|"drifts"| METRIC
+    MCP -.->|"drifts"| FNCALL
+
+    style OP fill:#22c55e,color:#000
+    style H fill:#f87171,color:#000
+    style CL fill:#f87171,color:#000
+    style GR fill:#f87171,color:#000
+    style WS fill:#f87171,color:#000
+    style CRON fill:#f87171,color:#000
+    style TS fill:#f87171,color:#000
+    style DART fill:#f87171,color:#000
+    style SWIFT fill:#f87171,color:#000
+    style MOCK fill:#f87171,color:#000
+    style SW fill:#f87171,color:#000
+    style DOC fill:#f87171,color:#000
+    style POST fill:#f87171,color:#000
+    style README fill:#f87171,color:#000
+    style VAL fill:#f87171,color:#000
+    style ERR fill:#f87171,color:#000
+    style PERM fill:#f87171,color:#000
+    style RATE fill:#f87171,color:#000
+    style LOG fill:#f87171,color:#000
+    style METRIC fill:#f87171,color:#000
+    style SPAN fill:#f87171,color:#000
+    style ALERT fill:#f87171,color:#000
+    style TEST fill:#f87171,color:#000
+    style CONTRACT fill:#f87171,color:#000
+    style E2E fill:#f87171,color:#000
+    style MCP fill:#f87171,color:#000
+    style FNCALL fill:#f87171,color:#000
+    style AGENT fill:#f87171,color:#000
+    style SDK1 fill:#f87171,color:#000
+    style SDK2 fill:#f87171,color:#000
+    style SDK3 fill:#f87171,color:#000
+    style SDK4 fill:#f87171,color:#000
+```
+
+It does not matter what language you use. OCaml, Haskell, Go, PHP, Rust — the moment your operation touches the outside world, you write it again. And again. A route. A schema. A client. A doc page. A CLI flag. A mock. A test. A metric. An MCP tool. An SDK per language. All by hand. All can drift. Change one — the rest lies. You find out in production.
+
+This is not a tooling problem. This is the absence of a shared source of truth for what your code can do.
+
+### The Industry Reinvents the Wheel. Every Wheel.
+
+```mermaid
+graph TD
+    subgraph "RPC systems — each reinvents five fields"
+        RPC1["gRPC"]
+        RPC2["Thrift"]
+        RPC3["WAMP"]
+        RPC4["JSON-RPC"]
+        RPC5["XML-RPC"]
+        RPC6["SOAP"]
+        RPC7["CORBA"]
+        RPC8["DCOM"]
+        RPC9["Java RMI"]
+        RPC10["Cap'n Proto"]
+        RPC11["Avro RPC"]
+        RPC12["ZeroC ICE"]
+        RPC13["Finagle"]
+        RPC14["Dubbo"]
+        RPC15["Twirp"]
+        RPC16["Connect"]
+        RPC17["tRPC"]
+        RPC18["DRPC"]
+    end
+
+    subgraph "Generators — shadow to shadow"
+        G1["openapi-generator"] -->|"shadow → shadow"| G2["swagger-codegen"]
+        G3["protoc-gen-X"] -->|"locked to protobuf"| G4["grpc-gateway"]
+        G5["graphql-codegen"] -->|"locked to GraphQL"| G6["apollo-codegen"]
+        G7["oapi-codegen"] -->|"locked to Go"| G8["go-swagger"]
+        G9["NSwag"] -->|"locked to .NET"| G10["Kiota"]
+        G11["buf generate"] -->|"locked to protobuf"| G12["connect-es"]
+        G13["Smithy"] -->|"locked to AWS"| G14["AWS SDK codegen"]
+    end
+
+    subgraph "IDLs — each locked to one ecosystem"
+        IDL1["Protobuf — locked to gRPC"]
+        IDL2["Thrift IDL — locked to Thrift"]
+        IDL3["OpenAPI — locked to HTTP"]
+        IDL4["AsyncAPI — locked to messaging"]
+        IDL5["GraphQL SDL — locked to GraphQL"]
+        IDL6["WSDL — locked to SOAP"]
+        IDL7["WASI WIT — locked to WebAssembly"]
+        IDL8["Smithy IDL — locked to AWS"]
+        IDL9["FIDL — locked to Fuchsia"]
+    end
+
+    subgraph "Introspection — each locked to one runtime"
+        INT1["D-Bus Introspect — locked to Linux IPC"]
+        INT2["gRPC Reflection — locked to gRPC"]
+        INT3["GraphQL Introspection — locked to GraphQL"]
+        INT4["MCP tools/list — locked to AI agents"]
+        INT5["UPnP discovery — locked to local network"]
+        INT6["COM IDispatch — locked to Windows"]
+        INT7["OSGi registry — locked to JVM"]
+        INT8["Erlang behaviours — locked to BEAM"]
+    end
+
+    style RPC1 fill:#f87171,color:#000
+    style RPC2 fill:#f87171,color:#000
+    style RPC3 fill:#f87171,color:#000
+    style RPC4 fill:#f87171,color:#000
+    style RPC5 fill:#f87171,color:#000
+    style RPC6 fill:#f87171,color:#000
+    style RPC7 fill:#f87171,color:#000
+    style RPC8 fill:#f87171,color:#000
+    style RPC9 fill:#f87171,color:#000
+    style RPC10 fill:#f87171,color:#000
+    style RPC11 fill:#f87171,color:#000
+    style RPC12 fill:#f87171,color:#000
+    style RPC13 fill:#f87171,color:#000
+    style RPC14 fill:#f87171,color:#000
+    style RPC15 fill:#f87171,color:#000
+    style RPC16 fill:#f87171,color:#000
+    style RPC17 fill:#f87171,color:#000
+    style RPC18 fill:#f87171,color:#000
+    style G1 fill:#f87171,color:#000
+    style G2 fill:#f87171,color:#000
+    style G3 fill:#f87171,color:#000
+    style G4 fill:#f87171,color:#000
+    style G5 fill:#f87171,color:#000
+    style G6 fill:#f87171,color:#000
+    style G7 fill:#f87171,color:#000
+    style G8 fill:#f87171,color:#000
+    style G9 fill:#f87171,color:#000
+    style G10 fill:#f87171,color:#000
+    style G11 fill:#f87171,color:#000
+    style G12 fill:#f87171,color:#000
+    style G13 fill:#f87171,color:#000
+    style G14 fill:#f87171,color:#000
+    style IDL1 fill:#f87171,color:#000
+    style IDL2 fill:#f87171,color:#000
+    style IDL3 fill:#f87171,color:#000
+    style IDL4 fill:#f87171,color:#000
+    style IDL5 fill:#f87171,color:#000
+    style IDL6 fill:#f87171,color:#000
+    style IDL7 fill:#f87171,color:#000
+    style IDL8 fill:#f87171,color:#000
+    style IDL9 fill:#f87171,color:#000
+    style INT1 fill:#f87171,color:#000
+    style INT2 fill:#f87171,color:#000
+    style INT3 fill:#f87171,color:#000
+    style INT4 fill:#f87171,color:#000
+    style INT5 fill:#f87171,color:#000
+    style INT6 fill:#f87171,color:#000
+    style INT7 fill:#f87171,color:#000
+    style INT8 fill:#f87171,color:#000
+```
+
+Forty-nine systems. Four layers. Every one of them rediscovers the same five fields — a name, an input, an output, and the possibility of failure. Then welds them to one transport, one language, or one vendor and calls it a standard.
+
+Eighteen RPC systems. Fourteen generators. Nine IDLs. Eight introspection mechanisms. And this is only what we chose to put on the diagram. All shadows of the same thing. Nobody describes the thing itself. Because the thing itself was never written down.
+
+### Business Pays for Every Missing Standard
+
+```mermaid
+graph LR
+    B1["Marketplace A — own API"] ---|"custom integration"| YOU["Your company"]
+    B2["Marketplace B — own API"] ---|"custom integration"| YOU
+    B3["AI provider — own tool format"] ---|"custom integration"| YOU
+    B4["Payment system — own API"] ---|"custom integration"| YOU
+    B5["Another payment — own SDK"] ---|"custom integration"| YOU
+    B6["Logistics — own API"] ---|"custom integration"| YOU
+    B7["Warehouse — own API"] ---|"custom integration"| YOU
+    B8["Banking platform — own API"] ---|"custom integration"| YOU
+    B9["CRM — own API"] ---|"custom integration"| YOU
+    B10["ERP — own API"] ---|"custom integration"| YOU
+    B11["Analytics — own API"] ---|"custom integration"| YOU
+    B12["Notification service — own API"] ---|"custom integration"| YOU
+    B13["Tax authority — own format"] ---|"custom integration"| YOU
+
+    style B1 fill:#f87171,color:#000
+    style B2 fill:#f87171,color:#000
+    style B3 fill:#f87171,color:#000
+    style B4 fill:#f87171,color:#000
+    style B5 fill:#f87171,color:#000
+    style B6 fill:#f87171,color:#000
+    style B7 fill:#f87171,color:#000
+    style B8 fill:#f87171,color:#000
+    style B9 fill:#f87171,color:#000
+    style B10 fill:#f87171,color:#000
+    style B11 fill:#f87171,color:#000
+    style B12 fill:#f87171,color:#000
+    style B13 fill:#f87171,color:#000
+    style YOU fill:#facc15,color:#000
+```
+
+Every partner has its own API. Every integration is custom. Every new partner costs months. Every API change breaks revenue.
+
+Marketplaces lose sellers who give up on integration. AI providers like Anthropic spend years evangelizing MCP tool adoption — one tool at a time, by hand. Payment systems maintain SDK libraries in six languages — six codebases, six teams, six sets of bugs. Banks rebuild integrations with every fintech partner from scratch.
+
+The cost is not technical. It is economic. Everyone pays — in time, in people, in missed opportunities — for the absence of a shared language for operations.
+
+### Why Nobody Noticed
+
+This is not about stupidity. The people who built gRPC, OpenAPI, GraphQL, MCP — they are brilliant. The problem is older than all of them.
+
+In 1989, the Web exploded with three primitives: URI, HTTP, HTML. The world got addresses, transport, and presentation — all at once. It was so fast, so useful, so transformative that nobody stopped to ask: where is the model?
+
+Functions had five fields since Fortran in 1957. Syscalls had five fields since Unix in 1971. Every programming language, every CPU instruction set, every network protocol arrived at the same structure independently. The operation was already there — formalized, proven, universal. But the Web boom buried it under transport and presentation. HTTP became the world. HTML became the interface. The model — the operation itself — was never written down.
+
+And so every framework, every RPC system, every generator since 1989 has been reinventing the same five fields from scratch. Not because engineers are blind. Because the Web taught everyone to think in transports and presentations first. The model was always underneath. Nobody looked.
+
+## The Solution
+
+```mermaid
+graph LR
+    subgraph "N emitters — describe once"
+        E1[Go DSL]
+        E2[PHP attributes]
+        E3[TS decorators]
+        E4[Rust macro]
+        E5[Python decorator]
+        E6[Handwritten JSON]
+        E7[Scraped from existing code]
+    end
+
+    I[/"⚡ Op Instruction"/]
+
+    subgraph "Frameworks — stop writing wrappers"
+        R1[Laravel]
+        R2[Express]
+        R3[Spring]
+        R4[Django]
+        R5[Gin]
+        R6[Fastify]
+    end
+
+    subgraph "Specs — stop maintaining by hand"
+        S1[OpenAPI]
+        S2[AsyncAPI]
+        S3[GraphQL schema]
+        S4[Postman collection]
+        S5[WSDL]
+    end
+
+    subgraph "AI — stop registering tools one by one"
+        A1[MCP tools]
+        A2[Function calling]
+        A3[Agent frameworks]
+    end
+
+    subgraph "Clients — stop writing SDKs in 6 languages"
+        C1[TypeScript client]
+        C2[Swift client]
+        C3[Dart client]
+        C4[Python client]
+        C5[Go client]
+        C6[Rust client]
+    end
+
+    subgraph "Infra — stop maintaining connectors"
+        IF1["ClickHouse — 1 instruction, not 6 connectors"]
+        IF2["MySQL — 1 instruction, not 6 connectors"]
+        IF3["Redis — 1 instruction, not 5 connectors"]
+        IF4["Stripe — 1 instruction, not 7 SDKs"]
+        IF5["AWS — 1 instruction, not 8 SDKs"]
+    end
+
+    subgraph "Ecosystem — compiled, not written"
+        EC1[Docs portal]
+        EC2[IDE autocomplete]
+        EC3[Security scanner]
+        EC4[Monitoring dashboard]
+        EC5[Saga orchestrator]
+        EC6[Load balancer config]
+        EC7[Contract tests]
+    end
+
+    E1 --> I
+    E2 --> I
+    E3 --> I
+    E4 --> I
+    E5 --> I
+    E6 --> I
+    E7 --> I
+    I --> R1
+    I --> R2
+    I --> R3
+    I --> R4
+    I --> R5
+    I --> R6
+    I --> S1
+    I --> S2
+    I --> S3
+    I --> S4
+    I --> S5
+    I --> A1
+    I --> A2
+    I --> A3
+    I --> C1
+    I --> C2
+    I --> C3
+    I --> C4
+    I --> C5
+    I --> C6
+    I --> IF1
+    I --> IF2
+    I --> IF3
+    I --> IF4
+    I --> IF5
+    I --> EC1
+    I --> EC2
+    I --> EC3
+    I --> EC4
+    I --> EC5
+    I --> EC6
+    I --> EC7
+
+    style I fill:#facc15,color:#000,stroke:#facc15
+    style E1 fill:#334155,color:#fff
+    style E2 fill:#334155,color:#fff
+    style E3 fill:#334155,color:#fff
+    style E4 fill:#334155,color:#fff
+    style E5 fill:#334155,color:#fff
+    style E6 fill:#334155,color:#fff
+    style E7 fill:#334155,color:#fff
+    style R1 fill:#22c55e,color:#000
+    style R2 fill:#22c55e,color:#000
+    style R3 fill:#22c55e,color:#000
+    style R4 fill:#22c55e,color:#000
+    style R5 fill:#22c55e,color:#000
+    style R6 fill:#22c55e,color:#000
+    style S1 fill:#22c55e,color:#000
+    style S2 fill:#22c55e,color:#000
+    style S3 fill:#22c55e,color:#000
+    style S4 fill:#22c55e,color:#000
+    style S5 fill:#22c55e,color:#000
+    style A1 fill:#22c55e,color:#000
+    style A2 fill:#22c55e,color:#000
+    style A3 fill:#22c55e,color:#000
+    style C1 fill:#22c55e,color:#000
+    style C2 fill:#22c55e,color:#000
+    style C3 fill:#22c55e,color:#000
+    style C4 fill:#22c55e,color:#000
+    style C5 fill:#22c55e,color:#000
+    style C6 fill:#22c55e,color:#000
+    style IF1 fill:#22c55e,color:#000
+    style IF2 fill:#22c55e,color:#000
+    style IF3 fill:#22c55e,color:#000
+    style IF4 fill:#22c55e,color:#000
+    style IF5 fill:#22c55e,color:#000
+    style EC1 fill:#22c55e,color:#000
+    style EC2 fill:#22c55e,color:#000
+    style EC3 fill:#22c55e,color:#000
+    style EC4 fill:#22c55e,color:#000
+    style EC5 fill:#22c55e,color:#000
+    style EC6 fill:#22c55e,color:#000
+    style EC7 fill:#22c55e,color:#000
+```
+
+**N + M instead of N × M.** One instruction format in the middle. New emitter — all receivers for free. New receiver — all emitters for free. The economics of LLVM applied to operations.
+
+Write the operation once. The rest is compiled. Not generated — compiled. With contracts. With guarantees. Like `gcc`, not like Mustache.
+
+## What This Unlocks
+
+```mermaid
+graph LR
+    S["any://any.com/operations"/]
+
+    S --> C["🔧 Clients compile"]
+    S --> D["📖 Docs compile"]
+    S --> AI["🤖 AI agents see all"]
+    S --> M["📊 Monitor by operation"]
+    S --> SEC["🔒 Audit by contract"]
+    S --> INT["🔌 Plug in, not rewrite"]
+    S --> SEO["🔍 SEO bots index capabilities"]
+    S --> Q["❓ What we cannot imagine yet"]
+
+    style S fill:#facc15,color:#000,stroke:#facc15
+    style C fill:#22c55e,color:#000
+    style D fill:#22c55e,color:#000
+    style AI fill:#22c55e,color:#000
+    style M fill:#22c55e,color:#000
+    style SEC fill:#22c55e,color:#000
+    style INT fill:#22c55e,color:#000
+    style SEO fill:#22c55e,color:#000
+    style Q fill:#334155,color:#fff,stroke-dasharray: 5 5
+```
+
+Every service describes itself. `any://any.com/operations/` — and in the response, everything it can do. A worldwide D-Bus. Not on one machine. On the entire internet.
+
+- **Typed clients** in any language compile from the instruction. `BuyDogInput`, `BuyDogOutput`, `BuyDogError = DogNotFound | BudgetExceeded`. Exhaustive error matching. Autocomplete. Not written by hand. Not generated from shadows. Compiled from the source of truth.
+- **Documentation** cannot go stale. It is compiled from the same instruction that the code uses. Change the operation — the docs change. Not because someone remembered. Because it is the same object.
+- **AI agents** see every operation of every service. MCP tools, function calling, agent frameworks — all compiled from instructions. One `op-receiver-mcp` — and every operation in the ecosystem becomes an AI tool. Anthropic gets thousands of tools without evangelizing one by one.
+- **Monitoring** speaks business language. Span names are `BuyDog`, not `POST /api/v2/dogs`. Alerts know the dependency graph from the contract. Before the first request.
+- **Security** audits the contract, not the code. Operation `DeleteUser` has `auth: admin` but the receiver skips the check? Found before deployment. By a machine. From the instruction.
+- **Integrations** between companies become plug-and-play. New marketplace? Plug in the receiver. New payment provider? Plug in the receiver. No months of custom development. No SDK in six languages. One instruction. Every projection.
+- **Discovery** shifts from content to capability. Today search engines index what you say. Tomorrow they index what you can do. `/operations` is a sitemap for capabilities. Forgery is impossible: every client call verifies the contract.
+- **What we cannot imagine yet.** Like Mendeleev's periodic table, Op does not need to know what will fill the empty cells. It only needs to guarantee that the structure is correct. The cells are waiting. See: [predicted elements](https://en.wikipedia.org/wiki/Mendeleev%27s_predicted_elements).
+
+**The developer never sees Op.** Like you never see TCP when you open Gmail. The protocol is invisible. Vendors compile from instructions — their reputation depends on the quality. The developer writes business logic. Everything else is compiled.
+
+## The Schema
+
+Five fields. Three atoms. One JSON Schema.
+
+[**instruction.v1.json →**](/schema/instruction.v1.json)
 

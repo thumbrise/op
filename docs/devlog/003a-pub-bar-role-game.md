@@ -236,6 +236,38 @@ The adversarial session didn't create these principles — it sharpened them.
 
 **Code is a continuation of thought, not the other way around.** Model, devlogs, adversarial review — before the first line of code. POC is next. RFC after POC. Code after RFC. The thinking precedes the typing.
 
+## The picture
+
+**Firewall — Go stays on one side, the world on the other:**
+
+```mermaid
+graph LR
+    classDef core fill:#4a9eff,color:#fff
+    GO["Go types"] --> M["Model types"]:::core
+    M --> GEN["Generators"]
+```
+
+**Three roles, not two:**
+
+```mermaid
+graph TD
+    classDef core fill:#4a9eff,color:#fff
+    classDef good fill:#51cf66,color:#fff
+    classDef warn fill:#ffd43b,color:#000
+    CORE["Core — name · input · output"]:::core --> MP["Model plugins — httpplug · grpcplug"]:::good
+    MP --> GEN["Generators — swagplug · goop-php"]:::warn
+```
+
+**Two levels of plugins:**
+
+```mermaid
+graph TD
+    classDef core fill:#4a9eff,color:#fff
+    classDef good fill:#51cf66,color:#fff
+    L1["Level 1: Go in-process — typed · go/ssa · verify"]:::core
+    L2["Level 2: External — JSON stdin/stdout · any language"]:::good
+```
+
 ## Discovery: goop ≠ protoc
 
 A subtle but important distinction that emerged under pressure.

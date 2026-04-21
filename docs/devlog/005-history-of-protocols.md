@@ -120,6 +120,20 @@ They merged into OpenTelemetry under the CNCF (Cloud Native Computing Foundation
 
 **What kills:** committees, scope creep, complexity, absence of a working product.
 
+## The picture
+
+```mermaid
+timeline
+    title Protocols that shaped the world
+    1982 : SMTP — one man, one RFC
+    1986 : SQL — paper → product → standard
+    1991 : CORBA — 800 companies, died from complexity
+    1996 : USB — ignored for 2 years, then iMac forced it
+    2019 : OpenTelemetry — merged competitors
+    2024 : MCP — one blog post, blitzkrieg adoption
+    2025 : Op — five fields, traits for everything else
+```
+
 ## Where Op Stands
 
 Op is not CORBA. Op is closer to SMTP.
