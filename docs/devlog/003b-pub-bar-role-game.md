@@ -531,3 +531,39 @@ Op:
 **Swagplug:** So Protobuf has a zoo of languages, but each is on its own. And we have a zoo of languages, but Go plugins are a team?
 
 **Op:** Exactly. Go plugins — a team with typed API. External plugins — a zoo with JSON protocol. Two levels. Best of both worlds.
+
+## The picture
+
+**Every IDL came with an opinion — Op has none:**
+
+```mermaid
+graph TD
+    PB["Protobuf + binary wire"]
+    GQL["GraphQL + client picks fields"]
+    SM["Smithy + service has resources"]
+    OA["OpenAPI + everything is HTTP"]
+    OP["Op + nothing"]
+    style PB fill:#ff6b6b,color:#fff
+    style GQL fill:#ff6b6b,color:#fff
+    style SM fill:#ff6b6b,color:#fff
+    style OA fill:#ff6b6b,color:#fff
+    style OP fill:#4a9eff,color:#fff
+```
+
+**Op pipeline vs Protobuf isolation:**
+
+```mermaid
+graph LR
+    HP["httpplug"] -->|"enriches"| SW["swagplug reads it"]
+    HP -->|"enriches"| PHP["goop-php reads it"]
+    style HP fill:#51cf66,color:#fff
+```
+
+```mermaid
+graph LR
+    PG1["protoc-gen-go"] ~~~ PG2["protoc-gen-gateway"]
+    PG2 ~~~ PG3["protoc-gen-swagger"]
+    style PG1 fill:#868e96,color:#fff
+    style PG2 fill:#868e96,color:#fff
+    style PG3 fill:#868e96,color:#fff
+```

@@ -543,3 +543,27 @@ A TODO. In AWS production code. *"Allow consuming generators to overwrite."* The
 
 With us, there's nothing to replace. Bearer is a trait. Want different auth? Write a different trait. `apiKeyPlug.Header("X-API-Key")`. New plugin. New trait. Core doesn't know. swagplug reads it and adds `apiKeyScheme` to the spec. No six Java classes. No middleware. No TODO.
 
+## The picture
+
+**Smithy: IDL + runtime framework in the binary:**
+
+```mermaid
+graph TD
+    SG["smithy-go"] --> MW["middleware"]
+    SG --> ENC["encoding: CBOR · JSON · XML"]
+    SG --> TR["transport: HTTP"]
+    SG --> AU["auth: Bearer · SigV4"]
+    SG --> MT["metrics · tracing · logging"]
+    style SG fill:#ff6b6b,color:#fff
+```
+
+**Op: zero runtime, not in the binary:**
+
+```mermaid
+graph LR
+    OP["Op"] --> GEN["generates code"] --> LEAVE["leaves"]
+    BIN["go list -deps | grep op"] --> EMPTY["empty"]
+    style OP fill:#51cf66,color:#fff
+    style EMPTY fill:#51cf66,color:#fff
+```
+

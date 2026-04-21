@@ -530,3 +530,40 @@ We're both facts. Not opinions. Facts don't die. Opinions die. I know. I was an 
 
 *Disappears.*
 
+## The picture
+
+**The Krabby Patty secret — where did the complexity go?**
+
+```mermaid
+graph LR
+    SM["Smithy: 50 Java files"] --> B["bridge: Java teaches Go"]
+    style SM fill:#ff6b6b,color:#fff
+    style B fill:#ff6b6b,color:#fff
+```
+
+```mermaid
+graph LR
+    OP["Op: 1 file"] --> GC["Go compiler<br/>already written · already free"]
+    style OP fill:#51cf66,color:#fff
+    style GC fill:#51cf66,color:#fff
+```
+
+**Smithy scales by Java developers. Op scales by community:**
+
+```mermaid
+graph TD
+    S["Smithy: 1 Java dev"] --> L1["Go mapping"]
+    S --> L2["TS mapping"]
+    S --> L3["Python mapping"]
+    S --> L4["Rust mapping"]
+    style S fill:#ff6b6b,color:#fff
+```
+
+```mermaid
+graph TD
+    O["Op: each language"] --> G1["Go dev → Go"]
+    O --> G2["PHP dev → PHP"]
+    O --> G3["TS dev → TS"]
+    style O fill:#51cf66,color:#fff
+```
+
