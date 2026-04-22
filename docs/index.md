@@ -19,104 +19,43 @@ hero:
 ### You Write the Same Thing Again and Again
 
 ```mermaid
-graph TD
-    OP["⚡ Your operation: BuyDog"]
-
-    subgraph "Projections — write by hand"
-        H["HTTP handler"]
-        CL["CLI command"]
-        GR["gRPC service"]
-        WS["WebSocket handler"]
-        CRON["Cron job"]
-    end
-
-    subgraph "Clients — write by hand"
-        TS["TypeScript client"]
-        DART["Dart client"]
-        SWIFT["Swift client"]
-        MOCK["Mock for frontend"]
-    end
-
-    subgraph "Documentation — write by hand"
-        SW["Swagger annotation"]
-        DOC["Documentation page"]
-        POST["Postman collection"]
-        README["README examples"]
-    end
-
-    subgraph "Contracts — write by hand"
-        VAL["Validation rules"]
-        ERR["Error mapping"]
-        PERM["Permission check"]
-        RATE["Rate limit config"]
-    end
-
-    subgraph "Observability — write by hand"
-        LOG["Logging context"]
-        METRIC["Metric name"]
-        SPAN["Span name"]
-        ALERT["Alert rule"]
-    end
-
-    subgraph "Testing — write by hand"
-        TEST["Integration test"]
-        CONTRACT["Contract test"]
-        E2E["E2E scenario"]
-    end
-
-    subgraph "AI tools — write by hand"
-        MCP["MCP tool definition"]
-        FNCALL["Function calling schema"]
-        AGENT["Agent tool description"]
-    end
-
-    subgraph "Infra bindings — N × M"
-        SDK1["MySQL — 6 language SDKs"]
-        SDK2["Redis — 5 language SDKs"]
-        SDK3["Stripe — 7 language SDKs"]
-        SDK4["AWS — 8 language SDKs"]
-    end
-
-    OP --> H
-    OP --> CL
-    OP --> GR
-    OP --> WS
-    OP --> CRON
-    OP --> TS
-    OP --> DART
-    OP --> SWIFT
-    OP --> MOCK
-    OP --> SW
-    OP --> DOC
-    OP --> POST
-    OP --> README
-    OP --> VAL
-    OP --> ERR
-    OP --> PERM
-    OP --> RATE
-    OP --> LOG
-    OP --> METRIC
-    OP --> SPAN
-    OP --> ALERT
-    OP --> TEST
-    OP --> CONTRACT
-    OP --> E2E
-    OP --> MCP
-    OP --> FNCALL
-    OP --> AGENT
-    OP --> SDK1
-    OP --> SDK2
-    OP --> SDK3
-    OP --> SDK4
-
+graph LR
+    OP["⚡ BuyDog"]
+    OP --> H["HTTP handler"]
+    OP --> CL["CLI command"]
+    OP --> GR["gRPC service"]
+    OP --> WS["WebSocket handler"]
+    OP --> CRON["Cron job"]
+    OP --> TS["TypeScript client"]
+    OP --> DART["Dart client"]
+    OP --> SWIFT["Swift client"]
+    OP --> MOCK["Mock for frontend"]
+    OP --> SW["Swagger annotation"]
+    OP --> DOC["Documentation page"]
+    OP --> POST["Postman collection"]
+    OP --> VAL["Validation rules"]
+    OP --> ERR["Error mapping"]
+    OP --> PERM["Permission check"]
+    OP --> RATE["Rate limit config"]
+    OP --> LOG["Logging context"]
+    OP --> METRIC["Metric name"]
+    OP --> SPAN["Span name"]
+    OP --> ALERT["Alert rule"]
+    OP --> TEST["Integration test"]
+    OP --> CONTRACT["Contract test"]
+    OP --> MCP["MCP tool definition"]
+    OP --> FNCALL["Function calling schema"]
+    OP --> AGENT["Agent tool description"]
+    OP --> SDK1["MySQL — 6 SDKs"]
+    OP --> SDK2["Redis — 5 SDKs"]
+    OP --> SDK3["Stripe — 7 SDKs"]
+    OP --> SDK4["AWS — 8 SDKs"]
     H -.->|"drifts"| SW
-    SW -.->|"drifts"| DOC
     TS -.->|"drifts"| H
     VAL -.->|"drifts"| ERR
     TEST -.->|"drifts"| MOCK
     LOG -.->|"drifts"| METRIC
     MCP -.->|"drifts"| FNCALL
-
     style OP fill:#22c55e,color:#000
     style H fill:#f87171,color:#000
     style CL fill:#f87171,color:#000
@@ -130,7 +69,6 @@ graph TD
     style SW fill:#f87171,color:#000
     style DOC fill:#f87171,color:#000
     style POST fill:#f87171,color:#000
-    style README fill:#f87171,color:#000
     style VAL fill:#f87171,color:#000
     style ERR fill:#f87171,color:#000
     style PERM fill:#f87171,color:#000
@@ -141,7 +79,6 @@ graph TD
     style ALERT fill:#f87171,color:#000
     style TEST fill:#f87171,color:#000
     style CONTRACT fill:#f87171,color:#000
-    style E2E fill:#f87171,color:#000
     style MCP fill:#f87171,color:#000
     style FNCALL fill:#f87171,color:#000
     style AGENT fill:#f87171,color:#000
@@ -158,61 +95,26 @@ This is not a tooling problem. This is the absence of a shared source of truth f
 ### The Industry Reinvents the Wheel. Every Wheel.
 
 ```mermaid
-graph TD
-    subgraph "RPC systems — each reinvents five fields"
-        RPC1["gRPC"]
-        RPC2["Thrift"]
-        RPC3["WAMP"]
-        RPC4["JSON-RPC"]
-        RPC5["XML-RPC"]
-        RPC6["SOAP"]
-        RPC7["CORBA"]
-        RPC8["DCOM"]
-        RPC9["Java RMI"]
-        RPC10["Cap'n Proto"]
-        RPC11["Avro RPC"]
-        RPC12["ZeroC ICE"]
-        RPC13["Finagle"]
-        RPC14["Dubbo"]
-        RPC15["Twirp"]
-        RPC16["Connect"]
-        RPC17["tRPC"]
-        RPC18["DRPC"]
-    end
-
-    subgraph "Generators — shadow to shadow"
-        G1["openapi-generator"] -->|"shadow → shadow"| G2["swagger-codegen"]
-        G3["protoc-gen-X"] -->|"locked to protobuf"| G4["grpc-gateway"]
-        G5["graphql-codegen"] -->|"locked to GraphQL"| G6["apollo-codegen"]
-        G7["oapi-codegen"] -->|"locked to Go"| G8["go-swagger"]
-        G9["NSwag"] -->|"locked to .NET"| G10["Kiota"]
-        G11["buf generate"] -->|"locked to protobuf"| G12["connect-es"]
-        G13["Smithy"] -->|"locked to AWS"| G14["AWS SDK codegen"]
-    end
-
-    subgraph "IDLs — each locked to one ecosystem"
-        IDL1["Protobuf — locked to gRPC"]
-        IDL2["Thrift IDL — locked to Thrift"]
-        IDL3["OpenAPI — locked to HTTP"]
-        IDL4["AsyncAPI — locked to messaging"]
-        IDL5["GraphQL SDL — locked to GraphQL"]
-        IDL6["WSDL — locked to SOAP"]
-        IDL7["WASI WIT — locked to WebAssembly"]
-        IDL8["Smithy IDL — locked to AWS"]
-        IDL9["FIDL — locked to Fuchsia"]
-    end
-
-    subgraph "Introspection — each locked to one runtime"
-        INT1["D-Bus Introspect — locked to Linux IPC"]
-        INT2["gRPC Reflection — locked to gRPC"]
-        INT3["GraphQL Introspection — locked to GraphQL"]
-        INT4["MCP tools/list — locked to AI agents"]
-        INT5["UPnP discovery — locked to local network"]
-        INT6["COM IDispatch — locked to Windows"]
-        INT7["OSGi registry — locked to JVM"]
-        INT8["Erlang behaviours — locked to BEAM"]
-    end
-
+graph LR
+    RPC["RPC systems"] --> RPC1["gRPC"]
+    RPC --> RPC2["Thrift"]
+    RPC --> RPC3["WAMP"]
+    RPC --> RPC4["JSON-RPC"]
+    RPC --> RPC5["XML-RPC"]
+    RPC --> RPC6["SOAP"]
+    RPC --> RPC7["CORBA"]
+    RPC --> RPC8["DCOM"]
+    RPC --> RPC9["Java RMI"]
+    RPC --> RPC10["Cap'n Proto"]
+    RPC --> RPC11["Avro RPC"]
+    RPC --> RPC12["ZeroC ICE"]
+    RPC --> RPC13["Finagle"]
+    RPC --> RPC14["Dubbo"]
+    RPC --> RPC15["Twirp"]
+    RPC --> RPC16["Connect"]
+    RPC --> RPC17["tRPC"]
+    RPC --> RPC18["DRPC"]
+    style RPC fill:#868e96,color:#fff
     style RPC1 fill:#f87171,color:#000
     style RPC2 fill:#f87171,color:#000
     style RPC3 fill:#f87171,color:#000
@@ -231,6 +133,25 @@ graph TD
     style RPC16 fill:#f87171,color:#000
     style RPC17 fill:#f87171,color:#000
     style RPC18 fill:#f87171,color:#000
+```
+
+```mermaid
+graph LR
+    GEN["Generators"] --> G1["openapi-generator"]
+    GEN --> G2["swagger-codegen"]
+    GEN --> G3["protoc-gen-X"]
+    GEN --> G4["grpc-gateway"]
+    GEN --> G5["graphql-codegen"]
+    GEN --> G6["apollo-codegen"]
+    GEN --> G7["oapi-codegen"]
+    GEN --> G8["go-swagger"]
+    GEN --> G9["NSwag"]
+    GEN --> G10["Kiota"]
+    GEN --> G11["buf generate"]
+    GEN --> G12["connect-es"]
+    GEN --> G13["Smithy"]
+    GEN --> G14["AWS SDK codegen"]
+    style GEN fill:#868e96,color:#fff
     style G1 fill:#f87171,color:#000
     style G2 fill:#f87171,color:#000
     style G3 fill:#f87171,color:#000
@@ -245,6 +166,20 @@ graph TD
     style G12 fill:#f87171,color:#000
     style G13 fill:#f87171,color:#000
     style G14 fill:#f87171,color:#000
+```
+
+```mermaid
+graph LR
+    IDL["IDLs"] --> IDL1["Protobuf → gRPC"]
+    IDL --> IDL2["Thrift IDL → Thrift"]
+    IDL --> IDL3["OpenAPI → HTTP"]
+    IDL --> IDL4["AsyncAPI → messaging"]
+    IDL --> IDL5["GraphQL SDL → GraphQL"]
+    IDL --> IDL6["WSDL → SOAP"]
+    IDL --> IDL7["WASI WIT → WebAssembly"]
+    IDL --> IDL8["Smithy IDL → AWS"]
+    IDL --> IDL9["FIDL → Fuchsia"]
+    style IDL fill:#868e96,color:#fff
     style IDL1 fill:#f87171,color:#000
     style IDL2 fill:#f87171,color:#000
     style IDL3 fill:#f87171,color:#000
@@ -254,6 +189,19 @@ graph TD
     style IDL7 fill:#f87171,color:#000
     style IDL8 fill:#f87171,color:#000
     style IDL9 fill:#f87171,color:#000
+```
+
+```mermaid
+graph LR
+    INT["Introspection"] --> INT1["D-Bus → Linux IPC"]
+    INT --> INT2["gRPC Reflection → gRPC"]
+    INT --> INT3["GraphQL → GraphQL"]
+    INT --> INT4["MCP tools/list → AI agents"]
+    INT --> INT5["UPnP → local network"]
+    INT --> INT6["COM IDispatch → Windows"]
+    INT --> INT7["OSGi → JVM"]
+    INT --> INT8["Erlang behaviours → BEAM"]
+    style INT fill:#868e96,color:#fff
     style INT1 fill:#f87171,color:#000
     style INT2 fill:#f87171,color:#000
     style INT3 fill:#f87171,color:#000
