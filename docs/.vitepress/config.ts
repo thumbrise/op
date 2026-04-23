@@ -87,6 +87,7 @@ export default withMermaid(defineConfig({
             {text: '#24 — The Trial', link: '/devlog/024-the-trial'},
             {text: '#25 — The Manifesto', link: '/devlog/025-the-manifesto'},
             {text: '#26 — The Compilers', link: '/devlog/026-the-compilers'},
+            {text: '#27 — Build, Link, Runtime', link: '/devlog/027-build-link-runtime'},
           ],
         },
       ],
