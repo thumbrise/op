@@ -78,6 +78,7 @@ export default withMermaid(defineConfig({
             {text: '#15 — The Coexistence', link: '/devlog/015-the-coexistence'},
             {text: '#16 — The Founder\'s Dream', link: '/devlog/016-the-founders-dream'},
             {text: '#17 — The Gallium', link: '/devlog/017-the-gallium'},
+            {text: '#18 — The Fourth Rail', link: '/devlog/018-the-fourth-rail'},
           ],
         },
       ],
