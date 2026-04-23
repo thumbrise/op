@@ -46,27 +46,30 @@ final class Operation
     /**
      * @param list<Term> $input
      * @param list<Term> $output
-     * @param list<Term> $errors
-     * @param array<string, mixed> $traits
+     * @param list<Term> $error
+     * @param list<Term> $trait
      */
     public function __construct(
         public readonly string $id,
         public readonly string $comment,
         public readonly array $input,
         public readonly array $output,
-        public readonly array $errors,
-        public readonly array $traits = [],
+        public readonly array $error,
+        public readonly array $trait,
     ) {}
 }
 /**
- * Kind is required when value or of is set.
+ * Kind is required when of is set.
  */
 final class Term
 {
     public function __construct(
         public readonly string $id,
+        /** Human-readable note about the term. */
+        public readonly ?string $comment = null,
+        /** Whether this term must be present. */
+        public readonly ?bool $required = null,
         public readonly ?Kind $kind = null,
-        /** Requires kind. */
         public readonly string|int|float|bool|null $value = null,
         /** Requires kind. @var list<Term>|null */
         public readonly ?array $of = null,
