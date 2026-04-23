@@ -82,6 +82,7 @@ export default withMermaid(defineConfig({
             {text: '#19 — The Missing Format', link: '/devlog/019-the-missing-format'},
             {text: '#20 — The Playground', link: '/devlog/020-the-playground'},
             {text: '#21 — The Atoms Speak', link: '/devlog/021-the-atoms-speak'},
+            {text: '#22 — The Dream Layer', link: '/devlog/022-the-dream-layer'},
           ],
         },
       ],
