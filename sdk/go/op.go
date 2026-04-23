@@ -19,20 +19,23 @@ type Instruction struct {
 	Operations []Operation `json:"operations"`
 }
 type Operation struct {
-	ID      string         `json:"id"`
-	Comment string         `json:"comment"`
-	Input   []Term         `json:"input"`
-	Output  []Term         `json:"output"`
-	Errors  []Term         `json:"errors"`
-	Traits  map[string]any `json:"traits,omitempty"`
+	ID      string `json:"id"`
+	Comment string `json:"comment"`
+	Input   []Term `json:"input"`
+	Output  []Term `json:"output"`
+	Error   []Term `json:"error"`
+	Trait   []Term `json:"trait"`
 }
+
 // Term represents a single term in a rail.
-// Kind is required when Value or Of is set.
+// Kind is required when Of is set.
 type Term struct {
-	ID    string `json:"id"`
-	Kind  Kind   `json:"kind,omitempty"`
-	Value any    `json:"value,omitempty"` // requires Kind; string | int | float64 | bool only
-	Of    []Term `json:"of,omitempty"`    // requires Kind
+	ID       string `json:"id"`
+	Comment  string `json:"comment,omitempty"`
+	Required *bool  `json:"required,omitempty"`
+	Kind     Kind   `json:"kind,omitempty"`
+	Value    any    `json:"value,omitempty"` // string | int | float64 | bool only
+	Of       []Term `json:"of,omitempty"`    // requires Kind
 }
 
 type Kind string
