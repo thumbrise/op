@@ -42,14 +42,13 @@
                     "$ref": "#/$defs/rail",
                     "description": "The output rail. What comes out on success. The happy path. The result the caller hopes for."
                 },
-                "errors": {
+                "error": {
                     "$ref": "#/$defs/rail",
                     "description": "The error rail. What comes out on failure. Required — not by design, but by physics. The second law of thermodynamics guarantees that no operation can be performed without the possibility of failure. Any protocol that omits an explicit error path is lying about the nature of reality."
                 },
-                "traits": {
-                    "type": "object",
-                    "additionalProperties": true,
-                    "description": "Opinions attached from outside. HTTP routes, gRPC services, auth requirements, rate limits, CLI flags — all are traits. Remove a trait — the operation does not change. Add a trait — the operation does not change. Traits are the color of the car, not the engine. Each vendor speaks their own trait language. Receivers that understand a trait use it. Receivers that do not — ignore it silently. No committee. No registry. No OWL."
+                "trait": {
+                    "$ref": "#/$defs/rail",
+                    "description": "The trait rail. Opinions attached from outside. HTTP routes, gRPC services, auth requirements, rate limits, CLI flags — all are traits. Remove a trait — the operation does not change. Add a trait — the operation does not change. Traits are the color of the car, not the engine. Each vendor speaks their own trait language. Receivers that understand a trait use it. Receivers that do not — ignore it silently. No committee. No registry. No OWL. Trait is the fourth rail — same Term structure as input, output, and error."
                 }
             },
             "required": [
@@ -57,7 +56,8 @@
                 "comment",
                 "input",
                 "output",
-                "errors"
+                "error",
+                "trait"
             ]
         },
         "rail": {
@@ -74,6 +74,14 @@
                 "id": {
                     "type": "string",
                     "description": "The term's identifier. What this piece of data is called. Like 'breed', 'amount', 'userId'. Machine-readable. Unambiguous."
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "Human-readable note about the term. The bridge from machine name to human meaning. Without it, 'zip' is five bits of ambiguity. With it, 'zip' is a postal code. Optional — because not every term needs explanation. But when it does, the comment is where humanity lives."
+                },
+                "required": {
+                    "type": "boolean",
+                    "description": "Whether this term must be present. In chemistry — oxygen is required for combustion, a catalyst is not. In a function — some arguments are mandatory, some have defaults. When absent, the term is optional. When true, omitting it is a violation of the contract."
                 },
                 "value": {
                     "type": [

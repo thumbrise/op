@@ -33,24 +33,27 @@ export interface Operation {
     comment: string;
     input:   Term[];
     output:  Term[];
-    errors:  Term[];
+    error:   Term[];
     /**
-     * Ecosystem extensions. For expression problem resolving.
+     * The trait rail. Opinions attached from outside. Same Term structure as input, output, and error.
      */
-    traits?: { [key: string]: any };
+    trait:   Term[];
 }
 
 /**
  * The atom of a rail.
- * Kind is required when value or of is set.
+ * Kind is required when of is set.
  */
 export interface Term {
-    id:     string;
-    kind?:  Kind;
+    id:        string;
+    /** Human-readable note about the term. */
+    comment?:  string;
+    /** Whether this term must be present. */
+    required?: boolean;
+    kind?:     Kind;
+    value?:    boolean | number | string;
     /** Requires kind. */
-    value?: boolean | number | string;
-    /** Requires kind. */
-    of?:    Term[];
+    of?:       Term[];
 }
 
 export enum Kind {
