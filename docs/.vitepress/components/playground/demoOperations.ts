@@ -1,0 +1,237 @@
+// Seed data for the Playground — used on first visit and when the user resets.
+// Kept in its own file so the main component stays focused on orchestration.
+
+export interface Term {
+    id: string
+    comment?: string
+    required?: boolean
+    kind?: string
+    value?: string | number | boolean
+    of?: Term[]
+}
+
+export interface Operation {
+    id: string
+    comment: string
+    input: Term[]
+    output: Term[]
+    error: Term[]
+    trait: Term[]
+}
+
+export function emptyOperation(): Operation {
+    return {id: '', comment: '', input: [], output: [], error: [], trait: []}
+}
+
+/** Deep clone for seed data. structuredClone is available in all target browsers. */
+export function demoOperations(): Operation[] {
+    return structuredClone(DEMO)
+}
+
+const DEMO: Operation[] = [
+    {
+        id: 'BuyDog',
+        comment: 'Purchase a dog by breed with a budget limit. Demonstrates object composition, enum choice, and compound traits.',
+        input: [
+            {id: 'breed', kind: 'string', required: true, comment: 'Exact breed name, e.g. "labrador"'},
+            {id: 'budget', kind: 'integer', required: true, comment: 'Maximum price in cents'},
+            {id: 'express', kind: 'boolean', comment: 'Next-day delivery'},
+            {id: 'deliveryAddress', kind: 'object', comment: 'Where to deliver the dog', of: [
+                {id: 'street', kind: 'string'},
+                {id: 'city', kind: 'string'},
+                {id: 'zip', kind: 'string', comment: 'Postal code, not an archive'},
+                {id: 'country', kind: 'string', value: 'US', comment: 'ISO 3166-1 alpha-2'},
+            ]},
+            {id: 'preferredSize', kind: 'enum', comment: 'Desired dog size category', of: [
+                {id: 'small'},
+                {id: 'medium'},
+                {id: 'large'},
+            ]},
+        ],
+        output: [
+            {id: 'orderId', kind: 'string'},
+            {id: 'dog', kind: 'object', comment: 'The matched dog', of: [
+                {id: 'id', kind: 'string'},
+                {id: 'name', kind: 'string', comment: 'The name the shelter gave it'},
+                {id: 'breed', kind: 'string'},
+                {id: 'birthDate', kind: 'datetime'},
+                {id: 'weightKg', kind: 'float', comment: 'Weight at last checkup'},
+                {id: 'vaccinated', kind: 'boolean'},
+            ]},
+            {id: 'totalPrice', kind: 'float', comment: 'Final price including delivery, in cents'},
+        ],
+        error: [
+            {id: 'BreedNotFound', comment: 'No such breed in our catalog'},
+            {id: 'BudgetExceeded', comment: 'All matching dogs cost more than budget'},
+            {id: 'OutOfStock', comment: 'Breed exists but no dogs available right now'},
+            {id: 'DeliveryUnavailable', comment: 'We do not deliver to this address'},
+        ],
+        trait: [
+            {id: 'http/method', value: 'POST'},
+            {id: 'http/path', value: '/dogs/buy'},
+            {id: 'auth/type', value: 'bearer'},
+            {id: 'otel/span', value: 'BuyDog'},
+            {id: 'resilience/retry', kind: 'object', comment: 'Retry policy for transient failures', of: [
+                {id: 'maxAttempts', kind: 'integer', value: 3},
+                {id: 'backoff', kind: 'enum', comment: 'Delay growth strategy between retries', of: [
+                    {id: 'linear'},
+                    {id: 'exponential'},
+                ]},
+                {id: 'delayMs', kind: 'integer', value: 500, comment: 'Initial delay in milliseconds'},
+            ]},
+            {id: 'cli/command', value: 'buy-dog'},
+        ],
+    },
+    {
+        id: 'ListBreeds',
+        comment: 'Get all available dog breeds with optional size filter. Demonstrates array output and enum input.',
+        input: [
+            {id: 'size', kind: 'enum', comment: 'Filter by dog size, or "any" for all', of: [
+                {id: 'small'},
+                {id: 'medium'},
+                {id: 'large'},
+                {id: 'any'},
+            ]},
+        ],
+        output: [
+            {id: 'breeds', kind: 'array', of: [
+                {id: 'breed', kind: 'object', of: [
+                    {id: 'name', kind: 'string'},
+                    {id: 'size', kind: 'string'},
+                    {id: 'avgPriceUsd', kind: 'float', comment: 'Average market price'},
+                    {id: 'available', kind: 'boolean', comment: 'At least one dog in stock'},
+                ]},
+            ]},
+        ],
+        error: [],
+        trait: [
+            {id: 'http/method', value: 'GET'},
+            {id: 'http/path', value: '/breeds'},
+            {id: 'cli/command', value: 'list-breeds'},
+        ],
+    },
+    {
+        id: 'GetOrder',
+        comment: 'Retrieve order details by ID. Demonstrates nested objects and datetime.',
+        input: [
+            {id: 'orderId', kind: 'string', required: true, comment: 'UUID of the order'},
+        ],
+        output: [
+            {id: 'order', kind: 'object', of: [
+                {id: 'id', kind: 'string'},
+                {id: 'status', kind: 'enum', comment: 'Current lifecycle stage', of: [
+                    {id: 'pending'},
+                    {id: 'confirmed'},
+                    {id: 'shipped'},
+                    {id: 'delivered'},
+                    {id: 'cancelled'},
+                ]},
+                {id: 'createdAt', kind: 'datetime', comment: 'When the order was placed'},
+                {id: 'dog', kind: 'object', comment: 'Snapshot of the dog at purchase time', of: [
+                    {id: 'id', kind: 'string'},
+                    {id: 'name', kind: 'string'},
+                    {id: 'breed', kind: 'string'},
+                ]},
+                {id: 'totalPrice', kind: 'float'},
+                {id: 'express', kind: 'boolean'},
+            ]},
+        ],
+        error: [
+            {id: 'OrderNotFound'},
+            {id: 'Unauthorized'},
+        ],
+        trait: [
+            {id: 'http/method', value: 'GET'},
+            {id: 'http/path', value: '/orders/{orderId}'},
+            {id: 'auth/type', value: 'bearer'},
+            {id: 'otel/span', value: 'GetOrder'},
+        ],
+    },
+    {
+        id: 'UploadVaccineCard',
+        comment: 'Upload a vaccine card scan for a dog. Demonstrates binary input.',
+        input: [
+            {id: 'dogId', kind: 'string', required: true},
+            {id: 'scan', kind: 'binary', required: true, comment: 'JPEG or PNG scan of the vaccine card'},
+            {id: 'issueDate', kind: 'datetime', comment: 'When the card was issued by the vet'},
+        ],
+        output: [
+            {id: 'cardId', kind: 'string'},
+            {id: 'verified', kind: 'boolean', comment: 'Whether the card passed automated verification'},
+        ],
+        error: [
+            {id: 'DogNotFound'},
+            {id: 'InvalidFile', comment: 'Not a readable image'},
+            {id: 'FileTooLarge', comment: 'Exceeds 10 MB limit'},
+        ],
+        trait: [
+            {id: 'http/method', value: 'POST'},
+            {id: 'http/path', value: '/dogs/{dogId}/vaccine-card'},
+            {id: 'auth/type', value: 'bearer'},
+        ],
+    },
+    {
+        id: 'CancelOrder',
+        comment: 'Cancel a pending order. Demonstrates operation with minimal output and multiple error paths.',
+        input: [
+            {id: 'orderId', kind: 'string', required: true},
+            {id: 'reason', kind: 'string'},
+        ],
+        output: [
+            {id: 'cancelled', kind: 'boolean'},
+        ],
+        error: [
+            {id: 'OrderNotFound'},
+            {id: 'OrderAlreadyShipped'},
+            {id: 'OrderAlreadyCancelled'},
+            {id: 'Unauthorized'},
+        ],
+        trait: [
+            {id: 'http/method', value: 'POST'},
+            {id: 'http/path', value: '/orders/{orderId}/cancel'},
+            {id: 'auth/type', value: 'bearer'},
+            {id: 'cli/command', value: 'cancel-order'},
+            {id: 'resilience/timeout', kind: 'object', of: [
+                {id: 'ms', kind: 'integer', value: 5000},
+            ]},
+        ],
+    },
+    {
+        id: 'SearchDogs',
+        comment: 'Full-text search across available dogs. Demonstrates array of objects with pagination.',
+        input: [
+            {id: 'query', kind: 'string', required: true},
+            {id: 'limit', kind: 'integer', value: 20},
+            {id: 'offset', kind: 'integer', value: 0},
+            {id: 'filters', kind: 'object', of: [
+                {id: 'minPrice', kind: 'float'},
+                {id: 'maxPrice', kind: 'float'},
+                {id: 'vaccinated', kind: 'boolean'},
+                {id: 'sizes', kind: 'array', of: [
+                    {id: 'size', kind: 'string'},
+                ]},
+            ]},
+        ],
+        output: [
+            {id: 'total', kind: 'integer'},
+            {id: 'dogs', kind: 'array', of: [
+                {id: 'dog', kind: 'object', of: [
+                    {id: 'id', kind: 'string'},
+                    {id: 'name', kind: 'string'},
+                    {id: 'breed', kind: 'string'},
+                    {id: 'priceUsd', kind: 'float'},
+                    {id: 'photoUrl', kind: 'string'},
+                ]},
+            ]},
+        ],
+        error: [
+            {id: 'InvalidQuery'},
+        ],
+        trait: [
+            {id: 'http/method', value: 'GET'},
+            {id: 'http/path', value: '/dogs/search'},
+            {id: 'cli/command', value: 'search-dogs'},
+            {id: 'otel/span', value: 'SearchDogs'},
+        ],
+    },
+]

@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://thumbrise.github.io/op/schema/instruction.v1.json",
     "title": "OP",
-    "description": "Operation Protocol Instruction. A fully resolved, versioned unit that describes operations — the fundamental primitives of computation. Five fields per operation. Traits for everything else.",
+    "description": "Operation Protocol Instruction. A fully resolved, versioned unit that describes operations — the fundamental primitives of computation. Four rails per operation — input, output, error, trait — plus id and comment. One Term structure everywhere.",
     "type": "object",
     "properties": {
         "version": {
@@ -11,7 +11,7 @@
         },
         "operations": {
             "type": "array",
-            "description": "The list of operations described by this instruction. Each operation is a complete, self-describing unit — id, comment, input, output, errors — that any receiver can compile into a projection.",
+            "description": "The list of operations described by this instruction. Each operation is a complete, self-describing unit — id, comment, input, output, error, trait — that any receiver can compile into a projection.",
             "items": {
                 "$ref": "#/$defs/operation"
             }
@@ -36,7 +36,7 @@
                 },
                 "input": {
                     "$ref": "#/$defs/rail",
-                    "description": "The input rail. What goes into the operation. A rail is a direction the data takes — not a type, not a field, not a return value. Input rail, output rail, error rail. Three directions. One structure."
+                    "description": "The input rail. What goes into the operation. A rail is a direction the data takes — not a type, not a field, not a return value. Input rail, output rail, error rail, trait rail. One Term structure across all of them."
                 },
                 "output": {
                     "$ref": "#/$defs/rail",
@@ -90,7 +90,7 @@
                         "number",
                         "boolean"
                     ],
-                    "description": "An optional concrete value. When present, the term carries not just a type but a specific value — useful for enums, defaults, and constants. Requires 'kind' to be set."
+                    "description": "An optional concrete value. When present, the term carries not just a type but a specific value — useful for enums, defaults, and constants."
                 },
                 "kind": {
                     "type": "string",
@@ -120,9 +120,6 @@
             ],
             "dependentRequired": {
                 "of": [
-                    "kind"
-                ],
-                "value": [
                     "kind"
                 ]
             }
