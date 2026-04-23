@@ -1,10 +1,27 @@
 import {defineConfig} from 'vitepress'
 import {withMermaid} from 'vitepress-plugin-mermaid'
+import {viteStaticCopy} from 'vite-plugin-static-copy'
 
 export default withMermaid(defineConfig({
   title: 'op',
   description: 'Anything-agnostic operations protocol. For operations-driven future.',
   base: '/op/',
+  // The JSON Schema is the public contract (referenced by $id URL) AND a TS
+  // import inside the Playground. Vite forbids importing from /public via JS,
+  // so we keep the master in .vitepress/schema/ and copy it into /public on
+  // dev + build. Single source of truth, two delivery paths.
+  vite: {
+    plugins: [
+      viteStaticCopy({
+        targets: [
+          {
+            src: '.vitepress/schema/*',
+            dest: 'schema',
+          },
+        ],
+      }),
+    ],
+  },
   mermaid: {
     flowchart: {
       useMaxWidth: false,
@@ -25,12 +42,14 @@ export default withMermaid(defineConfig({
 
   themeConfig: {
     nav: [
+      {text: 'Playground', link: '/playground'},
       {text: 'Devlog', link: '/devlog/'},
       {text: 'GitHub', link: 'https://github.com/thumbrise/op'},
     ],
 
     sidebar: {
-      '/': [
+      '/playground': [],
+      '/devlog/': [
         {
           text: 'Devlog',
           items: [
