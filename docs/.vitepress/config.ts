@@ -85,6 +85,7 @@ export default withMermaid(defineConfig({
             {text: '#22 — The Dream Layer', link: '/devlog/022-the-dream-layer'},
             {text: '#23 — The Vacant Cell', link: '/devlog/023-the-vacant-cell'},
             {text: '#24 — The Trial', link: '/devlog/024-the-trial'},
+            {text: '#25 — The Manifesto', link: '/devlog/025-the-manifesto'},
           ],
         },
       ],
