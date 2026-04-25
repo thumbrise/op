@@ -44,6 +44,7 @@ export default withMermaid(defineConfig({
     nav: [
       {text: 'Playground', link: '/playground'},
       {text: 'Devlog', link: '/devlog/'},
+      {text: 'Universal', link: '/universal/'},
       {text: 'GitHub', link: 'https://github.com/thumbrise/op'},
     ],
 
@@ -94,6 +95,24 @@ export default withMermaid(defineConfig({
             {text: '#31 — The Hamster Leaves the Wheel', link: '/devlog/031-the-hamster-leaves-the-wheel'},
             {text: '#32 — The Verdict', link: '/devlog/032-the-verdict'},
             {text: '#33 — The Amplifier', link: '/devlog/033-the-amplifier'},
+          ],
+        },
+      ],
+      '/universal/': [
+        {
+          text: 'Universal — Field Notes',
+          items: [
+            {text: 'About', link: '/universal/'},
+            {text: '#1 — Curl Eyeballs', link: '/universal/001-curl-eyeballs'},
+            {text: '#2 — Spiral as Gallium', link: '/universal/002-spiral'},
+            {text: '#3 — RoadRunner Bleeds Across Layers', link: '/universal/003-roadrunner-bleeds-across-layers'},
+            {text: '#4 — PHP PoC Struggle', link: '/universal/004-php-poc-struggle'},
+            {text: '#5 — Single Source of Truth', link: '/universal/005-single-source-of-truth'},
+            {text: '#6 — What Programs Forgot', link: '/universal/006-what-programs-forgot'},
+            {text: '#7 — Why We Don\'t Call Linus', link: '/universal/007-why-we-dont-call-linus'},
+            {text: '#8 — Configuration Is Not Parameterization', link: '/universal/008-configuration-is-not-parameterization'},
+            {text: '#9 — Even What Looks Like Knowledge Isn\'t Yours', link: '/universal/009-even-what-looks-like-knowledge-isnt-yours'},
+            {text: '#10 — Containers Are the Registers of Our Era', link: '/universal/010-containers-are-the-registers-of-our-era'},
           ],
         },
       ],
