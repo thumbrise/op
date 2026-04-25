@@ -1,0 +1,30 @@
+#schema: https://taskfile.dev/schema.json
+version: '3.17'
+
+env:
+  DOCKER_HOST_UID:
+    sh: id -u
+  DOCKER_HOST_GID:
+    sh: id -g
+
+dotenv: [
+  '.env',
+]
+
+tasks:
+  c:
+    desc: docker compose и аргументы. Рабочий пример [task c -- up -d]. -- обязательно.
+    cmd: docker compose {{.CLI_ARGS}}
+
+  bash:
+    desc: Войти в терминал app.
+    interactive: true
+    cmd: task c -- run --rm -it php bash
+
+  up:
+    desc: Поднять окружение.
+    cmd: task c -- up -d --build
+
+  down:
+    desc: Остановить окружение.
+    cmd: task c -- down --remove-orphans
