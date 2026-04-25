@@ -93,6 +93,7 @@ export default withMermaid(defineConfig({
             {text: '#30 — The First Stranger', link: '/devlog/030-the-first-stranger'},
             {text: '#31 — The Hamster Leaves the Wheel', link: '/devlog/031-the-hamster-leaves-the-wheel'},
             {text: '#32 — The Verdict', link: '/devlog/032-the-verdict'},
+            {text: '#33 — The Amplifier', link: '/devlog/033-the-amplifier'},
           ],
         },
       ],
