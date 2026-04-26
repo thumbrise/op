@@ -20,145 +20,97 @@ This document may be revised when better evidence arrives.
 
 ---
 
-## Short statement
+## What we say
 
-> The breadth of interaction enabled by a shared primitive is inversely proportional to the size of the primitive — provided that the primitive remains larger than the minimum sufficient to describe itself, and smaller than any particular case it intends to admit.
+A primitive is a shared form. It is **larger than nothing** (because it must describe itself) and **smaller than any particular case** (because it must admit more than one).
 
-## Formal statement
+We say three things:
 
-Let `P` be a shared primitive. Let `|P|` denote the descriptive size of `P` (number of distinct constraints, fields, rules, or commitments that `P` imposes on any party that adopts it). Let `interop(P)` denote the cardinality of the set of independent parties that can meaningfully meet through `P`.
-
-Then:
-
-```
-interop(P)  ∝  1 / |P|
-```
-
-subject to the **range constraint**:
-
-```
-|self-description(P)|  <  |P|  <  |any particular instance admitted by P|
-```
-
-In words:
-
-- `P` must be **at least** large enough to describe itself unambiguously, otherwise it carries no agreement.
-- `P` must be **strictly smaller** than any particular case that adopts it, otherwise `P` *is* a particular case and admits no others.
-- Within those two bounds, smaller `P` admits more parties.
-
-The lower bound is the **self-sufficiency floor**. The upper bound is the **particularity ceiling**. The valid region between them is the **primitive band**.
-
----
+1. **A primitive is bigger than nothing and smaller than an opinion.**
+2. **Disagreement is convergence that has not happened yet.**
+3. **Convergence is unavoidable, because it is cheaper.**
 
 ## Definitions
 
-**Primitive `P`.** A shared form, schema, vocabulary, signal set, or contract that two or more independent parties adopt as the surface of their interaction.
+**Primitive.** A shared form that independent parties accept as the surface of their meeting.
 
-**Descriptive size `|P|`.** The total commitment imposed by `P` on any adopter — measured by the number of independent decisions an adopter cannot make differently without ceasing to be a participant. Examples: USB connector geometry has a descriptive size of roughly seven mechanical and four electrical commitments. The DNA alphabet has a descriptive size of four. The universal grammar of human languages has a descriptive size of three (subject, verb, object). The TCP/IP narrow waist has a descriptive size of approximately one (the IP packet header).
+**Nothing.** The form that does not describe itself. In one conversation it is nothing; in another conversation about a different goal it may be a primitive of a different kind. Nothing is not garbage. Nothing is the part of the world that is not in this room.
 
-**Interop `interop(P)`.** The number of independent parties that meet through `P` at equilibrium — that is, after sufficient time has passed for adopters to converge on an economically advantageous primitive. *Independent* here means *not designed in coordination*. A USB host and a USB device are independent if they were designed by different teams without prior consultation. Two products from the same company under the same SDK are not independent in this sense. The conjecture states the asymptotic relationship, not the transient one. Periods during which several variants of an in-band primitive coexist are transient by hypothesis.
+**Opinion.** A particular case carried as if it were the form. An opinion lets one adopter in; it pushes the rest out. An opinion is the cause of a failed agreement.
 
-**Self-description of `P`.** The minimum set of statements `P` must contain to specify what is and is not a valid instance of `P`. If `P` cannot tell a valid instance from an invalid one, `P` carries no agreement. The self-description of TCP/IP is roughly *«bytes flow in order, addressed by IP, errors detected by checksum»*. Without such a description, `P` is not a primitive — it is noise.
+**Goal.** What the form is for. The goal does not exist before the form. A primitive is found by removing what does not belong; what remains points back at the goal that the form turned out to serve. Mendeleev did not look for a periodic table; he looked for an order in chemistry. The table came first, then the goal of *predicting unknown elements* came with it.
 
-**Particular instance.** A concrete case that adopts `P` and adds further commitments. A specific USB device is a particular instance of USB. A specific human language is a particular instance of universal grammar. A specific frying pan is a particular instance of *«flat bottom, heat from below»*.
+**Convergence.** The state in which independent adopters of a primitive end up using the same one. Convergence is reached because the cost of disagreement, summed over many encounters, is greater than the cost of switching once.
 
----
-
-## Convergence as equilibrium
-
-If a real primitive in the band exists at a level, convergence on it is the equilibrium of independent adopters under economic pressure.
-
-The argument is short. Whenever two adopters of different in-band variants attempt to interact, one of three things happens. They invest in a translation layer (cost). One adopts the other's variant (cost). Neither side adapts and the interaction does not happen (opportunity cost). All three are losses against a counterfactual in which both had adopted the same variant from the start. As the number of adopters and interactions grows, the cumulative cost of disagreement grows superlinearly, and the cheapest stable state — convergence on a single variant — becomes the attractor.
-
-This is the same dynamic visible in distributed-systems consensus. A Raft cluster occasionally has periods of leaderlessness or split votes, but the protocol resolves to a single leader because that is the cheapest stable state. The leaderless transient is real; the single-leader equilibrium is also real; one resolves into the other given time.
-
-Convergence is therefore not a separate force from the conjecture. It is the conjecture realising itself in time. The current absence of a single dominant primitive at a given level is, by the conjecture, evidence of one of two things — either no real primitive at that level has yet been found, or the population of adopters is in a transient period before convergence.
-
-For TCP/IP, convergence took roughly two decades. For USB, fifteen years. For the genetic code, on the order of a billion years. For Op as a candidate primitive at the operation level, the equilibrium has not yet been reached. The conjecture predicts that, if Op is a real primitive in the band, convergence will occur — and if it does not occur within a reasonable time after broad exposure, the conjecture itself is falsified for that case.
+**Cost.** Time, energy, money, attention, survival — depends on the goal. The form of cost differs by domain. The shape of cost is always the same: less is better.
 
 ---
 
-## Predecessors
+## Why we say it
 
-This conjecture does not stand alone. Each of its three claims has been articulated, in adjacent form, by earlier thinkers. We name them honestly. None stated all three together as a single condition — but all three came from somewhere, and the somewhere belongs in the ledger.
+Three reasons. Independent of each other. We do not need all three to make the case. We have all three.
 
-### The narrow-waist principle (1974, 1988)
+### One — Op is built this way
 
-**Vint Cerf, Bob Kahn**, in the original TCP/IP architecture (1974), and later **David D. Clark** (MIT, *«Designing a Protocol for the Internet»*, 1988) named the *hourglass* shape: a thin layer in the middle, broad surfaces above and below. The narrow waist enables the broad surfaces. This is the *«smaller common, larger interaction»* claim, expressed geometrically.
+Op is five fields: identifier, input, output, error, optional context. Nothing more. The five fields describe themselves in JSON Schema; without one of them, the form does not hold. With one more, the form becomes a particular case. The form was found by removing what did not belong, until removing the next thing would break it. The remaining shape is the primitive of operation. Argument from inside the work. See [`docs/devlog/008-three-atoms.md`](../devlog/008-three-atoms.md), [`docs/devlog/018-the-fourth-rail.md`](../devlog/018-the-fourth-rail.md), [`docs/devlog/023-the-vacant-cell.md`](../devlog/023-the-vacant-cell.md), [`docs/devlog/032-the-verdict.md`](../devlog/032-the-verdict.md).
 
-We use this directly. The Primitive Range Conjecture generalises the narrow-waist principle from network protocols to any shared agreement.
+### Two — the industry is moving in one direction
 
-### The convergent witnesses (independent fields, last 200 years)
+Seven independent attempts to name an operation have been recorded since 1989: WSDL+UDDI (2000), Schema.org (2011), OpenAPI (2011), GraphQL Introspection (2015), MCP (2024), and others. Each attempt drops one opinion the previous one carried. WSDL dropped committees and kept XML. Schema.org dropped XML and kept HTML. OpenAPI dropped HTML and kept HTTP. GraphQL dropped HTTP and kept its own runtime. MCP dropped runtime and kept the consumer. Each attempt is closer to a primitive that holds nothing particular. Argument from observation. See [`docs/devlog/016-the-founders-dream.md`](../devlog/016-the-founders-dream.md).
 
-The Primitive Range Conjecture's claim that *the regularity is real* rests on convergence. The same shape — a small primitive enabling broad interaction — has been documented independently in:
+### Three — nature has done this before, without speech
 
-- **Genetics.** Four nucleotides (ATGC), two pairings, one universal genetic code across all life.
-- **Statistical mechanics.** Microstate, macrostate, interpretation — three levels, no fewer, no more (Boltzmann, 1870s).
+The same shape — a small primitive enabling broad interaction — has been documented independently in many fields, without coordination:
+
+- **Genetics.** Four nucleotides (ATGC), one universal genetic code across all life.
+- **Statistical mechanics.** Microstate, macrostate, interpretation — three levels (Boltzmann, 1870s).
 - **Lambda calculus.** Variable, abstraction, application — three constructions, sufficient for all computation (Church, 1936).
-- **Hardware standards.** USB-IF connector geometry, ~1996, enabling permissionless device-host interaction across decades and vendors.
-- **Pheromone signalling.** Six chemical signals sufficient to coordinate a termite colony of millions (*Macrotermes michaelseni*, observed throughout the 20th century).
-- **Universal grammar.** Subject-Verb-Object structure, observed across all human languages (Chomsky and others, 1950s–present).
-- **Process algebras.** CSP (Hoare, 1978), π-calculus (Milner, 1992), session types (Honda et al., 1998) — each minimal in its alphabet, broad in its compositions.
+- **Hardware standards.** USB connector geometry — same shape across decades and vendors.
+- **Pheromone signalling.** Six chemical signals coordinate a termite colony of millions.
+- **Universal grammar.** Subject-Verb-Object structure across all human languages.
+- **Process algebras.** CSP (Hoare, 1978), π-calculus (Milner, 1992), session types (Honda et al., 1998).
 
-In each case, the primitive sits within a band: large enough to describe itself, small enough not to be any particular case. None of these literatures stated the band condition explicitly. They demonstrated it by surviving.
+Argument from history and biology. See [`docs/devlog/013-convergent-evolution.md`](../devlog/013-convergent-evolution.md), [`docs/devlog/032-the-verdict.md`](../devlog/032-the-verdict.md), and the peer-reviewed verification in [`rfc-operation-protocol-appendix-a-raw.md`](./rfc-operation-protocol-appendix-a-raw.md).
 
-The structural-convergence argument is developed at length in [`docs/devlog/032-the-verdict.md`](../devlog/032-the-verdict.md) and [`docs/devlog/013-convergent-evolution.md`](../devlog/013-convergent-evolution.md). The peer-reviewed verification of the convergence claim across fourteen disciplines is recorded in [`rfc-operation-protocol-appendix-a-raw.md`](./rfc-operation-protocol-appendix-a-raw.md).
-
----
-
-## What is new in this statement
-
-The narrow-waist principle gives us *«smaller common, larger interaction»* but does not name the bounds. The Primitive Range Conjecture adds two bounds — the self-sufficiency floor and the particularity ceiling — and binds them into a single falsifiable condition.
-
-If a published paper has stated this combination already, we ask the reader to send the citation, and we will revise this document accordingly.
+The narrow-waist principle (Cerf and Kahn, TCP/IP, 1974; Clark, MIT, 1988) names the same shape in network protocols. We generalise it to any shared form.
 
 ---
 
-## Falsification conditions
+## How to falsify
 
-This document is structured for falsification. The conjecture is considered **falsified** when any of the following is demonstrated:
+The conjecture is falsified when any of the following is demonstrated.
 
-1. **A primitive `P` outside the band that enables broader interaction than a primitive within the band.** For example: a primitive that is *larger* than a particular case, yet admits more independent parties than the smaller primitives in its space. We expect this to be impossible. We invite a counterexample.
+1. **A form smaller than nothing that still works.** A form that does not describe itself, yet independent parties successfully meet through it. If found, the lower bound is wrong.
 
-2. **A primitive `P` below the self-sufficiency floor that nevertheless functions as an agreement.** That is: a primitive that cannot describe what is and is not a valid instance, yet which independent parties successfully use to meet. If found, the lower bound is wrong.
+2. **A form larger than an opinion that still admits more than one.** A form containing the commitments of one particular case, yet hosting other particular cases designed without coordination with the first. If found, the upper bound is wrong.
 
-3. **A primitive `P` above the particularity ceiling that admits genuinely independent parties.** That is: a primitive containing all the commitments of one specific instance, yet still hosting other instances designed without coordination with the first. If found, the upper bound is wrong.
+3. **Two primitives, both bigger than nothing and smaller than an opinion, where the larger admits more parties than the smaller.** Controlled for the same goal. If reproduced, the inverse direction is wrong.
 
-4. **A counterexample to the inverse proportionality itself.** Two primitives `P₁` and `P₂` both within the band, with `|P₁| < |P₂|`, where `interop(P₁) < interop(P₂)`, controlling for adoption time and ecosystem maturity. If found and reproduced, the proportionality direction is wrong.
+A counterexample to any of these falsifies the conjecture. The document is revised on the public record when one is presented with evidence.
 
-5. **A real primitive in the band, of which several mutually-incompatible variants persist indefinitely without convergence to one.** If the conjecture holds, economic pressure on independent adopters converges them. If, after a long enough observation window, multiple variants of an in-band primitive remain in active competition without one absorbing the others, the convergence implication is wrong — and with it the conjecture itself.
-
-A counterexample to any of the five falsifies the conjecture as stated. The author commits to revising the document on the public record when any such counterexample is presented with sufficient evidence.
+Time is not a falsifier here. Discovery of a primitive may take centuries, as DNA waited for Miescher in 1869 and Watson and Crick in 1953 while existing for nearly four billion years. The shape of the law does not depend on when the law is recognised. Falsification, when it comes, is structural — a counterexample, not a stopwatch.
 
 ---
 
-## Open questions
+## What stays open
 
-The conjecture is stated, not closed. Two questions remain open and honest.
-
-1. **How is `|P|` measured precisely?** *«Number of independent commitments»* is a natural-language definition. A formal metric is still owed.
-
-2. **What is the time scale of convergence at each level?** TCP/IP converged in roughly two decades. USB in fifteen years. The genetic code in perhaps a billion. The conjecture says that convergence happens if the primitive is real — it does not say how fast.
+The size of a primitive cannot be measured by a formula. Only by feel — by trying, weighing, comparing what was and what is, and watching whether the goal still holds. The metric is empirical. We owe nothing more honest than that.
 
 ---
 
-## Practical consequence
+## What follows
 
-If the conjecture holds, design discipline follows directly:
+Find the smallest form that still describes itself. Refuse to carry commitments that belong to a particular case. Stay between the two.
 
-- **Find the smallest primitive that still describes itself.** That is your floor.
-- **Refuse to adopt commitments that belong to a particular case.** That is your ceiling.
-- **Stay between the two.** Within the band, smaller is better.
-
-This is the discipline that produced TCP/IP, USB, the genetic code, the universal grammar of human languages, and — the author proposes — every other long-lived shared agreement on the planet. The conjecture does not invent the discipline. It names it.
+This is the discipline that produced TCP/IP, USB, the genetic code, and the universal grammar of human languages. The conjecture does not invent the discipline. It names it.
 
 ---
 
 ## See also
 
-- [`ACKNOWLEDGEMENTS.md`](../ACKNOWLEDGEMENTS.md) — every name this document leans on, named.
-- [`docs/devlog/013-convergent-evolution.md`](../devlog/013-convergent-evolution.md) — the convergence argument across fourteen disciplines.
-- [`docs/devlog/032-the-verdict.md`](../devlog/032-the-verdict.md) — the four-witness analysis (biology, thermodynamics, lambda, Op).
+- [`ACKNOWLEDGEMENTS.md`](../ACKNOWLEDGEMENTS.md) — every name this document leans on.
+- [`docs/devlog/013-convergent-evolution.md`](../devlog/013-convergent-evolution.md) — convergence across fourteen disciplines.
+- [`docs/devlog/032-the-verdict.md`](../devlog/032-the-verdict.md) — four witnesses.
 - [`docs/devlog/023-the-vacant-cell.md`](../devlog/023-the-vacant-cell.md) — the four-property hole in protocol space.
 - [`rfc-operation-protocol.md`](./rfc-operation-protocol.md) — the protocol that motivated this conjecture.
 - [`rfc-operation-protocol-appendix-a-raw.md`](./rfc-operation-protocol-appendix-a-raw.md) — peer-reviewed convergence evidence.
