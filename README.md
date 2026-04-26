@@ -15,6 +15,14 @@ Five fields. Extensions attached from outside. Nothing more.
 
 **Status:** forming. No public API yet. Apache 2.0.
 
+## Before you read anything else
+
+Read these three documents, in this order, before the rest:
+
+1. **[ACKNOWLEDGEMENTS.md](ACKNOWLEDGEMENTS.md)** — every person, project, and discipline this work stands on. Standing on the shoulders of the founders. Respect comes first.
+2. **[FAQ.md](FAQ.md)** — how this repository is meant to be read, what is and is not being claimed, common misreadings, common technical objections.
+3. **The rest of this README, the devlogs, and the materials** — what we found, after the credit and the framing are in place.
+
 ## Why this exists
 
 The operation evolved independently at least fourteen times — in quantum mechanics, biology, neuroscience, CPU architecture, programming languages, game theory, economics, law, and linguistics. Each discipline arrived at the same five-field pattern without coordination. Like the eye evolved forty times because light exists, the operation evolved because interaction exists.
@@ -46,21 +54,6 @@ Key findings:
 - Emitters and receivers are [compilers, not generators](https://thumbrise.github.io/op/devlog/010-there-is-no-generation) — with contracts and guarantees
 - The instruction [is the operation](https://thumbrise.github.io/op/devlog/014-the-fact), not a description of it — zero drift between map and territory
 - Tim Berners-Lee [dreamed of this in 2001](https://thumbrise.github.io/op/devlog/016-the-founders-dream) — he built seven layers, we built five fields
-
-## What this is not
-
-- Op is not a framework. It does not dictate how to build.
-- Op is not transport. It does not dictate how to deliver.
-- Op is not an RPC system. It does not dictate how to call.
-- Op is not a schema language. It does not dictate how to validate.
-- Op is not a serialization format. It does not dictate how to encode.
-- Op is not a runtime. It does not dictate how to execute.
-- Op is not a standard library. It does not dictate how to implement.
-- Op is not a code generator. Typed clients, documentation, OpenAPI specs, MCP tool definitions — those are consequences, not the point.
-
-**Op is the formal definition of the operation** — the primitive that every framework, every transport, every RPC system, every schema language has been reinventing independently since 1957. It does not dictate. It does not compete. It cannot be broken, because there is nothing to break — five fields is the minimum that describes interaction, and the second law of thermodynamics guarantees the error rail cannot be removed.
-
-Op is the future that Berners-Lee dreamed of in 2001 — machines understanding what services can do — approached from the opposite direction. He built seven layers from the top. We found five fields from the bottom. The destination is the same. The road is not. And this time the road has no committees, no ontologies, and no XML. Just a primitive so simple that the ecosystem self-organizes around it. Like language. Like money. Like the internet itself.
 
 ## Proof of concept — v1.0
 
