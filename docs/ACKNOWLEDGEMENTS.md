@@ -1,3 +1,8 @@
+---
+title: ACKNOWLEDGEMENTS
+description: Standing on the shoulders of the founders. A ledger of debt — every person, every project, every discipline this work stands on.
+---
+
 # ACKNOWLEDGEMENTS
 
 > Standing on the shoulders of the founders.

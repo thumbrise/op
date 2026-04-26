@@ -1,3 +1,8 @@
+---
+title: FAQ
+description: How to read the repository, what Op is not, common misreadings, and common technical objections — with sources.
+---
+
 # FAQ
 
 ## How to read this repository
