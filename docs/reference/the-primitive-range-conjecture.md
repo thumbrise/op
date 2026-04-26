@@ -90,6 +90,8 @@ A counterexample to any of these falsifies the conjecture. The document is revis
 
 Time is not a falsifier here. Discovery of a primitive may take centuries, as DNA waited for Miescher in 1869 and Watson and Crick in 1953 while existing for nearly four billion years. The shape of the law does not depend on when the law is recognised. Falsification, when it comes, is structural — a counterexample, not a stopwatch.
 
+A counterexample to this conjecture takes the same shape it does in physics or biology: demonstrated, reproduced, and not explained away by «the situation has not finished settling». The atom waited 2300 years from Democritus to Rutherford for confirmation. The black swan was found in Australia. Both arrived eventually. The conjecture is offered in that lineage — an empirical regularity that stands until something concrete breaks it, not a logical theorem closed by proof.
+
 ---
 
 ## What stays open
