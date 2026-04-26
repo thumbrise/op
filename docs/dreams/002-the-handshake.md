@@ -1,9 +1,9 @@
 ---
-title: "Lesson 2 — The handshake"
+title: "The handshake"
 description: "1975. Two ships meet in space. They were built by different workshops of one trade. They docked. The chapter walks back from there to taps and railway tracks and shipping containers. Same shape. Same agreement. Different mouths, one Earth."
 ---
 
-# Lesson 2 — The handshake
+# The handshake
 
 Two hundred and twenty-five kilometres above the Atlantic Ocean. The seventeenth of July, nineteen seventy-five. Two ships are about to meet.
 
