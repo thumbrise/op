@@ -11,14 +11,12 @@ description: A proposed empirical regularity on the relationship between the siz
 
 | Field | Value |
 |---|---|
-| Version | 0.1.0 |
-| Date | 2026-04-26 |
 | Mode | proposed empirical conjecture |
 | Standing | not yet falsified, not yet corroborated at scale |
 | Falsifiability | named, see § Falsification conditions |
 | Author | Ruslan Kokoev. Standing on the shoulders of those credited in [`ACKNOWLEDGEMENTS.md`](../ACKNOWLEDGEMENTS.md). |
 
-This document is updated by appending a new version row to the changelog. The current statement may be revised when better evidence arrives, but every previous version remains visible.
+This document may be revised when better evidence arrives.
 
 ---
 
@@ -58,11 +56,25 @@ The lower bound is the **self-sufficiency floor**. The upper bound is the **part
 
 **Descriptive size `|P|`.** The total commitment imposed by `P` on any adopter — measured by the number of independent decisions an adopter cannot make differently without ceasing to be a participant. Examples: USB connector geometry has a descriptive size of roughly seven mechanical and four electrical commitments. The DNA alphabet has a descriptive size of four. The universal grammar of human languages has a descriptive size of three (subject, verb, object). The TCP/IP narrow waist has a descriptive size of approximately one (the IP packet header).
 
-**Interop `interop(P)`.** The number of independent parties that can meet through `P` without further negotiation. *Independent* here means *not designed in coordination*. A USB host and a USB device are independent if they were designed by different teams without prior consultation. Two products from the same company under the same SDK are not independent in this sense.
+**Interop `interop(P)`.** The number of independent parties that meet through `P` at equilibrium — that is, after sufficient time has passed for adopters to converge on an economically advantageous primitive. *Independent* here means *not designed in coordination*. A USB host and a USB device are independent if they were designed by different teams without prior consultation. Two products from the same company under the same SDK are not independent in this sense. The conjecture states the asymptotic relationship, not the transient one. Periods during which several variants of an in-band primitive coexist are transient by hypothesis.
 
 **Self-description of `P`.** The minimum set of statements `P` must contain to specify what is and is not a valid instance of `P`. If `P` cannot tell a valid instance from an invalid one, `P` carries no agreement. The self-description of TCP/IP is roughly *«bytes flow in order, addressed by IP, errors detected by checksum»*. Without such a description, `P` is not a primitive — it is noise.
 
 **Particular instance.** A concrete case that adopts `P` and adds further commitments. A specific USB device is a particular instance of USB. A specific human language is a particular instance of universal grammar. A specific frying pan is a particular instance of *«flat bottom, heat from below»*.
+
+---
+
+## Convergence as equilibrium
+
+If a real primitive in the band exists at a level, convergence on it is the equilibrium of independent adopters under economic pressure.
+
+The argument is short. Whenever two adopters of different in-band variants attempt to interact, one of three things happens. They invest in a translation layer (cost). One adopts the other's variant (cost). Neither side adapts and the interaction does not happen (opportunity cost). All three are losses against a counterfactual in which both had adopted the same variant from the start. As the number of adopters and interactions grows, the cumulative cost of disagreement grows superlinearly, and the cheapest stable state — convergence on a single variant — becomes the attractor.
+
+This is the same dynamic visible in distributed-systems consensus. A Raft cluster occasionally has periods of leaderlessness or split votes, but the protocol resolves to a single leader because that is the cheapest stable state. The leaderless transient is real; the single-leader equilibrium is also real; one resolves into the other given time.
+
+Convergence is therefore not a separate force from the conjecture. It is the conjecture realising itself in time. The current absence of a single dominant primitive at a given level is, by the conjecture, evidence of one of two things — either no real primitive at that level has yet been found, or the population of adopters is in a transient period before convergence.
+
+For TCP/IP, convergence took roughly two decades. For USB, fifteen years. For the genetic code, on the order of a billion years. For Op as a candidate primitive at the operation level, the equilibrium has not yet been reached. The conjecture predicts that, if Op is a real primitive in the band, convergence will occur — and if it does not occur within a reasonable time after broad exposure, the conjecture itself is falsified for that case.
 
 ---
 
@@ -75,30 +87,6 @@ This conjecture does not stand alone. Each of its three claims has been articula
 **Vint Cerf, Bob Kahn**, in the original TCP/IP architecture (1974), and later **David D. Clark** (MIT, *«Designing a Protocol for the Internet»*, 1988) named the *hourglass* shape: a thin layer in the middle, broad surfaces above and below. The narrow waist enables the broad surfaces. This is the *«smaller common, larger interaction»* claim, expressed geometrically.
 
 We use this directly. The Primitive Range Conjecture generalises the narrow-waist principle from network protocols to any shared agreement.
-
-### The Robustness Principle (1980)
-
-**Jon Postel**, RFC 761 (1980): *«Be conservative in what you do, be liberal in what you accept from others.»* This carved the discipline of *«narrow specification, broad acceptance»* into the conscience of internet engineering.
-
-**Martin Thomson**, RFC 9413 (2023), critiqued and refined Postel's principle: too liberal acceptance creates de-facto vendor lock through accidental dependencies. This work is the closest existing literature to our **upper bound** — the recognition that a primitive can be too large by absorbing too many particular cases.
-
-We use both. Postel gives us the spirit of the lower bound. Thomson gives us the sharp edge of the upper bound.
-
-### The Principle of Least Authority — POLA (1970s–2000s)
-
-**Jerome Saltzer** and **Michael D. Schroeder** (*«The Protection of Information in Computer Systems»*, 1975) named the *Principle of Least Privilege*. **Mark S. Miller**, in the design of the E programming language (early 2000s) and capability-based security, refined this into the *Principle of Least Authority*: *«the smallest set of capabilities sufficient for the task is also the most composable.»*
-
-This is closely related to our claim. POLA is about **authority** as the variable. The Primitive Range Conjecture generalises to any *shared commitment* — not only authority.
-
-### Self-reference and minimum expressiveness (1931)
-
-**Kurt Gödel**, *«Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I»* (1931), established that any formal system must be at least powerful enough to express its own metalanguage to be subject to incompleteness. The implicit converse — that there is a minimum expressiveness threshold below which a system cannot make agreements about itself — is the philosophical ancestor of our **lower bound**.
-
-We name Gödel honestly. We do not claim to extend his result. We claim only that the lower bound of the primitive band has the same shape as Gödel's minimum-expressiveness condition: *the system must contain enough to describe itself*.
-
-### Occam's Razor (XIV century)
-
-**William of Ockham**: *«entities should not be multiplied beyond necessity.»* The oldest articulation of *«smaller is better, all else equal.»* The Primitive Range Conjecture adds the *«not below self-sufficiency»* qualifier that Occam did not need to state because his razor was applied to descriptions, not to interfaces between independent parties.
 
 ### The convergent witnesses (independent fields, last 200 years)
 
@@ -120,18 +108,9 @@ The structural-convergence argument is developed at length in [`docs/devlog/032-
 
 ## What is new in this statement
 
-The claim of this document is not that any of the three components (narrow-waist, self-sufficiency floor, particularity ceiling) is novel. Each has been articulated, in some form, by earlier thinkers.
+The narrow-waist principle gives us *«smaller common, larger interaction»* but does not name the bounds. The Primitive Range Conjecture adds two bounds — the self-sufficiency floor and the particularity ceiling — and binds them into a single falsifiable condition.
 
-The claim is that **stating them together as one condition** has, to our knowledge, not been done in the literature available to us. Specifically:
-
-1. **Postel and Thomson** articulated the upper bound but did not formally pair it with the lower bound.
-2. **Gödel** articulated the lower bound but for formal logic, not for shared interfaces.
-3. **Cerf, Kahn, Clark** articulated the inverse-proportionality but not the bounds.
-4. **Saltzer–Schroeder, Miller** articulated POLA but for authority, not for general primitives.
-
-The Primitive Range Conjecture combines them into a single, falsifiable statement. We do not claim authorship of any component. We claim only the integration.
-
-If a published paper has stated this combination already, **we ask the reader to send the citation**, and we will revise this document accordingly — moving the integration credit to the actual prior author and noting our independent re-derivation.
+If a published paper has stated this combination already, we ask the reader to send the citation, and we will revise this document accordingly.
 
 ---
 
@@ -147,25 +126,19 @@ This document is structured for falsification. The conjecture is considered **fa
 
 4. **A counterexample to the inverse proportionality itself.** Two primitives `P₁` and `P₂` both within the band, with `|P₁| < |P₂|`, where `interop(P₁) < interop(P₂)`, controlling for adoption time and ecosystem maturity. If found and reproduced, the proportionality direction is wrong.
 
-A counterexample to any of the four falsifies the conjecture as stated. The author commits to revising the document on the public record when any such counterexample is presented with sufficient evidence.
+5. **A real primitive in the band, of which several mutually-incompatible variants persist indefinitely without convergence to one.** If the conjecture holds, economic pressure on independent adopters converges them. If, after a long enough observation window, multiple variants of an in-band primitive remain in active competition without one absorbing the others, the convergence implication is wrong — and with it the conjecture itself.
+
+A counterexample to any of the five falsifies the conjecture as stated. The author commits to revising the document on the public record when any such counterexample is presented with sufficient evidence.
 
 ---
 
 ## Open questions
 
-The conjecture is stated, not closed. Several questions remain.
+The conjecture is stated, not closed. Two questions remain open and honest.
 
-1. **How is `|P|` measured precisely?** *«Number of independent commitments»* is a natural-language definition. A formal metric — perhaps in bits, perhaps in axioms, perhaps in something else — is still owed.
+1. **How is `|P|` measured precisely?** *«Number of independent commitments»* is a natural-language definition. A formal metric is still owed.
 
-2. **What does *«describe itself»* mean precisely?** The lower bound borrows the shape of Gödel's minimum-expressiveness condition without inheriting his formalism. A formal restatement is owed.
-
-3. **Is `interop(P)` symmetric across domains?** Counting *«parties»* is straightforward for protocols and hardware standards. It is less clear for genetic codes (every cell? every species? every kingdom?) or for natural languages (every speaker? every sentence?). The metric may need domain-specific refinement.
-
-4. **What is the time scale of the proportionality?** Some primitives appear to gain interop slowly (USB took two decades). The conjecture states the asymptotic relationship; transient dynamics are not covered.
-
-5. **Are there primitives that are *anti-fragile to expansion*?** That is — primitives that grow over time without losing interop? HTTP/2 is a candidate. If such cases exist, they may live at the upper edge of the band rather than violate it.
-
-These questions are open. The conjecture is offered as it stands, and the questions are offered alongside.
+2. **What is the time scale of convergence at each level?** TCP/IP converged in roughly two decades. USB in fifteen years. The genetic code in perhaps a billion. The conjecture says that convergence happens if the primitive is real — it does not say how fast.
 
 ---
 
@@ -189,13 +162,3 @@ This is the discipline that produced TCP/IP, USB, the genetic code, the universa
 - [`docs/devlog/023-the-vacant-cell.md`](../devlog/023-the-vacant-cell.md) — the four-property hole in protocol space.
 - [`rfc-operation-protocol.md`](./rfc-operation-protocol.md) — the protocol that motivated this conjecture.
 - [`rfc-operation-protocol-appendix-a-raw.md`](./rfc-operation-protocol-appendix-a-raw.md) — peer-reviewed convergence evidence.
-- [RFC 761 (Postel, 1980)](https://datatracker.ietf.org/doc/html/rfc761) — Robustness Principle.
-- [RFC 9413 (Thomson, 2023)](https://datatracker.ietf.org/doc/html/rfc9413) — Maintaining Robust Protocols.
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 0.1.0 | 2026-04-26 | Initial public draft. The conjecture as stated above. Predecessors named. Falsification conditions named. Open questions named. |
