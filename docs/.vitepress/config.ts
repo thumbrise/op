@@ -45,6 +45,7 @@ export default withMermaid(defineConfig({
       {text: 'Playground', link: '/playground'},
       {text: 'Devlog', link: '/devlog/'},
       {text: 'Universal', link: '/universal/'},
+      {text: "Tim's Dream", link: '/dreams/'},
       {text: 'Reference', link: '/reference/rfc-operation-protocol'},
       {text: 'GitHub', link: 'https://github.com/thumbrise/op'},
     ],
@@ -114,6 +115,14 @@ export default withMermaid(defineConfig({
             {text: '#8 — Configuration Is Not Parameterization', link: '/universal/008-configuration-is-not-parameterization'},
             {text: '#9 — Even What Looks Like Knowledge Isn\'t Yours', link: '/universal/009-even-what-looks-like-knowledge-isnt-yours'},
             {text: '#10 — Containers Are the Registers of Our Era', link: '/universal/010-containers-are-the-registers-of-our-era'},
+          ],
+        },
+      ],
+      '/dreams/': [
+        {
+          text: "Tim's Dream",
+          items: [
+            {text: 'Opening', link: '/dreams/'},
           ],
         },
       ],
