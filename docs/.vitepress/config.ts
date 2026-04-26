@@ -121,6 +121,7 @@ export default withMermaid(defineConfig({
           text: "Tim's Dream",
           items: [
             {text: 'Opening', link: '/dreams/'},
+            {text: 'Lesson 1 — What an operation is', link: '/dreams/001-what-is-an-operation'},
           ],
         },
       ],
