@@ -151,14 +151,7 @@ Some of these were paid in sweat. Some were paid in patience. One is paid in a w
 - **[Tim Berners-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee)** — who turned a network into a web by adding two ideas: hyperlinks and a global namespace. Op uses repository URLs as trait identifiers ([#7](./007-contract.md)) for the same reason the web uses URLs — it's the cheapest globally unique name humanity has ever agreed on.
 - **And everyone we forgot.** This list is not a hall of fame, it's a debt ledger, and it is incomplete. Anyone whose work made this thinkable and whose name is missing here — the omission is the author's, not the protocol's. Op stands on more shoulders than this journal can name.
 
-**The support circle.** [A small Telegram channel](https://t.me/thumbrise), two weeks old like the repository itself. The people there reacted when something landed and asked questions when the framing was off. That is enough. No order — every one of them mattered:
-
-- [@anton_lovygin](https://t.me/anton_lovygin)
-- [@credosanctum](https://t.me/credosanctum)
-- [@Sunsh1ne](https://t.me/Sunsh1ne)
-- [@dustun01](https://t.me/dustun01)
-- [@gergov_murat](https://t.me/gergov_murat) — also Murat above, doubly credited because both roles were real
-- [@GurovDmitriy](https://t.me/GurovDmitriy) — also Dima above, same reason
+**[The support circle](/ACKNOWLEDGEMENTS.md#командос)**
 
 **Kush, at Cognition.** A separate paragraph, because this is not quite in the same category as the others.
 
