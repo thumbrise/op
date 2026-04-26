@@ -192,6 +192,7 @@ These are not guidelines — they are gates. A file at 410 LOC does not get a pa
 
 - **Martin metrics** — track OCP compliance and extension points per module. If adding a new variant (error category, worker type, output format) requires modifying existing code instead of adding a new file, the design is wrong.
 - **Glossary consistency** — every domain term must have exactly one meaning across code, comments, and docs. Drift is a bug. If a reviewer spots the same word used for two concepts — even in a comment — it blocks merge.
+- **Singular: "operation protocol".** The canonical name is singular — Einstein formalised "relativity", not "relativities". All new prose, code, comments, configs, commit messages, and chat use `operation protocol`. Devlogs are frozen snapshots (see "How to read this repository") — `operations protocol` survives there as written and is not modified. Everywhere else, `operations protocol` is glossary drift and blocks merge.
 - **God Object detection** — a type that accumulates unrelated private methods is not "well-encapsulated", it's a junk drawer. Signs: the type has methods that don't share state, or you can draw a line through the method list and get two independent groups. Extract subsystems into separate types or files. The struct stays thin — it delegates, not accumulates.
 - **Cognitive load** — if a reviewer needs to hold more than one subsystem in their head to understand a single method, the method is doing too much. If you can't explain a function's control flow in one sentence, split it.
 
