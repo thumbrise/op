@@ -27,9 +27,9 @@ Read these three documents, in this order, before the rest:
 
 The operation evolved independently at least fourteen times — in quantum mechanics, biology, neuroscience, CPU architecture, programming languages, game theory, economics, law, and linguistics. Each discipline arrived at the same five-field pattern without coordination. Like the eye evolved forty times because light exists, the operation evolved because interaction exists.
 
-Yet the software industry has no shared format for it. Every framework reinvents the same five fields and welds them to one transport. gRPC locks you to protobuf. OpenAPI locks you to HTTP. tRPC locks you to TypeScript. Generators convert one shadow into another shadow. Nobody describes the thing itself.
+In software, the same form has been approached from many directions. gRPC found it through protobuf. OpenAPI found it through HTTP. tRPC found it through TypeScript. Each one carried part of the form along with one particular transport, language, or vendor. Each one is a shoulder Op stands on.
 
-Op is the thing itself.
+Op tries to name the form on its own — without the transport, without the language, without the vendor.
 
 ## What it is
 
@@ -64,6 +64,29 @@ The theory predicts that one instruction format can replace N×M integrations wi
 - [ ] **Real operations** — at least three operations from a production domain (not toy examples) described, compiled, and deployed. The five fields hold under real-world pressure
 - [ ] **Validation** — a schema-level proof that every instruction conforms to the five-field structure. Invalid input → precise error. The contract is machine-enforceable
 - [ ] **Formal specification** — RFC, JSON Schema (`instruction.v1.json`), versioned and frozen. The protocol is citable, auditable, and forkable
+
+## Forget everything above
+
+This was the bait. Lists. Diagrams. Five fields. The PoC checklist.
+All of it true. None of it the point.
+
+Op is not an optimization. Op is a form. Found through long subtractions.
+Each subtraction made it more applicable. What remained was five fields.
+
+The goal is not to remove boilerplate. The goal is for programs to
+understand each other's capabilities. The consequences run wider than
+what we can list today.
+
+If you read this far — you are not a user. You are an early hand.
+What is below is for those who want to understand.
+
+- [The Devlog](https://thumbrise.github.io/op/devlog/) — how the form was found.
+- [The Conjecture](https://thumbrise.github.io/op/reference/the-primitive-range-conjecture) — the law that holds it.
+- [Tim's Dream](https://thumbrise.github.io/op/dreams/) — a book about a world where it worked.
+- [The Schema](https://thumbrise.github.io/op/schema/instruction.v1.json) — the form itself.
+
+There is no «Get Started» button here. Op is not for sale.
+Op either surfaces in you on its own — or it does not.
 
 ## License
 
