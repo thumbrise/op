@@ -166,6 +166,14 @@ The same devlog distinguishes vibe-coding (AI used with no signal on the input �
 
 **Sources.** `docs/devlog/033-the-amplifier.md:24-40`, `:62-72`, `:74-92`.
 
+### "AI sessions are an unfair advantage"
+
+**Misreading.** The author had AI assistance, therefore the work is not real work. Whatever was produced does not count.
+
+**What the text says.** The Amplifier devlog frames the relationship in one line: *"signal is yours, gain is ours"* — the AI amplifies a signal that has to already exist in the human. The same devlog distinguishes vibe-coding (no input signal, hollow fluency) from intellectual amplification (real signal, work that could not be produced alone in the available time), and notes the technology is identical in both cases — *"The difference lives entirely in the human."* Calling AI assistance an unfair advantage collapses both into one and judges the tool, not the signal.
+
+**Source.** `docs/devlog/033-the-amplifier.md` (full devlog, in particular the *signal is yours, gain is ours* framing and the vibe-coding vs amplification distinction).
+
 ## Common objections
 
 Technical objections raised about Op that have substantive answers in the materials. Different genre from *Common misreadings* above: those are distortions of what the text says; these are real questions with real responses. Recorded here so the same answer does not have to be reconstructed from scratch in every conversation.
