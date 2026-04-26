@@ -15,7 +15,7 @@ services:
       - "host.docker.internal:host-gateway"
     volumes:
       - ./:/var/www
-      - ./.docker/php/conf.d/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./.docker/php/conf.d/app.ini:/usr/local/etc/php/conf.d/app.ini
       - ./.docker/php/custom.d/:/usr/local/etc/php/custom.d/
       - composer-cache:/composer
     working_dir: /var/www

@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: op
-  text: Anything-agnostic operations protocol
+  text: Anything-agnostic operation protocol
   tagline: For operations-driven future. Solves the Expression Problem with traits. Separate the fundamental from the subjective
   actions:
     - theme: brand
