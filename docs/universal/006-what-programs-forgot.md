@@ -1,4 +1,10 @@
-#34-6 — Universal — What Programs Forgot
+---
+title: "#6 — What Programs Forgot"
+description: "Programs talk to other programs. 1969, ARPANET. 1971, FTP. That was the original task. Fifty years of engineering became a thick wall between the programmer and the dog. printf did not abolish assembly — it stopped programmers from writing it every time they printed a string. Op does not abolish HTTP — it stops programmers from writing it every time program A wants to call program B."
+---
+
+# What Programs Forgot
+
 Programs talk to other programs. That is the original task. 1969, ARPANET. 1971, FTP. Two programs, one wants to call the other, get an answer.
 
 That is all the problem ever was.

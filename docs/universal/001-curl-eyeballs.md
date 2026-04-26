@@ -1,4 +1,9 @@
-#1 — Universal — Curl Eyeballs
+---
+title: "#1 — Curl Eyeballs"
+description: "VPN broke curl. Browser kept working — Happy Eyeballs hedges connections in parallel. Twenty years of retry libraries inside every framework. In Op it is forty lines, one trait, and every client gets it for free."
+---
+
+# Curl Eyeballs
 
 Turned on the VPN. Browser works fine. Curl hangs.
 

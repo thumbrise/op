@@ -1,4 +1,10 @@
-#34-4 — Universal — PHP POC Struggle
+---
+title: "#4 — PHP POC Struggle"
+description: "PHP frameworks are not built for proof-of-concept. They are built for production day one. Two hours of bootstrap before a single line of emitter logic. Op solves this at protocol level — by letting the operation declaration live outside the framework."
+---
+
+# PHP POC Struggle
+
 PHP frameworks are not built for proof-of-concept. They are built for production day one.
 
 Started a small emitter. Wanted to read three Spiral routes and emit JSON. Twenty minutes of work, in a sane world.

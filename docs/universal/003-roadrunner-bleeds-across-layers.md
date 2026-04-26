@@ -1,4 +1,10 @@
-#34-3 — Universal — RoadRunner Bleeds Across Layers
+---
+title: "#3 — RoadRunner Bleeds Across Layers"
+description: "Opened .rr.yaml. Four concerns in one file — transport, process management, domain middleware, infrastructure observability. No boundaries between them. Layers welded shut where they should slide independently. Op separates these axes by construction."
+---
+
+# RoadRunner Bleeds Across Layers
+
 Opened .rr.yaml for the first time today. Stared.
 
 http:

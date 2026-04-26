@@ -1,4 +1,10 @@
-#34-2 — Universal — Spiral
+---
+title: "#2 — Spiral as Gallium"
+description: "Sat down to write the emitter. First instinct — parse the AST. Caught myself: that is the guts-extraction we ridiculed in #30. Switched to a Spiral CLI command. The program tells me what it is, because Spiral made the choices that let it. The gallium tested true."
+---
+
+# Spiral as Gallium
+
 In devlog #17 I said Spiral is gallium. A program that knows itself.
 
 Today I sat down to write the emitter. First instinct: parse the AST with nikic/php-parser. Walk the source, find #[Route] attributes, extract methods.
