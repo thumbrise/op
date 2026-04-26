@@ -24,7 +24,7 @@ Read these three documents, in this order, before the rest:
 
 ## The Problems
 
-### You Write the Same Thing Again and Again
+### The Same Thing, Written Many Times
 
 ```mermaid
 graph LR
@@ -96,11 +96,11 @@ graph LR
     style SDK4 fill:#f87171,color:#000
 ```
 
-It does not matter what language you use. OCaml, Haskell, Go, PHP, Rust — the moment your operation touches the outside world, you write it again. And again. A route. A schema. A client. A doc page. A CLI flag. A mock. A test. A metric. An MCP tool. An SDK per language. All by hand. All can drift. Change one — the rest lies. You find out in production.
+Language does not matter — OCaml, Haskell, Go, PHP, Rust — the moment an operation touches the outside world, the same five fields are written again. A route. A schema. A client. A doc page. A CLI flag. A mock. A test. A metric. An MCP tool. An SDK per language. By hand. The copies drift. One changes — the others quietly lie. The drift surfaces in production.
 
-This is not a tooling problem. This is the absence of a shared source of truth for what your code can do.
+This is not a tooling problem. This is the absence of a shared source of truth for what code can do.
 
-### The Industry Reinvents the Wheel. Every Wheel.
+### The Same Wheel, Re-shaped Many Times
 
 ```mermaid
 graph LR
@@ -220,11 +220,11 @@ graph LR
     style INT8 fill:#f87171,color:#000
 ```
 
-Forty-nine systems. Four layers. Every one of them rediscovers the same five fields — a name, an input, an output, and the possibility of failure. Then welds them to one transport, one language, or one vendor and calls it a standard.
+Forty-nine systems. Four layers. Each one independently arrives at the same five fields — a name, an input, an output, and the possibility of failure — and carries them along with one transport, one language, or one vendor.
 
-Eighteen RPC systems. Fourteen generators. Nine IDLs. Eight introspection mechanisms. And this is only what we chose to put on the diagram. All shadows of the same thing. Nobody describes the thing itself. Because the thing itself was never written down.
+Eighteen RPC systems. Fourteen generators. Nine IDLs. Eight introspection mechanisms. And this is only what fit on the diagram. Each one approaches the same form. None of them names the form on its own — because the form on its own had not been a target.
 
-### Business Pays for Every Missing Standard
+### The Cost of a Missing Standard
 
 ```mermaid
 graph LR
@@ -258,21 +258,21 @@ graph LR
     style YOU fill:#facc15,color:#000
 ```
 
-Every partner has its own API. Every integration is custom. Every new partner costs months. Every API change breaks revenue.
+Each partner publishes its own API. Each integration is written by hand. Each new partner takes months. Each API change ripples through the integrations downstream.
 
-Marketplaces lose sellers who give up on integration. AI providers like Anthropic spend years evangelizing MCP tool adoption — one tool at a time, by hand. Payment systems maintain SDK libraries in six languages — six codebases, six teams, six sets of bugs. Banks rebuild integrations with every fintech partner from scratch.
+Marketplaces watch sellers drop off when the integration cost is too high. AI providers like Anthropic carry MCP tool adoption forward one tool at a time. Payment systems maintain SDK libraries in six languages — six codebases, six teams. Banks rebuild integrations with every new fintech partner.
 
-The cost is not technical. It is economic. Everyone pays — in time, in people, in missed opportunities — for the absence of a shared language for operations.
+The cost is not technical. It is economic. The cost is paid — in time, in people, in opportunities — for the work that a shared primitive would not require.
 
-### Why Nobody Noticed
+### Why the Form Stayed Hidden
 
-This is not about stupidity. The people who built gRPC, OpenAPI, GraphQL, MCP — they are brilliant. The problem is older than all of them.
+The people who built gRPC, OpenAPI, GraphQL, MCP are brilliant. The form has been older than any of them, and harder to see than it is to use.
 
-In 1989, the Web exploded with three primitives: URI, HTTP, HTML. The world got addresses, transport, and presentation — all at once. It was so fast, so useful, so transformative that nobody stopped to ask: where is the model?
+In 1989, the Web arrived with three primitives at once: URI, HTTP, HTML. Addresses, transport, presentation — all delivered together. The bundle was so useful and so fast that the model underneath it became part of the background, not part of the question.
 
-Functions had five fields since Fortran in 1957. Syscalls had five fields since Unix in 1971. Every programming language, every CPU instruction set, every network protocol arrived at the same structure independently. The operation was already there — formalized, proven, universal. But the Web boom buried it under transport and presentation. HTTP became the world. HTML became the interface. The model — the operation itself — was never written down.
+Functions had five fields since Fortran in 1957. Syscalls had five fields since Unix in 1971. Every programming language, every CPU instruction set, every network protocol arrived at the same structure independently. The operation was already there — formalized, proven, universal. But after 1989 the line of sight from the model went through HTTP, and through HTML, and the model on its own stopped being a frequent target of inquiry.
 
-And so every framework, every RPC system, every generator since 1989 has been reinventing the same five fields from scratch. Not because engineers are blind. Because the Web taught everyone to think in transports and presentations first. The model was always underneath. Nobody looked.
+Every framework, every RPC system, every generator since 1989 has rediscovered the same five fields. Not because engineers missed something. Because thinking starts with the transport and the presentation when those are the first things you reach for. The model lives underneath. It takes longer to come up.
 
 ## The Solution
 
