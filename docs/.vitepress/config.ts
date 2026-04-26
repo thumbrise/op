@@ -126,6 +126,7 @@ export default withMermaid(defineConfig({
             {text: 'The understory', link: '/dreams/003-the-understory'},
             {text: 'The mound', link: '/dreams/004-the-mound'},
             {text: 'The dial', link: '/dreams/005-the-dial'},
+            {text: 'The four letters', link: '/dreams/006-the-four-letters'},
           ],
         },
       ],
