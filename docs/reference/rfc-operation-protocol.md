@@ -117,9 +117,9 @@ Reserved for the structured evidence record from [#23 — The Vacant Cell](../de
 
 ## See also
 
-- [README.md](../../README.md) — what Op is, status, proof of concept
+- [README.md](https://github.com/thumbrise/op/blob/main/README.md) — what Op is, status, proof of concept
 - [FAQ.md](../FAQ.md) — how to read this repository, common misreadings, common objections
 - [ACKNOWLEDGEMENTS.md](/ACKNOWLEDGEMENTS.md) — every reference cited in the materials
-- [REVIEW.md](../../REVIEW.md) — review and contribution discipline
+- [REVIEW.md](https://github.com/thumbrise/op/blob/main/REVIEW.md) — review and contribution discipline
 - [docs/devlog/](../devlog/) — the research trail (closed, append-only)
 - [docs/universal/](../universal/) — field notes from compiler work

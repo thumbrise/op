@@ -24,7 +24,7 @@ Every name in this file appears for one of three reasons.
 
 The order inside each section is rough chronology of debt, not ranking. The list is incomplete on purpose — anyone whose work made this thinkable and whose name is missing here, the omission is the author's, not the protocol's. Pull requests welcome.
 
-This file is normative under [REVIEW.md → Respect every reference, in writing](../REVIEW.md#respect-every-reference-in-writing). Any new reference added to a devlog, RFC, or material must add a corresponding entry here in the same PR.
+This file is normative under [REVIEW.md → Respect every reference, in writing](https://github.com/thumbrise/op/blob/main/REVIEW.md#respect-every-reference-in-writing). Any new reference added to a devlog, RFC, or material must add a corresponding entry here in the same PR.
 
 ---
 
@@ -143,7 +143,7 @@ USB also gave the field a discipline Op explicitly tries to inherit: the **plug,
 
 The USB-IF deserves credit for keeping the standard *open and royalty-free* through every revision (USB 1.0, 2.0, 3.0, 3.1, 3.2, 4, USB-C). The decision to keep adoption costs near zero is what made the universal port actually universal. Op's Apache 2.0 + GitHub-hosted-schema model is the same decision, ported to software protocols. Bhatt, Intel, and the USB-IF made the case for *permissionless universal connection* in physical engineering before Op tried to make it in software.
 
-The lineage is also literal in one specific place. The directory in this repository named [`universal/`](universal/) — which holds the first Op compilers, `universal/cobra-client`, `universal/spiral`, and others — takes its name in honour of the **U**niversal **S**erial **B**us. The word is the same word, used for the same reason: a substrate that does not care what plugs into it. The directory name is not a brand, not a marketing label. It is a small daily reminder that the vendors and compilers in `universal/` are *replaceable on purpose*. We hope every compiler in `universal/` is eventually superseded by a better compiler — written by someone we have never met, hosted in a repository we do not control, ignoring our trait names and inventing better ones. That replacement is not a failure mode of Op. That replacement is the success condition.
+The lineage is also literal in one specific place. The directory in this repository named [`universal/`](https://github.com/thumbrise/op/blob/main/universal/) — which holds the first Op compilers, `universal/cobra-client`, `universal/spiral`, and others — takes its name in honour of the **U**niversal **S**erial **B**us. The word is the same word, used for the same reason: a substrate that does not care what plugs into it. The directory name is not a brand, not a marketing label. It is a small daily reminder that the vendors and compilers in `universal/` are *replaceable on purpose*. We hope every compiler in `universal/` is eventually superseded by a better compiler — written by someone we have never met, hosted in a repository we do not control, ignoring our trait names and inventing better ones. That replacement is not a failure mode of Op. That replacement is the success condition.
 
 ### [Vint Cerf](https://en.wikipedia.org/wiki/Vint_Cerf) and [Bob Kahn](https://en.wikipedia.org/wiki/Bob_Kahn) — the substrate
 
@@ -267,7 +267,7 @@ Shannon restated Kerckhoffs as a maxim: *the enemy knows the system.* Shannon al
 
 ## Predecessors that Op cites, criticizes, or compares itself to
 
-This is the section the rule [REVIEW.md → Respect every reference, in writing](../REVIEW.md#respect-every-reference-in-writing) was written for. The materials cite a long list of protocols, formats, and frameworks. Some are cited approvingly. Some are cited critically. Some are cited as adversaries in role-play scenes ([#3a–#3h](devlog/003a-pub-bar-role-game.md)) where the prose gets sharp on purpose, because adversarial review is sharper than co-operative review and finds more.
+This is the section the rule [REVIEW.md → Respect every reference, in writing](https://github.com/thumbrise/op/blob/main/REVIEW.md#respect-every-reference-in-writing) was written for. The materials cite a long list of protocols, formats, and frameworks. Some are cited approvingly. Some are cited critically. Some are cited as adversaries in role-play scenes ([#3a–#3h](devlog/003a-pub-bar-role-game.md)) where the prose gets sharp on purpose, because adversarial review is sharper than co-operative review and finds more.
 
 **The tone of the citation is not the measure of the debt.** Critique of a design decision is not a withdrawal of credit. A pub-bar scene where Op argues with Smithy is not a denial that Smithy got the categories right. The reference exists in the work; the credit belongs in the ledger. Each entry below names what the predecessor contributed and why Op leans on that contribution, regardless of how the citation reads in the materials.
 
@@ -455,7 +455,7 @@ Spiral is the framework where the gallium search ended — not because no other 
 
 Other frameworks may be equally close or closer; we did not exhaust the search. The materials' framing — *the only PHP framework where Op::from works out of the box* — should be read as a snapshot of what we tested, not a verdict on what exists. If your framework also fits and you would like an entry in this ledger, please send a PR.
 
-Special credit to Anton Titov (wolfy-j), Pavel Buchnev (butschster), Aleksei Gagarin (roxblnfk), Maksim Smakouz (msmakouz), and the entire Spiral team. The architectural taste they brought to PHP is what made the gallium experiment possible. The PoC in [`poc/spiral-emit/`](../poc/spiral-emit/) compiles instructions through their Reflection-friendly design without archaeology.
+Special credit to Anton Titov (wolfy-j), Pavel Buchnev (butschster), Aleksei Gagarin (roxblnfk), Maksim Smakouz (msmakouz), and the entire Spiral team. The architectural taste they brought to PHP is what made the gallium experiment possible. The PoC in [`poc/spiral-emit/`](https://github.com/thumbrise/op/blob/main/poc/spiral-emit/) compiles instructions through their Reflection-friendly design without archaeology.
 
 ### Laravel and Symfony — what Op gives them and what it does not
 
@@ -690,7 +690,7 @@ This is not a list of fourteen places to point at. It is fourteen independent pr
 
 Мужики. Спасибо.
 
-![](/op/assets/predator-handshake.gif)
+![](/assets/predator-handshake.gif)
 
 ---
 
