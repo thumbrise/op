@@ -137,6 +137,7 @@ export default withMermaid(defineConfig({
           items: [
             {text: 'RFC — Operation Protocol', link: '/reference/rfc-operation-protocol'},
             {text: 'RFC — Appendix A — Raw Notes', link: '/reference/rfc-operation-protocol-appendix-a-raw'},
+            {text: 'The Primitive Range Conjecture', link: '/reference/the-primitive-range-conjecture'},
           ],
         },
       ],
