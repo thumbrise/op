@@ -94,7 +94,7 @@ DeepSeek returned a structural assessment of all fourteen disciplines, with veri
 
 This appendix will, in its full form, list each discipline with the reviewer's verbatim assessment, the verification mode, the structural match level, and any caveats. The stub records the existence of the verification, the date of the review, and the location of the raw notes, so that the public ledger reflects the work even before integration is complete.
 
-The author commits to integrating the full assessment into this appendix when normative sections of the RFC begin landing. Until that point, this appendix exists to make the verification visible, to be honest about its current incompleteness, and to ensure that any reader of [`ACKNOWLEDGEMENTS.md`](../../ACKNOWLEDGEMENTS.md) — where each of the fourteen disciplines is credited — has a single canonical place to verify the claim that *fourteen independent fields converged*.
+The author commits to integrating the full assessment into this appendix when normative sections of the RFC begin landing. Until that point, this appendix exists to make the verification visible, to be honest about its current incompleteness, and to ensure that any reader of [`ACKNOWLEDGEMENTS.md`](/ACKNOWLEDGEMENTS.md) — where each of the fourteen disciplines is credited — has a single canonical place to verify the claim that *fourteen independent fields converged*.
 
 **Raw notes:** preserved verbatim in [`rfc-operation-protocol-appendix-a-raw.md`](./rfc-operation-protocol-appendix-a-raw.md). Will be folded into the integrated appendix when the normative sections are written.
 **Verification date:** 2026-04-26.
@@ -118,8 +118,8 @@ Reserved for the structured evidence record from [#23 — The Vacant Cell](../de
 ## See also
 
 - [README.md](../../README.md) — what Op is, status, proof of concept
-- [FAQ.md](../../FAQ.md) — how to read this repository, common misreadings, common objections
-- [ACKNOWLEDGEMENTS.md](../../ACKNOWLEDGEMENTS.md) — every reference cited in the materials
+- [FAQ.md](../FAQ.md) — how to read this repository, common misreadings, common objections
+- [ACKNOWLEDGEMENTS.md](/ACKNOWLEDGEMENTS.md) — every reference cited in the materials
 - [REVIEW.md](../../REVIEW.md) — review and contribution discipline
 - [docs/devlog/](../devlog/) — the research trail (closed, append-only)
 - [docs/universal/](../universal/) — field notes from compiler work

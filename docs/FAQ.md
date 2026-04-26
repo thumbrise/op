@@ -24,11 +24,11 @@ The work itself is the loop: search prior solutions, compare candidates, weigh w
 
 The result — five fields and a trait system — is what survived after we ran out of opinions to remove.
 
-Why public? Private repositories make sense for business logic. Research notes do not. A devlog — a developer's journal — is not embarrassing on its own, and when it happens to lead somewhere useful, that is a bonus, not the reason. A reader who only needs the result can read [the five fields](docs/devlog/008-three-atoms.md) and skip the trail. The trail is here for anyone walking the same path.
+Why public? Private repositories make sense for business logic. Research notes do not. A devlog — a developer's journal — is not embarrassing on its own, and when it happens to lead somewhere useful, that is a bonus, not the reason. A reader who only needs the result can read [the five fields](devlog/008-three-atoms.md) and skip the trail. The trail is here for anyone walking the same path.
 
 ### Why didn't you stop once it solved your own problem
 
-Once we noticed the same primitive shows up in fourteen disciplines (see [#13 Convergent Evolution](docs/devlog/013-convergent-evolution.md)), it stopped being a problem about one team. A primitive that fits transistors, contracts, enzymes, and HTTP endpoints does not belong to any one of them.
+Once we noticed the same primitive shows up in fourteen disciplines (see [#13 Convergent Evolution](devlog/013-convergent-evolution.md)), it stopped being a problem about one team. A primitive that fits transistors, contracts, enzymes, and HTTP endpoints does not belong to any one of them.
 
 A private solution would have been faster — pick a format, hardcode our team's opinions, ship, walk away. That is what most teams do, which is why the industry has dozens of half-protocols and no shared one.
 
@@ -53,7 +53,7 @@ Op is the formal definition of the operation — the primitive that every framew
 
 Op is the future that Berners-Lee dreamed of in 2001 — machines understanding what services can do — approached from the opposite direction. He built seven layers from the top. We found five fields from the bottom. The destination is the same. The road is not. And this time the road has no committees, no ontologies, and no XML. Just a primitive so simple that the ecosystem self-organizes around it. Like language. Like money. Like the internet itself.
 
-See [#16 The Founder's Dream](docs/devlog/016-the-founders-dream.md) for the full reasoning.
+See [#16 The Founder's Dream](devlog/016-the-founders-dream.md) for the full reasoning.
 
 ## Common misreadings
 
