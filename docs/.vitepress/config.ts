@@ -4,7 +4,7 @@ import {viteStaticCopy} from 'vite-plugin-static-copy'
 
 export default withMermaid(defineConfig({
   title: 'op',
-  description: 'Anything-agnostic operations protocol. For operations-driven future.',
+  description: 'Anything-agnostic operation protocol. For operations-driven future.',
   base: '/op/',
   // The JSON Schema is the public contract (referenced by $id URL) AND a TS
   // import inside the Playground. Vite forbids importing from /public via JS,
@@ -45,6 +45,7 @@ export default withMermaid(defineConfig({
       {text: 'Playground', link: '/playground'},
       {text: 'Devlog', link: '/devlog/'},
       {text: 'Universal', link: '/universal/'},
+      {text: 'Reference', link: '/reference/rfc-operation-protocol'},
       {text: 'GitHub', link: 'https://github.com/thumbrise/op'},
     ],
 
@@ -113,6 +114,15 @@ export default withMermaid(defineConfig({
             {text: '#8 — Configuration Is Not Parameterization', link: '/universal/008-configuration-is-not-parameterization'},
             {text: '#9 — Even What Looks Like Knowledge Isn\'t Yours', link: '/universal/009-even-what-looks-like-knowledge-isnt-yours'},
             {text: '#10 — Containers Are the Registers of Our Era', link: '/universal/010-containers-are-the-registers-of-our-era'},
+          ],
+        },
+      ],
+      '/reference/': [
+        {
+          text: 'Reference',
+          items: [
+            {text: 'RFC — Operation Protocol', link: '/reference/rfc-operation-protocol'},
+            {text: 'RFC — Appendix A — Raw Notes', link: '/reference/rfc-operation-protocol-appendix-a-raw'},
           ],
         },
       ],
