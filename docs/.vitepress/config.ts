@@ -124,6 +124,7 @@ export default withMermaid(defineConfig({
             {text: 'Lesson 1 — What an operation is', link: '/dreams/001-what-is-an-operation'},
             {text: 'The handshake', link: '/dreams/002-the-handshake'},
             {text: 'The understory', link: '/dreams/003-the-understory'},
+            {text: 'The mound', link: '/dreams/004-the-mound'},
           ],
         },
       ],
