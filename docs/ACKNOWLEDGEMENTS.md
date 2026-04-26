@@ -681,12 +681,12 @@ This is not a list of fourteen places to point at. It is fourteen independent pr
 
 Всем кто верил и поддерживал, критиковал и мотивировал, всем кто защищал репозиторий от удаления в трудный психологический час.
 
-- **[Антон](https://t.me/anton_lovygin)** — главный редактор
-- **[Амиран](https://t.me/credosanctum)** — моральная поддержка
-- **[Артём](https://t.me/Sunsh1ne)** — первый комментатор
-- **[Имран](https://t.me/dustun01)** — перспективный последователь
-- **[Мурат](https://t.me/gergov_murat)** — [судья](devlog/024-the-trial.md) и [первый вендор](devlog/030-the-first-stranger.md)
-- **[Дима](https://t.me/GurovDmitriy)** — меткий глаз, острый ум, [четвёртая рельса](devlog/018-the-fourth-rail.md)
+- **[Антон](https://t.me/anton_lovygin)** — жестокий критик и отличный друг, беспощадный и искренний
+- **[Амиран](https://t.me/credosanctum)** — моральная поддержка, светлый ум поколения
+- **[Артём](https://t.me/Sunsh1ne)** — первый комментатор, интереснейший собеседник
+- **[Имран](https://t.me/dustun01)** — перспективный последователь, взрослый мужской взгляд на мир 
+- **[Мурат](https://t.me/gergov_murat)** — гиперактивный деятель, [судья](devlog/024-the-trial.md) и [первый вендор](devlog/030-the-first-stranger.md)
+- **[Дима](https://t.me/GurovDmitriy)** — идеологический старший брат, меткий глаз, острый ум, [четвёртая рельса](devlog/018-the-fourth-rail.md)
 
 Мужики. Спасибо.
 
