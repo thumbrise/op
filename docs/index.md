@@ -470,3 +470,26 @@ Every service describes itself. `any://any.com/operations/` — and in the respo
 Five fields. Three atoms. One JSON Schema.
 
 [**instruction.v1.json →**](/schema/instruction.v1.json)
+
+## Forget everything above
+
+This was the bait. Lists. Diagrams. Forty-nine systems. Seven unlocks.
+All of it true. None of it the point.
+
+Op is not an optimization. Op is a form. Found through long subtractions.
+Each subtraction made it more applicable. What remained was five fields.
+
+The goal is not to remove boilerplate. The goal is for programs to
+understand each other's capabilities. The consequences run wider than
+what we can list today.
+
+If you read this far — you are not a user. You are an early hand.
+What is below is for those who want to understand.
+
+- [The Devlog](/devlog/) — how the form was found.
+- [The Conjecture](/reference/the-primitive-range-conjecture) — the law that holds it.
+- [Tim's Dream](/dreams/) — a book about a world where it worked.
+- [The Schema](/schema/instruction.v1.json) — the form itself.
+
+There is no «Get Started» button here. Op is not for sale.
+Op either surfaces in you on its own — or it does not.
