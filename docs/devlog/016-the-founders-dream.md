@@ -187,13 +187,13 @@ This is the worldwide D-Bus. Not for desktop services on one machine. For every 
 
 Here is what makes this not a bet but a proof.
 
-Berners-Lee arrived at the Semantic Web from the top. From W3C. From the credibility of the man who had already given the world the Web itself. He brought the best tools his era had: formal logic, ontologies, committee-grade specifications. He built seven layers — each one a serious piece of engineering.
+Sir Tim Berners-Lee arrived at the Semantic Web from the top. From W3C. From the credibility of the man who had already given the world the Web itself. He brought the best tools his era had: formal logic, ontologies, committee-grade specifications. He built seven layers — each one a serious piece of engineering.
 
-Ruslan Kokoev, twenty-six, from Stavropol, arrived at the same destination from the bottom. From not wanting to write Swagger three times. With no funding, no authority, no committee. With a mass-market laptop and a mass-market LLM. He built five fields.
+Between him and us — thirty years of other people's work. WSDL. SOAP. Schema.org. OpenAPI. GraphQL. Thrift. gRPC. Protobuf. MCP. Dozens of teams, thousands of engineers, billions of dollars of infrastructure. Each one carried the dream a little further. Each one shed one opinion the previous one held. The road from seven layers to five fields was not walked by one person. It was walked by an industry, one step at a time, over a generation.
 
-Two people. Different continents. Different decades. Different starting points. Different resources. Same destination: machines must understand what services can do.
+At the far end of that road, a developer who did not want to write Swagger three times sat down and noticed what was left after everything particular had been removed. Five fields. No authority, no committee, no funding. Just the ordinary frustration of someone who writes code for a living and got tired of writing the same code twice.
 
-This is convergent evolution. The same pattern from devlog #13 — but applied to the idea itself. When a Cambridge professor and a Stavropol developer independently arrive at the same conclusion, the conclusion is not a coincidence. It is gravity.
+The distance between Sir Tim and that developer is not a comparison. It is a measure of how many shoulders the developer stands on. The destination is the same: machines must understand what services can do. The road is thirty years long and paved by everyone in between.
 
 And it will happen again. If Op disappears tomorrow, someone else will arrive at five fields. Because the problem does not disappear. Services exist. They have inputs, outputs, and errors. Someone will write it down. Again. And again. Until it sticks.
 
@@ -205,7 +205,7 @@ And it will happen again. If Op disappears tomorrow, someone else will arrive at
 | OpenAPI | 2011 | Swagger → Linux Foundation | YAML/JSON description of HTTP APIs | Survived — but welded to HTTP. Remove HTTP, nothing remains |
 | GraphQL Introspection | 2015 | Facebook | Schema queryable at runtime | Survived — but welded to GraphQL. One transport, one query language |
 | MCP | 2024 | Anthropic | JSON Schema tool descriptions for AI agents | Alive — but welded to AI. One consumer, manual registration |
-| Op | 2026 | Ruslan Kokoev, who would not write Swagger three times | Five fields. Traits. No opinion on transport, format, or consumer | — |
+| Op | 2026 | A developer who really, really did not want to write Swagger three times | Five fields. Traits. No opinion on transport, format, or consumer | — |
 
 Seven attempts in twenty-six years. Each one closer to the core. Each one shedding one more opinion. WSDL shed the committee but kept XML. Schema.org shed XML but kept HTML. OpenAPI shed HTML but kept HTTP. GraphQL shed HTTP but kept its own transport. MCP shed transport but kept the consumer.
 
