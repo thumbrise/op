@@ -189,6 +189,12 @@ Boltzmann built statistical mechanics in the 1870s. He distinguished the *micros
 
 Three levels: microstate (identity), macrostate (form), thermodynamic quantity (interpretation). The same three-level topology Op rediscovers in its own vocabulary — `Term` (id, kind), `Operation` (four rails), `Trait` (read by component). [#32 — The Verdict](devlog/032-the-verdict.md) names Boltzmann as the second of four causally isolated witnesses to that topology. Op did not borrow from Boltzmann. Boltzmann arrived at the shape independently in the 1870s, working on a problem that had nothing to do with computation, and the shape stood up.
 
+### [Friedrich Miescher](https://en.wikipedia.org/wiki/Friedrich_Miescher), [James Watson](https://en.wikipedia.org/wiki/James_Watson), [Francis Crick](https://en.wikipedia.org/wiki/Francis_Crick), [Rosalind Franklin](https://en.wikipedia.org/wiki/Rosalind_Franklin) — the four-letter alphabet
+
+Miescher isolated *nuclein* — what we now call DNA — from cells in 1869, without yet knowing what it was. Watson and Crick, building on Rosalind Franklin's X-ray diffraction data, published the double helix structure in 1953. Three centuries of life science settled around the recognition that all of biology is written in four letters: A, T, G, C. The [Primitive Range Conjecture](reference/the-primitive-range-conjecture) cites this as one of the convergent witnesses — *every living organism on the planet uses the same four-letter alphabet*. The minimum that nature converged on, independently of any committee, across every kingdom of life. Op cites the precedent directly when arguing that primitives are not invented but found.
+
+Franklin's contribution is named here separately because the historical record initially erased her work, and the field is still correcting that erasure. Photograph 51 was hers. The structure was readable because she made it readable.
+
 ### [Gregor Mendel](https://en.wikipedia.org/wiki/Gregor_Mendel) and [Wilhelm Johannsen](https://en.wikipedia.org/wiki/Wilhelm_Johannsen) — the first witness
 
 Mendel isolated the unit of inheritance — the allele — in 1866. Johannsen, in 1911, gave biology the words *genotype* and *phenotype* and with them the formal recognition that the **form** (the genome, the structured arrangement of alleles) is one thing, and the **interpretation** (the body the environment reads out of the genome) is another.
@@ -547,6 +553,7 @@ Every diagram in the devlogs — the tree of fifteen attempts, the four rails, t
 
 The [Universal field notes](universal/) mention several technologies by name in passing — as landscape examples, not as deep comparisons. Each deserves recording in this ledger because the rule is simple: if a name appears in the materials, it appears here.
 
+- **[curl](https://curl.se/)** (Daniel Stenberg, 1996) and **[Happy Eyeballs](https://datatracker.ietf.org/doc/html/rfc8305)** (RFC 8305) — referenced in [#1](universal/001-curl-eyeballs) as the canonical example of *hedge requests as a transport-layer concern*. Daniel Stenberg has shepherded curl for nearly thirty years and the project's discipline of *one tool, one job, done well* is one Op tries to inherit.
 - **[Caddy](https://caddyserver.com/)** and **[Nginx](https://nginx.org/)** — web servers and reverse proxies referenced in [#3](universal/003-roadrunner-bleeds-across-layers) as examples of transport-layer separation.
 - **[PHP-FPM](https://www.php.net/manual/en/install.fpm.php)** — the PHP process manager, referenced alongside RoadRunner in [#3](universal/003-roadrunner-bleeds-across-layers).
 - **[envsubst](https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html)** — the variable-substitution tool referenced in [#5](universal/005-single-source-of-truth) as a symptom of config duplication.
@@ -556,6 +563,36 @@ The [Universal field notes](universal/) mention several technologies by name in 
 ### [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 Op is licensed under Apache 2.0. This is not a passive default; it is a structural decision. Apache 2.0 lets vendors fork Op, build commercial tooling on top, embed Op in proprietary stacks, and ship without asking permission ([#28 — Dobby Is Free](devlog/028-dobby-is-free.md)). The Apache Software Foundation built the license in 2004 with explicit intent to make this kind of permissionless ecosystem possible. Without Apache 2.0 — or an equivalent permissive license — the [#28](devlog/028-dobby-is-free.md) thesis collapses: Dobby is not free if the license requires negotiation. The ASF is owed the credit for keeping that license clean and well-maintained for two decades.
+
+---
+
+## Named in Tim's Dream
+
+The fourteen chapters of [Tim's Dream](dreams/) illustrate Op's primitive thesis through historical, scientific, and artistic episodes. Each chapter cites real people and real work. They appear here because the rule is simple: if a name appears in the materials, it appears in this ledger.
+
+### The Apollo–Soyuz handshake (1975) — [dreams/002](dreams/002-the-handshake)
+
+The first international docking in space succeeded because two crews, two control centres, and two engineering traditions agreed on one shared androgynous docking adapter. Both sides could lead, both could follow, neither needed to convert. The handshake is the original physical analogue of Op's instruction format: a shape that does not care which side speaks first.
+
+- **[Алексей Архипович Леонов](https://en.wikipedia.org/wiki/Alexei_Leonov)** — commander, Soyuz 19. The first human to walk in space (1965), and the man who reached through the hatch in 1975.
+- **[Валерий Николаевич Кубасов](https://en.wikipedia.org/wiki/Valery_Kubasov)** — flight engineer, Soyuz 19.
+- **[Thomas P. Stafford](https://en.wikipedia.org/wiki/Thomas_P._Stafford)** — commander, Apollo CSM-111.
+- **[Vance D. Brand](https://en.wikipedia.org/wiki/Vance_D._Brand)** — command module pilot.
+- **[Donald K. "Deke" Slayton](https://en.wikipedia.org/wiki/Deke_Slayton)** — docking module pilot, one of the original Mercury Seven, who waited fifteen years on the ground before finally flying.
+
+The engineers on both sides who designed the [Apollo–Soyuz docking system](https://en.wikipedia.org/wiki/Androgynous_Peripheral_Attach_System) — the androgynous adapter where neither side was male or female — also belong to this ledger. The hardware was the agreement. The crews were the witnesses.
+
+### [Karl von Frisch](https://en.wikipedia.org/wiki/Karl_von_Frisch) — the bee waggle dance — [dreams/009](dreams/009-the-dance)
+
+Von Frisch decoded the honeybee waggle dance in the 1940s, showing that bees communicate the direction and distance of food sources by a precise, repeatable choreography. Nobel Prize, 1973 (shared with Lorenz and Tinbergen). The dance is one of the cleanest natural examples of *a small, agreed-upon protocol carrying rich information across a colony*. Op cites the precedent in dreams/009 as the biological signature of what a primitive looks like before it is invented in software.
+
+### [Craig Reynolds](https://en.wikipedia.org/wiki/Craig_Reynolds_(computer_graphics)) — boids and emergent flocking — [dreams/010](dreams/010-the-murmuration)
+
+Reynolds published the [boids](https://en.wikipedia.org/wiki/Boids) model in 1986, demonstrating that the complex flocking behaviour of birds and fish emerges from three simple rules applied locally to each agent: separation, alignment, cohesion. Three primitives. Globally coherent murmuration. Op uses Reynolds's discovery in dreams/010 as the demonstration that *coordinated behaviour does not require central authority — only a small shared protocol applied locally*.
+
+### [Казимир Северинович Малевич](https://en.wikipedia.org/wiki/Kazimir_Malevich) — *Black Square* (1915) — [dreams/011](dreams/011-the-black-square)
+
+Malevich painted *Black Square* in 1915 as the endpoint of a long subtraction — the canvas reduced to its minimum: one shape, one colour, one meaning, no representation. The painting is one of the earliest art-historical demonstrations of *finding the minimum form at which a representation stops being particular and starts being universal*. Op uses the precedent in dreams/011 as the cleanest illustration available, in any medium, of the [Primitive Range Conjecture](reference/the-primitive-range-conjecture)'s central claim: a primitive is what remains after every removable opinion is removed.
 
 ---
 

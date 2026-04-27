@@ -97,8 +97,11 @@ This appendix will, in its full form, list each discipline with the reviewer's v
 The author commits to integrating the full assessment into this appendix when normative sections of the RFC begin landing. Until that point, this appendix exists to make the verification visible, to be honest about its current incompleteness, and to ensure that any reader of [`ACKNOWLEDGEMENTS.md`](/ACKNOWLEDGEMENTS.md) — where each of the fourteen disciplines is credited — has a single canonical place to verify the claim that *fourteen independent fields converged*.
 
 **Raw notes:** preserved verbatim in [`rfc-operation-protocol-appendix-a-raw.md`](./rfc-operation-protocol-appendix-a-raw.md). Will be folded into the integrated appendix when the normative sections are written.
+
 **Verification date:** 2026-04-26.
+
 **Reviewer:** DeepSeek (external).
+
 **Methodology:** falsification-first peer review, identical in structure to the methodology used for [#23 — The Vacant Cell](../devlog/023-the-vacant-cell.md) and [#24 — The Trial](../devlog/024-the-trial.md).
 
 *Status: stub. Integration pending.*

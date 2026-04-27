@@ -16,7 +16,7 @@ hero:
 
 ## Before you read anything else
 
-Read these three documents, in this order, before the rest:
+Read the following documents, in this order, before the rest:
 
 1. **[Tim's Dream](/dreams/)** — a short book. No technical words. Start here if you want to understand what this is about before reading anything else.
 2. **[ACKNOWLEDGEMENTS](ACKNOWLEDGEMENTS.md)** — every person, project, and discipline this work stands on. Standing on the shoulders of the founders. Respect comes first.

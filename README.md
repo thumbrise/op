@@ -17,11 +17,11 @@ Five fields. Extensions attached from outside. Nothing more.
 
 ## Before you read anything else
 
-Read these three documents, in this order, before the rest:
+Read the following documents, in this order, before the rest:
 
 1. **[Tim's Dream](https://thumbrise.github.io/op/dreams/)** — a short book. No technical words. Start here if you want to understand what this is about before reading anything else.
-2. **[ACKNOWLEDGEMENTS.md](https://thumbrise.github.io/op/ACKNOWLEDGEMENTS)** — every person, project, and discipline this work stands on. Standing on the shoulders of the founders. Respect comes first.
-3. **[FAQ.md](https://thumbrise.github.io/op/FAQ)** — how this repository is meant to be read, what is and is not being claimed, common misreadings, common technical objections.
+2. **[ACKNOWLEDGEMENTS](https://thumbrise.github.io/op/ACKNOWLEDGEMENTS)** — every person, project, and discipline this work stands on. Standing on the shoulders of the founders. Respect comes first.
+3. **[FAQ](https://thumbrise.github.io/op/FAQ)** — how this repository is meant to be read, what is and is not being claimed, common misreadings, common technical objections.
 4. **The rest of this README, the devlogs, and the materials** — what we found, after the credit and the framing are in place.
 
 ## Why this exists
@@ -34,7 +34,7 @@ Op tries to name the form on its own — without the transport, without the lang
 
 ## What it is
 
-Op (Operations Protocol) is a formalization of the operation as a universal primitive:
+Op (Operation Protocol) is a formalization of the operation as a universal primitive:
 
 - **Five fields** — `id`, `comment`, `input`, `output`, `errors` — describe any operation at any level. Not an opinion. A fact. Like Church's lambda calculus formalized computation in 1936.
 - **Traits** — namespaced key-value extensions attached from outside. HTTP routes, gRPC services, authentication, CLI flags. The operation does not change when a trait is added or removed. Traits are opinions. The operation is the fact.
