@@ -46,6 +46,7 @@ export default withMermaid(defineConfig({
       {text: 'Devlog', link: '/devlog/'},
       {text: 'Universal', link: '/universal/'},
       {text: "Tim's Dream", link: '/dreams/'},
+      {text: 'The Idea', link: '/idea'},
       {text: 'Reference', link: '/reference/rfc-operation-protocol'},
       // Specific link case
       {text: 'Schema', link: '/op/schema/instruction.v1.json'},
