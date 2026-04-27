@@ -128,6 +128,8 @@ export default withMermaid(defineConfig({
             {text: '#18 — Hand-Written Deopt Guards', link: '/universal/018-hand-written-deopt-guards'},
             {text: '#19 — Nobody Chooses MongoDB', link: '/universal/019-nobody-chooses-mongodb'},
             {text: '#20 — How Much You Promise', link: '/universal/020-how-much-you-promise'},
+            {text: '#21 — All Programs Are Equal', link: '/universal/021-all-programs-are-equal'},
+            {text: '#22 — Why Nothing Lands', link: '/universal/022-why-nothing-lands'},
           ],
         },
       ],

@@ -88,6 +88,26 @@ The conjecture is falsified when any of the following is demonstrated.
 
 A counterexample to any of these falsifies the conjecture. The document is revised on the public record when one is presented with evidence.
 
+### What "works" means
+
+The word *works* in the conditions above is not casual. A form does not become a counterexample by being theoretically constructible, by being demonstrated in a paper, or by being shipped under one vendor's authority. A form *works* when it satisfies the definition of *primitive* — independent parties accept it as the surface of their meeting — for the same goal under examination.
+
+Three constraints must hold together:
+
+1. **Smaller than the candidate it is supposed to falsify.** Structural condition.
+2. **Same goal.** Two forms serving different goals are not in the same conjecture; they are two conjectures.
+3. **Becomes gravity without coercion.** Independent adopters select it because the cost of disagreement is greater than the cost of switching. Not because a vendor enforces it. Not because a community decided to. Not because tooling pushed them there.
+
+The third constraint is what separates *a smaller form that exists* from *a smaller form that falsifies*. Many smaller forms exist for many goals. The question for falsification is whether one of them is a primitive on the same goal as the candidate. Negative evidence here is large: independent natural systems — fungal networks, termite mounds, ant colonies, bee dances, DNA replication — have had billions of years of cumulative selection pressure to find smaller forms for interaction-by-goal, and have not. The empirical lower bound therefore rests on planet-scale failure to find smaller, not on a formal proof that none exists.
+
+### What is not a falsification
+
+A future form, not yet built, that might be smaller — is not a falsification. The atom waited 2300 years between Democritus and Rutherford; in those years the atomic claim was *not yet confirmed*, not *false*. Falsification works with what exists.
+
+A form that becomes a primitive only because the goal changed — is not a falsification of the original conjecture. It is the recognition of a new goal, served by a new form. Both can be primitives for their own goals. The original primitive is not falsified; it is *outside the new domain*.
+
+A smaller form held in place by vendor lock, marketing, fashion, or coordination cost — is not a primitive. It is a product or a community standard. Removing the holding force collapses adoption. The third constraint above filters these out.
+
 Time is not a falsifier here. Discovery of a primitive may take centuries, as DNA waited for Miescher in 1869 and Watson and Crick in 1953 while existing for nearly four billion years. The shape of the law does not depend on when the law is recognised. Falsification, when it comes, is structural — a counterexample, not a stopwatch.
 
 A counterexample to this conjecture takes the same shape it does in physics or biology: demonstrated, reproduced, and not explained away by «the situation has not finished settling». The atom waited 2300 years from Democritus to Rutherford for confirmation. The black swan was found in Australia. Both arrived eventually. The conjecture is offered in that lineage — an empirical regularity that stands until something concrete breaks it, not a logical theorem closed by proof.
