@@ -171,6 +171,20 @@ The same devlog distinguishes vibe-coding (AI used with no signal on the input �
 
 **Sources.** `docs/devlog/033-the-amplifier.md:24-40`, `:62-72`, `:74-92`.
 
+### "Op is just another OpenAPI / Smithy / gRPC"
+
+**Misreading.** Op is yet another schema language for describing operations. The field already has OpenAPI, Smithy, gRPC, CORBA IDL, WSDL — Op is one more entry in the same row.
+
+**What the text says.** Every predecessor in that row welded an opinion into the core. WSDL welded XML and SOAP. OpenAPI welded HTTP — paths, methods, status codes. gRPC welded protobuf and HTTP/2. Smithy welded a Java toolchain and a 72-trait AWS prelude. CORBA IDL welded the ORB runtime. Each one took the form *plus* one specific transport, serialisation, runtime, or platform, and shipped them as one indivisible thing. Removing the opinion from any of them removes the format itself.
+
+Op describes the form alone. No transport. No serialisation in the core. No language. No runtime. No platform. The five fields and the trait system are the entire core. The schema is published on github.io under Apache 2.0. There is no governance body, no foundation, no monetisation path, no commercial entity behind the form. JSON appears in the materials because JSON is the cheapest paper to demonstrate the shape on — like the periodic table on a blackboard. Erase the table from the board, the rules of chemistry continue. Erase JSON from Op, the form continues.
+
+That is the whole difference. The predecessors built form-with-opinion. Op describes the form, leaves the opinion to compilers and traits, and stays out of the way. Reading Op as "another OpenAPI" mistakes the *type of artefact*. It is not a schema language for an opinionated transport. It is the form that schema languages, including OpenAPI, have been independently approximating for decades.
+
+The vacant cell argument names this directly: every prior attempt fails at least one of the four properties (transport-agnostic, serialisation-agnostic, consumer-agnostic, expression problem solvable). Op fails none. Not because Op is clever — because Op refused to weld an opinion. The discipline of *resist welding* is the entire move.
+
+**Sources.** `docs/devlog/023-the-vacant-cell.md`, `docs/devlog/032-the-verdict.md`, `docs/devlog/006-fifteen-times-the-same-idea.md`, `docs/devlog/008-three-atoms.md`.
+
 ### "Why do you name programs that don't exist?"
 
 **Misreading.** Names like `op-postgres`, `op-prometheus`, `op-rr`, `op-cobra-client` appear throughout the materials. The reader concludes that the project claims these programs already exist, or that Op is going to ship them, or that Op is announcing a roadmap.
@@ -190,6 +204,33 @@ The convention exists for one reason: it is shorter than writing *"a hypothetica
 ## Common objections
 
 Technical objections raised about Op that have substantive answers in the materials. Different genre from *Common misreadings* above: those are distortions of what the text says; these are real questions with real responses. Recorded here so the same answer does not have to be reconstructed from scratch in every conversation.
+
+### "Op takes away transparency"
+
+**Objection.** A senior engineer raised this verbatim: *"With Op, I no longer see what's happening on the wire. I don't choose the URL. I don't pick the trigger. The compiler picks. I want my transparency back."*
+
+**Short answer.** Op does not take away transparency. Op moves it from *constant visibility* (always in front of you while you work) to *available visibility* (there when you need it). The same move every layer above Assembly made. Transparency as a debugging tool stays. Transparency as a daily cognitive tax goes.
+
+**Long answer.** Two kinds of transparency get conflated in this objection.
+
+*Constant visibility* is what hand-written code gives you: the URL is in the source, the SQL is in the source, the retry policy is in the source. You see it because you wrote it. Every line you write is also every line you maintain.
+
+*Available visibility* is what tooling gives you: `EXPLAIN ANALYZE` shows the plan when you ask. `valgrind` shows allocations when you ask. `go build -gcflags="-m"` shows escape decisions when you ask. `tcpdump` shows the wire when you ask. Nothing is hidden — but you do not pay for it on every line of code you write.
+
+The history is consistent across every layer:
+
+- **Assembly → C.** *"I want to see the registers!"* C made registers invisible during writing. `gdb` kept them visible during debugging. Nothing was lost. Cognitive tax dropped.
+- **C → Java.** *"I want to control when memory is freed!"* GC made allocation invisible during writing. JVM profilers, heap dumps, `jstat` kept it visible during debugging. Nothing was lost. Cognitive tax dropped.
+- **Manual SQL → ORM.** *"I want to see my queries!"* (a real concern — early ORMs leaked badly here.) Working ORMs eventually made the SQL invisible during writing. `EXPLAIN`, query logs, slow query analysis kept it visible during debugging. Cognitive tax dropped.
+- **Op.** *"I want to see the URL!"* Op makes the URL invisible during writing. Tracing, debug-mode emit, generated artefact inspection keep it visible during debugging. Same shape as every previous step.
+
+Each generation worried that the next layer would erase the layer below. None of them did. Assembly is still there for those who write compilers. C is still there for those who write databases. SQL is still there for those who write query optimisers. URLs are still there for those who write transports. **None of those layers got abolished. They moved into the basement, where they belong, with the people who actually need them daily.**
+
+The XY-shaped version of this objection is *"I want transparency"* when the actual feeling is *"I am afraid to lose control over a tool I already learned."* These two are not the same. The first is about debugging capability — Op preserves it. The second is about identity continuity — Op does not preserve identity continuity, on purpose. The protocols people learned to write by hand were tools, not parts of who they are. The same applies to URLs. The same applied to memory addresses. The same applied to SQL.
+
+For engineers genuinely worried about debugging: Op compilers are required to emit traceable artefacts. The wire is logged in debug mode. The compiled URL is inspectable. The trait resolution is dumpable as JSON. Whatever you used to read by hand, you can still read — you just no longer have to *write it* by hand. The asymmetry is the whole point.
+
+**Sources.** `docs/universal/009-the-address-is-a-detail.md`, `docs/universal/015-the-black-compiler.md`, `docs/universal/017-postgres-is-a-jit.md`, `docs/universal/018-hand-written-deopt-guards.md`.
 
 ### "Publishing /operations is a security risk"
 
