@@ -124,6 +124,8 @@ export default withMermaid(defineConfig({
             {text: '#14 — Two Hungry Markets, and Why Op Cannot Look at Them', link: '/universal/014-two-invisible-markets'},
             {text: '#15 — The Black Compiler', link: '/universal/015-the-black-compiler'},
             {text: '#16 — The Origin of Migrations', link: '/universal/016-the-origin-of-migrations'},
+            {text: '#17 — Postgres Is a JIT', link: '/universal/017-postgres-is-a-jit'},
+            {text: '#18 — Hand-Written Deopt Guards', link: '/universal/018-hand-written-deopt-guards'},
           ],
         },
       ],
