@@ -47,7 +47,8 @@ export default withMermaid(defineConfig({
       {text: 'Universal', link: '/universal/'},
       {text: "Tim's Dream", link: '/dreams/'},
       {text: 'Reference', link: '/reference/rfc-operation-protocol'},
-      {text: 'Schema', link: '/schema/instruction.v1.json'},
+      // Specific link case
+      {text: 'Schema', link: '/op/schema/instruction.v1.json'},
       {text: 'GitHub', link: 'https://github.com/thumbrise/op'},
     ],
 
