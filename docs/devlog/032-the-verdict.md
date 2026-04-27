@@ -160,7 +160,7 @@ Be honest. Did you actually catch it?
 
 Because here is the same verdict, said with no Latin, no court, no italicized *therefore*:
 
-> **The industry spent thirty years unable to separate the identified body from the arguments of reduction.**
+> **For thirty years the identified body and the arguments of reduction travelled together — because no one had yet named them as separate.**
 
 Read that twice. That is the whole verdict.
 
@@ -180,7 +180,7 @@ That is it. That is the whole protocol.
 
 The outer function takes whatever the world wants to hand it — a transport, a binding, a language, a UX shape, a hostile dialect, a polite stranger, a Wildberries backend nobody asked about. The inner function is the operation: it takes input and returns output, or it fails — because every operation worth declaring can fail, and pretending otherwise is exactly the kind of thing that makes Ritchie's ghost ([#18](./018-the-fourth-rail.md)) sad. The body is identified once. The reduction arguments are passed in. The error rail is right where it belongs: in the return shape, not in the transport convention.
 
-For thirty years we shipped the inner function with the outer function pre-applied and no way to take it apart. *POST /dogs/buy* was a closure with HTTP captured inside, and we mailed the whole closure to every consumer, and the consumer could not partial-evaluate, could not curry, could not re-apply, could only call the closure exactly the way the sender baked it.
+For thirty years we shipped the inner function with the outer function pre-applied — because the separation had not yet been named. *POST /dogs/buy* was a closure with HTTP captured inside, and we mailed the whole closure to every consumer, and the consumer could not partial-evaluate, could not curry, could not re-apply, could only call the closure exactly the way the sender baked it.
 
 Op un-bakes it. The closure becomes data. The application is deferred. The reader chooses the reduction.
 
