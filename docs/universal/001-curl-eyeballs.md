@@ -1,5 +1,5 @@
 ---
-title: "#1 — Curl Eyeballs"
+title: "#1 — Eyeballs"
 description: "VPN broke curl. Browser kept working — Happy Eyeballs hedges connections in parallel. Twenty years of retry libraries inside every framework. In Op it is forty lines, one trait, and every client gets it for free."
 ---
 

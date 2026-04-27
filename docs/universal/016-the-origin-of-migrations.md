@@ -1,5 +1,5 @@
 ---
-title: "#16 — The Origin of Migrations"
+title: "#16 — Migrations"
 description: "Every program is equal. The database is also a program. Some programs get reused often, some rarely — that is a consequence, not a rank. The migration as a hand-written plan is the last layer where naming a state is not yet enough. Git, JIT, high-level languages all crossed this line already. The database has not."
 ---
 

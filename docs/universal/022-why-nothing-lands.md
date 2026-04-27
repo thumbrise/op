@@ -1,5 +1,5 @@
 ---
-title: "#22 — Why Nothing Lands"
+title: "#22 — Nothing"
 description: "After two weeks of adversarial review against the written-down form, the pattern of attacks against Op has stabilised. Each new objection reduces to one of a small number of classes — and each class fails at the same structural place. Not because Op is well-defended. Because there is nothing in the form to break. A minimum cannot be attacked for excess. A minimum cannot be attacked for absence — by construction."
 ---
 

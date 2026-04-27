@@ -1,5 +1,5 @@
 ---
-title: "#10 — Fifty Triggers, Fifty Barrels"
+title: "#10 — Pistol"
 description: "Modern infrastructure: a pistol with fifty triggers and fifty barrels. Every layer added one. None ever took one away. The arsenal grows because no floor in the building described the form of a single shot."
 ---
 

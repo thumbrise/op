@@ -1,5 +1,5 @@
 ---
-title: "#14 — Two Hungry Markets, and Why Op Cannot Look at Them"
+title: "#14 — Markets"
 description: "Cloud portability and AI callability are two huge markets that would benefit if Op succeeded. The temptation is to pitch Op to them. The temptation is the trap. Protocols that get sold to a market die as protocols and survive as products. Op is a protocol. The markets find the form when it is honest, and lose it the day it starts performing for them."
 ---
 

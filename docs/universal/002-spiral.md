@@ -1,5 +1,5 @@
 ---
-title: "#2 — Spiral as Gallium"
+title: "#2 — Gallium"
 description: "Sat down to write the emitter. First instinct — parse the AST. Caught myself: that is the guts-extraction we ridiculed in #30. Switched to a Spiral CLI command. The program tells me what it is, because Spiral made the choices that let it. The gallium tested true."
 ---
 

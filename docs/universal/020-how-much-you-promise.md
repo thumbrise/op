@@ -1,5 +1,5 @@
 ---
-title: "#20 — How Much You Promise"
+title: "#20 — Promise"
 description: "BuyDog has three fields. SQLHTTPProxy has one — a query string. Both are valid Op operations. Op does not dictate how detailed your input has to be. The level of structure in a domain is the author's promise, not Op's requirement. Same as HTTP doesn't tell you to use JSON instead of bytes."
 ---
 

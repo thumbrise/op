@@ -1,5 +1,5 @@
 ---
-title: "#19 — Nobody Chooses MongoDB"
+title: "#19 — MongoDB"
 description: "Choosing a database today is an act of identity. 'We use Mongo.' 'We're a Postgres shop.' In a world with a clean contract above storage, that choice flattens into a compiler flag. Replication is a flag. Sharding is a flag. The technology survives. The act of choosing it as a brand does not."
 ---
 

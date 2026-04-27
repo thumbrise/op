@@ -1,5 +1,5 @@
 ---
-title: "#5 — Single Source of Truth in Infra"
+title: "#5 — Truth"
 description: "The port lives in .env, in compose.yml, in .rr.yaml, in the Dockerfile EXPOSE, in the reverse proxy, in the README. Change one — five stay stale. Tools designed in isolation each invent their own opinion about config. envsubst is the cancer that papers over the absence of a single speaker."
 ---
 

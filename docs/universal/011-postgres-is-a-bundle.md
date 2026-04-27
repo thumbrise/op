@@ -1,5 +1,5 @@
 ---
-title: "#11 — Postgres Is a Bundle"
+title: "#11 — Bundle"
 description: "Postgres is not a database. Postgres is a bundle. Storage, planner, MVCC, WAL, vacuum, replication, statistics — welded together because no contract existed to make a smaller unit. SQLite, DuckDB, CockroachDB already pulled pieces out and quietly shipped them. The bundle leaked. Op gives the leak its name."
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "#15 — The Black Compiler"
+title: "#15 — Black"
 description: "JIT is compilation. Escape analysis is compilation. Inline caching is compilation. JVM HotSpot is a compiler that picks its moment. The 'static vs runtime' split is a limit of older tooling, not of the form. A compiler can include heuristics. A compiler can include a runtime. A runtime can include a compiler."
 ---
 

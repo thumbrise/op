@@ -1,5 +1,5 @@
 ---
-title: "#21 — All Programs Are Equal"
+title: "#21 — Equality"
 description: "Postgres is a program. The Linux kernel is a program. A traffic light is a program. A music box from 1796 is a program. A wheat farm is a program with a slow operation cycle. Op describes the form of any program — not a class of computer software. The joke goes far. Then it stops being a joke."
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "#18 — Hand-Written Deopt Guards"
+title: "#18 — Guards"
 description: "Hedge requests, cache stampede protection, circuit breakers, retry policies, backpressure, fallbacks. Every resilience pattern in the application is a deoptimisation guard hand-copied from a JIT into source code. The author didn't know HotSpot for that class of problem already exists. On a different floor."
 ---
 

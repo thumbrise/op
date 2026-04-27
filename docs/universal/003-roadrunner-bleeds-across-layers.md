@@ -1,5 +1,5 @@
 ---
-title: "#3 — RoadRunner Bleeds Across Layers"
+title: "#3 — Bleed"
 description: "Opened .rr.yaml. Four concerns in one file — transport, process management, domain middleware, infrastructure observability. No boundaries between them. Layers welded shut where they should slide independently. Op separates these axes by construction."
 ---
 

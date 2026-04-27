@@ -1,5 +1,5 @@
 ---
-title: "#13 — The Lock That Disappeared"
+title: "#13 — Lock"
 description: "Cloud platforms keep one promise honestly: don't think about infrastructure, write a function. The price is the SDK. Once your code is shaped to one cloud's API, leaving is a rewrite. The lock isn't in the bill — it's in the cost of the rewrite. With a portable contract above all of them, the lock evaporates as a category. Clouds compete on real things."
 ---
 

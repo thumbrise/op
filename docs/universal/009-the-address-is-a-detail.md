@@ -1,5 +1,5 @@
 ---
-title: "#9 — The Address Is a Detail"
+title: "#9 — Address"
 description: "When we debug high-level code, we do not pick the addresses of our variables. The compiler does. URLs are the same kind of detail one floor up. REST will not die because Op said so. REST will die because addresses are an implementation of wire binding, and humans stopped being the ones reading them."
 ---
 

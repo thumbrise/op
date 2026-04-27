@@ -1,5 +1,5 @@
 ---
-title: "#7 — Why We Don't Call Linus"
+title: "#7 — Linus"
 description: "Memory is also infrastructure — page tables, NUMA, OOM, /proc/meminfo, vm.swappiness. No application programmer touches it. The boundary was drawn at the right place, on the right abstraction. The web stack never drew that boundary. Op draws the boundary that was missing. Same division of labor that Linus has with us. Just thirty years late."
 ---
 

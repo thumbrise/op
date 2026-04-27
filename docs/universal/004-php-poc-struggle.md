@@ -1,5 +1,5 @@
 ---
-title: "#4 — PHP POC Struggle"
+title: "#4 — Struggle"
 description: "PHP frameworks are not built for proof-of-concept. They are built for production day one. Two hours of bootstrap before a single line of emitter logic. Op solves this at protocol level — by letting the operation declaration live outside the framework."
 ---
 

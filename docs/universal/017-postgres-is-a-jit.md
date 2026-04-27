@@ -1,5 +1,5 @@
 ---
-title: "#17 — Postgres Is a JIT"
+title: "#17 — JIT"
 description: "A relational database is a virtual machine with a JIT, a profiler, an inline cache, and a garbage collector. Twenty-five years already. Nobody named it that, so the field kept arguing about ORMs and migrations as if those weren't cross-VM compilation problems with a manual fallback."
 ---
 

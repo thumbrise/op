@@ -1,5 +1,5 @@
 ---
-title: "#23 — Treaty of Five"
+title: "#23 — Treaty"
 description: "Anti-war is not fewer than five fields. Anti-war is not more than five fields. It is exactly five. Less leaves something unsaid and forces the language to bolt on attributes, decorators, annotations — and the moment a language relies on those for self-knowledge, the framework wars begin. More puts an opinion inside the core, and the moment the core has an opinion, competitors add theirs. The pact is the count."
 ---
 

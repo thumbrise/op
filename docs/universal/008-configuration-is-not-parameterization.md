@@ -1,5 +1,5 @@
 ---
-title: "#8 — Configuration Is Not Parameterization"
+title: "#8 — Configuration"
 description: "alloc() does one thing. When you need a different strategy — dlmalloc, tcmalloc, jemalloc, mimalloc — you switch the allocator, not tune one thousand-parameter alloc. Kubernetes does eleven things in one manifest. Real parameterization is printf — you tell the function what to print, you don't write formatting logic. Tooling that lets you write a hundred variants of every value is not freedom. It is an admission that no one knows the right value."
 ---
 

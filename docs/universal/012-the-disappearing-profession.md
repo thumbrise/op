@@ -1,5 +1,5 @@
 ---
-title: "#12 — The Disappearing Profession"
+title: "#12 — Profession"
 description: "John Ousterhout wrote Raft. He is not an SRE. He is not a distributed-coordination engineer. He is not a site-reliability specialist. He named a form, and the labels in the middle dissolved. 'Highload engineer' is a word of the same class — a name for people holding by hand what the floor above them has not yet been written to hold."
 ---
 
