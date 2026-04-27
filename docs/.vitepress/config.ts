@@ -116,6 +116,7 @@ export default withMermaid(defineConfig({
             {text: '#6 — What Programs Forgot', link: '/universal/006-what-programs-forgot'},
             {text: '#7 — Why We Don\'t Call Linus', link: '/universal/007-why-we-dont-call-linus'},
             {text: '#8 — Configuration Is Not Parameterization', link: '/universal/008-configuration-is-not-parameterization'},
+            {text: '#9 — The Address Is a Detail', link: '/universal/009-the-address-is-a-detail'},
           ],
         },
       ],
