@@ -40,15 +40,3 @@ In the courtyard the tram finishes braking and pulls away.
 *Here is that day.*
 
 *The book that follows is set in it.*
-
----
-
-## How to read this
-
-These are stories from the world Sir Tim described.
-
-Each chapter is a lesson. The teacher is a Дед, who has lived long enough to remember several centuries of small kitchens and several centuries of changing weather. The students are children. The class asks. Дед answers. Sometimes he tells a frightening tale of how things were once, somewhere far away. Then he says, *«ну ладно. У нас не так. У нас проще»*, and the bell rings.
-
-The chapters can be read in any order. They build on each other, but do not require each other.
-
-The world is the dream. The lessons are about living in it.
