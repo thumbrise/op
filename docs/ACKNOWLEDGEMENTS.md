@@ -28,6 +28,22 @@ This file is normative under [REVIEW.md → Respect every reference, in writing]
 
 ---
 
+## The dream we continue
+
+### [Sir Tim Berners-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee)
+
+Sir Tim Berners-Lee gave the world three things in 1989: the URI, HTTP, and HTML. Addresses, transport, and presentation — all at once. The world changed faster than anyone expected, and the man who started the change spent the next three decades trying to take it further.
+
+In 2001 he published an article in *Scientific American* describing a future where machines understand what services can do — where an agent finds a doctor near your house, checks your insurance, cross-references your calendar, and books an appointment. He called it the Semantic Web. He built seven layers of formal logic, ontologies, and trust infrastructure to get there. Each layer was a serious piece of engineering. Each layer carried the best tools his era had.
+
+The destination he described is the same destination Op is walking toward. The road is different — five fields from the bottom instead of seven layers from the top — but the destination is his. Op did not invent the goal of machine-readable capabilities. Sir Tim named it twenty-five years before this repository existed. Everything in [#16 — The Founder's Dream](devlog/016-the-founders-dream.md) is written in awareness of that debt.
+
+The URI — his first gift — is still the cheapest globally unique name humanity has ever agreed on. Op uses it directly: trait identifiers are repository URLs ([#7 — Contract](devlog/007-contract.md)), because the cheapest way to declare *"this trait belongs to this vendor"* is to point at the vendor's repository. No central registry. No committee. Just the URI scheme that Sir Tim made possible.
+
+The distance between his work and ours is not a comparison. It is thirty years of road, paved by everyone in between. We stand at the far end. He stands at the beginning. The respect is not a paragraph — it is the entire section of this repository called [Tim's Dream](dreams/).
+
+---
+
 ## People who shaped this work directly
 
 ### [Dmitriy Gurov](https://github.com/GurovDmitriy) — who saw the four rails
@@ -150,14 +166,6 @@ The lineage is also literal in one specific place. The directory in this reposit
 Cerf and Kahn wrote TCP/IP in 1974. Layered, end-to-end, minimal in the middle, smart at the edges. Without that substrate the word *transport* in this journal has no referent. Every Op vendor that compiles a transport binding — `op-grpc`, `op-http`, `op-kafka`, anything — leans on a packet-switched layer that Cerf and Kahn made architectural rather than circuit-switched.
 
 The deeper inheritance is methodological. They specified a protocol where the network does the minimum and the endpoints do the rest. Op tries to inherit that discipline at the operation layer: the protocol does the minimum (five fields, no opinions), the compilers and vendors do the rest. The hourglass shape Op aspires to — narrow waist, wide top, wide bottom — is the same shape TCP/IP gave the internet. They named it first.
-
-### [Tim Berners-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee) — the URI and the hyperlink
-
-Berners-Lee turned a network into a web by adding two ideas: hyperlinks and a global namespace. The URI is the cheapest globally unique name humanity has ever agreed on, and Op uses it directly: trait identifiers in Op are repository URLs ([#7 — Contract](devlog/007-contract.md)), because the cheapest way to declare *"this trait belongs to this vendor"* is to point at the vendor's repository. No central registry. No committee. Just the URI scheme that already won.
-
-Berners-Lee also dreamed, in 2001, of a Semantic Web — machines understanding what services can do. Op approaches that dream from the opposite direction. He built seven layers from the top. Op describes five fields from the bottom. The destination is the same; the road is not. ([#16 — The Founder's Dream](devlog/016-the-founders-dream.md), [FAQ — How does Op relate to Berners-Lee's Semantic Web?](FAQ.md#how-does-op-relate-to-berners-lees-semantic-web))
-
-The web exists because Berners-Lee made two simple ideas legal at the right moment. The protocol layer Op describes for programs is the same kind of legalization, one floor up.
 
 ### [Dmitri Mendeleev](https://en.wikipedia.org/wiki/Dmitri_Mendeleev) — the empty cell
 
