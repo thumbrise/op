@@ -18,9 +18,10 @@ hero:
 
 Read these three documents, in this order, before the rest:
 
-1. **[ACKNOWLEDGEMENTS](ACKNOWLEDGEMENTS.md)** — every person, project, and discipline this work stands on. Standing on the shoulders of the founders. Respect comes first.
-2. **[FAQ](FAQ.md)** — how this site is meant to be read, what is and is not being claimed, common misreadings, common technical objections.
-3. **The rest of this page, the devlogs, and the materials** — what we found, after the credit and the framing are in place.
+1. **[Tim's Dream](/dreams/)** — a short book. No technical words. Start here if you want to understand what this is about before reading anything else.
+2. **[ACKNOWLEDGEMENTS](ACKNOWLEDGEMENTS.md)** — every person, project, and discipline this work stands on. Standing on the shoulders of the founders. Respect comes first.
+3. **[FAQ](FAQ.md)** — how this site is meant to be read, what is and is not being claimed, common misreadings, common technical objections.
+4. **The rest of this page, the devlogs, and the materials** — what we found, after the credit and the framing are in place.
 
 ## The Problems
 

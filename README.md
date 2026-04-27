@@ -19,9 +19,10 @@ Five fields. Extensions attached from outside. Nothing more.
 
 Read these three documents, in this order, before the rest:
 
-1. **[ACKNOWLEDGEMENTS.md](https://thumbrise.github.io/op/ACKNOWLEDGEMENTS.md)** — every person, project, and discipline this work stands on. Standing on the shoulders of the founders. Respect comes first.
-2. **[FAQ.md](https://thumbrise.github.io/op/FAQ.md)** — how this repository is meant to be read, what is and is not being claimed, common misreadings, common technical objections.
-3. **The rest of this README, the devlogs, and the materials** — what we found, after the credit and the framing are in place.
+1. **[Tim's Dream](https://thumbrise.github.io/op/dreams/)** — a short book. No technical words. Start here if you want to understand what this is about before reading anything else.
+2. **[ACKNOWLEDGEMENTS.md](https://thumbrise.github.io/op/ACKNOWLEDGEMENTS)** — every person, project, and discipline this work stands on. Standing on the shoulders of the founders. Respect comes first.
+3. **[FAQ.md](https://thumbrise.github.io/op/FAQ)** — how this repository is meant to be read, what is and is not being claimed, common misreadings, common technical objections.
+4. **The rest of this README, the devlogs, and the materials** — what we found, after the credit and the framing are in place.
 
 ## Why this exists
 
