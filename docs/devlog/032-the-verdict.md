@@ -164,9 +164,9 @@ Because here is the same verdict, said with no Latin, no court, no italicized *t
 
 Read that twice. That is the whole verdict.
 
-OpenAPI? Identified body welded to HTTP arguments. Protobuf? Identified body welded to gRPC arguments. GraphQL? Identified body welded to query-resolver arguments. Every format the industry shipped was an **identifier-plus-body-plus-reduction-arguments-glued-together-because-nobody-noticed-they-were-three-things**.
+OpenAPI? Identified body welded to HTTP arguments. Protobuf? Identified body welded to gRPC arguments. GraphQL? Identified body welded to query-resolver arguments. Every format the industry shipped carried the three things together — because the three things had not yet been named as separate.
 
-Op noticed.
+Op names them.
 
 And one more level down, for the engineer who likes pseudocode more than philosophy:
 
@@ -184,7 +184,7 @@ For thirty years we shipped the inner function with the outer function pre-appli
 
 Op un-bakes it. The closure becomes data. The application is deferred. The reader chooses the reduction.
 
-This is, somehow, news. To the entire field. In 2026.
+This is what we are writing down. In 2026. On the shoulders of everyone who carried the three things together before the names existed.
 
 And [Eric Evans](https://en.wikipedia.org/wiki/Domain-driven_design), [Vaughn Vernon](https://kalele.io/), [Greg Young](https://www.youtube.com/@gregoryyoung1401), [Udi Dahan](https://particular.net/about-us), [Robert C. Martin](https://en.wikipedia.org/wiki/Robert_C._Martin) with the Clean Architecture concentric circles and the dependency rule, [Mark Seemann](https://blog.ploeh.dk/) with *Dependency Injection Principles, Practices, and Patterns* and *Code That Fits in Your Head* — and the others who carried that torch for two decades — were right the whole time. They saw the knee getting scraped, and they wrote a careful, patient body of work about how to keep the dirt out of the wound. *"Infrastructure on the outside, domain in the middle."* *"The network is at the edge of the system, not in its heart."* *"Anti-corruption layer."* *"Ports and adapters."* All of them: real names for a real wound, dressed by hands that knew what they were doing. Domain-Driven Design, Clean Architecture, Hexagonal Architecture — a twenty-year bandage on a knee the transport kept scraping, and a damn good bandage. We are not replacing it. We are finally fixing the road it was bandaging. Their diagnosis was correct. Their tools were the best ones available at the time. The respect is owed and recorded.
 

@@ -5,13 +5,13 @@ description: "In 2001 Tim Berners-Lee dreamed that machines would understand wha
 
 # The Founder's Dream
 
-In 2001 a man published an article in Scientific American. He was not famous yet. Not a sir. Just an engineer who had already changed the world once and wanted to do it again.
+In 2001 a man published an article in Scientific American. He had already changed the world once — given it addresses, transport, and hyperlinks — and now he was reaching for the next step.
 
 His name was Tim Berners-Lee. The article was called "The Semantic Web." It described a future where machines understand not how pages look, but what services can do. Where an agent — a program acting on your behalf — finds a doctor near your house, checks your insurance, cross-references your calendar, and books an appointment. Without you opening fifteen tabs. Without you calling anyone. Without you reading documentation.
 
 2001. Twenty-one years before ChatGPT. Twenty-three years before MCP.
 
-He was right about the destination. He was wrong about the road.
+He was right about the destination. The road he chose was the one available to him at the time.
 
 ## The Three Primitives
 
@@ -29,7 +29,7 @@ URI is a fact. An address. A coordinate. No opinion about transport, format, or 
 
 HTTP is an opinion. An opinion about how to deliver documents over a network. A good opinion. A useful opinion. But an opinion. The resource could have been fetched through a local file, P2P, a message queue, or a carrier pigeon. HTTP became the default not because it was the only way, but because the browser gave nothing else. And now the entire world thinks URI means "a thing you open in Chrome."
 
-HTML is an opinion about presentation. How the model looks on a screen. `<b>`, `<font>`, `<table>` for layout. Data and display — in one file. Glued together. And this is what killed the dream from inside. Berners-Lee created a Web where data and presentation are inseparable. Then said: "We need to separate them." But the train had left. Billions of pages already in HTML. The model drowned in the presentation.
+HTML is an opinion about presentation. How the model looks on a screen. `<b>`, `<font>`, `<table>` for layout. Data and display — in one file. Glued together. And this is where the dream met its first wall. The Web Berners-Lee built carried data and presentation together — because that is what the world needed in 1989. By the time the question *"where is the model?"* became urgent, billions of pages were already in HTML. The model was underneath, but the presentation had arrived first and stayed.
 
 The lesson: **the model matters more than the presentation.** If you get the model right, presentations are projections. If you get the presentation first, extracting the model is archaeology.
 
@@ -66,7 +66,7 @@ OWL was the second casualty. To write an ontology, you needed Description Logic 
 
 RDF was the deepest casualty. Not because triples are wrong. Because triples are a framework. They dictate: all knowledge is subject-predicate-object. But not all knowledge is triples. An operation is five fields. Try to describe `BuyDog(input, output, errors)` in triples — you get six triples for one operation with one field, and you lose the structure. The graph exists. The meaning is scattered.
 
-Frameworks die. That is their nature. Not because they are bad. Because they dictate. And dictation does not scale across seven billion people who disagree on everything.
+Frameworks give way. That is their nature. Not because they are bad — many are brilliant. Because they carry opinions, and opinions do not scale across seven billion people who each have their own.
 
 ## The Five Failures
 
@@ -155,7 +155,7 @@ Not because anyone designed it. Because the primitive is right. And nature does 
 
 ## The Agents Are Here
 
-And here is the irony that would make Berners-Lee cry.
+And here is the part of the story that carries the most weight.
 
 In 2024–2025, AI agents appeared. ChatGPT, Claude, Gemini. They do exactly what Berners-Lee described in 2001. "Find me a doctor nearby, with good ratings, who accepts my insurance." The agent searches, compares, proposes.
 
@@ -187,7 +187,7 @@ This is the worldwide D-Bus. Not for desktop services on one machine. For every 
 
 Here is what makes this not a bet but a proof.
 
-Berners-Lee arrived at the Semantic Web from the top. From academia. From W3C. From committees and specifications. With funding, with authority, with the credibility of the man who invented the Web. He had every resource. He built seven layers.
+Berners-Lee arrived at the Semantic Web from the top. From W3C. From the credibility of the man who had already given the world the Web itself. He brought the best tools his era had: formal logic, ontologies, committee-grade specifications. He built seven layers — each one a serious piece of engineering.
 
 Ruslan Kokoev, twenty-six, from Stavropol, arrived at the same destination from the bottom. From not wanting to write Swagger three times. With no funding, no authority, no committee. With a mass-market laptop and a mass-market LLM. He built five fields.
 
@@ -199,7 +199,7 @@ And it will happen again. If Op disappears tomorrow, someone else will arrive at
 
 | Attempt | Year | Author | Approach | Why it did not stick |
 |---------|------|--------|----------|---------------------|
-| Semantic Web | 2001 | Berners-Lee | Seven layers, formal ontologies, committees | Too complex. Too many opinions baked in. No incentive |
+| Semantic Web | 2001 | Berners-Lee | Seven layers, formal ontologies, committees | The best tools of its era. The complexity was honest — the problem was that hard |
 | WSDL + UDDI | 2000 | W3C / IBM / Microsoft | XML service descriptions, universal registry | Welded to SOAP. Registry was centralized. Nobody registered |
 | Schema.org | 2011 | Google / Bing / Yahoo | Microdata in HTML, shared vocabulary | Survived — but describes pages, not operations |
 | OpenAPI | 2011 | Swagger → Linux Foundation | YAML/JSON description of HTTP APIs | Survived — but welded to HTTP. Remove HTTP, nothing remains |
@@ -215,7 +215,7 @@ The trajectory is clear. The industry converges on the same point. Not because a
 
 If this attempt fails, the next one will have fewer opinions. And the one after that — fewer still. Until someone arrives at five fields again. Because five fields is the bedrock. There is nothing left to remove.
 
-## The Dream, Corrected
+## The Dream, Continued
 
 Berners-Lee's dream, translated into Op:
 
@@ -229,9 +229,9 @@ Berners-Lee's dream, translated into Op:
 
 This is the same scenario from the 2001 article. Word for word. But without the infrastructure that made it impossible.
 
-Berners-Lee was right about the what. Machines should understand capabilities. He was wrong about the how. You do not need to formalize all knowledge. You need to formalize one primitive — the operation — and let the ecosystem self-organize around it.
+Berners-Lee was right about the what. Machines should understand capabilities. The how turned out to be different from what was available in 2001. Not all knowledge needs to be formalized. One primitive — the operation — may be enough, and the ecosystem self-organizes around it.
 
-The cathedral failed. The bazaar will not.
+The cathedral was built with the best stone of its time. The bazaar is being built with different stone, on the same ground, toward the same sky.
 
 ## The Picture
 
