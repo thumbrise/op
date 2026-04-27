@@ -134,6 +134,7 @@ export default withMermaid(defineConfig({
             {text: 'The black square', link: '/dreams/011-the-black-square'},
             {text: 'Lesson 3 — The cover', link: '/dreams/012-the-cover'},
             {text: 'The dream fulfilled', link: '/dreams/013-the-dream-fulfilled'},
+            {text: 'Epilogue', link: '/dreams/014-epilogue'},
           ],
         },
       ],
