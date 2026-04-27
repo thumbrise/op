@@ -21,7 +21,7 @@ The class settles. Лиля, the quiet one, opens her notebook to the first page
 
 Маша shrugs.
 
-— Да... Я ела овсянку!.
+— Да... Я ела овсянку!
 
 — Хорошо. А кто готовил?
 
