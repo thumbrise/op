@@ -7,16 +7,19 @@ description: "Opened .rr.yaml. Four concerns in one file — transport, process 
 
 Opened .rr.yaml for the first time today. Stared.
 
+```yaml
 http:
-address: 0.0.0.0:8080
-middleware: [headers]
+  address: 0.0.0.0:8080
+  middleware: [headers]
 server:
-command: "php worker.php"
-relay: pipes
+  command: "php worker.php"
+  relay: pipes
 logs:
-level: debug
+  level: debug
 metrics:
-address: localhost:2112
+  address: localhost:2112
+```
+
 Four concerns in one file. Transport. Process management. Domain middleware. Infrastructure observability. No boundaries between them.
 
 In a healthy stack each of these lives in a different place. Caddy or Nginx for transport. PHP-FPM for process management. php.ini for runtime. Application code for domain. Four files, four owners, four languages of expertise. Editing one does not require knowing the others.

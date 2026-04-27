@@ -17,7 +17,7 @@ Then I started a fresh project with a fresh stack. RoadRunner does not interpola
 
 This is the same leak as [#3](003-roadrunner-bleeds-across-layers.md) but on a different axis. Tools designed in isolation each invent their own opinion about config. None of them assumes another tool will read the same value. So everyone duplicates.
 
-envsubst is the cancer. A second tool whose only job is to paper over the first tool's refusal to interpolate. Add it to your boot script and you have admitted defeat.
+envsubst is a second tool whose only job is to paper over the first tool's refusal to interpolate. Add it to your boot script and you have admitted defeat.
 
 Op solves this at protocol level too, eventually. One declaration, many projections. .env, .rr.yaml, k8s configmap, Dockerfile ARGs — all generated from one instruction. The day someone writes op-config, this whole class of pain disappears.
 
