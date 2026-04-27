@@ -130,6 +130,7 @@ export default withMermaid(defineConfig({
             {text: '#20 — How Much You Promise', link: '/universal/020-how-much-you-promise'},
             {text: '#21 — All Programs Are Equal', link: '/universal/021-all-programs-are-equal'},
             {text: '#22 — Why Nothing Lands', link: '/universal/022-why-nothing-lands'},
+            {text: '#23 — Treaty of Five', link: '/universal/023-treaty-of-five'},
           ],
         },
       ],
