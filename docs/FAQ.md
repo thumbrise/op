@@ -171,6 +171,14 @@ The same devlog distinguishes vibe-coding (AI used with no signal on the input �
 
 **Sources.** `docs/devlog/033-the-amplifier.md:24-40`, `:62-72`, `:74-92`.
 
+### "Why do you name programs that don't exist?"
+
+**Misreading.** Names like `op-postgres`, `op-prometheus`, `op-rr`, `op-cobra-client` appear throughout the materials. The reader concludes that the project claims these programs already exist, or that Op is going to ship them, or that Op is announcing a roadmap.
+
+**What the text says.** None of those programs exist. The `op-X` convention is a placeholder shape — *a possible scenario in an Op-aware ecosystem*, not a roster of upcoming releases. Whether such programs ever get written, who writes them, and what they end up being called is the responsibility of whoever decides to write them. Op holds the contract; nothing else.
+
+The convention exists for one reason: it is shorter than writing *"a hypothetical future compiler that reads Op instructions and emits artefacts for X"* every time. It is not a brand, not a namespace claim, not a prediction. The goal of Op is to become invisible in the long run, not to flicker as a prefix in product names. If the ecosystem grows and the programs that arrive choose entirely different names — that is the better outcome.
+
 ### "AI sessions are an unfair advantage"
 
 **Misreading.** The author had AI assistance, therefore the work is not real work. Whatever was produced does not count.
