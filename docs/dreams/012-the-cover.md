@@ -168,7 +168,7 @@ The class stands. Лиля writes under **Урок третий**:
 
 `обложка пуста, чтобы вместить всех`
 
-She underlines it. She puts the book in her bag. The dark square disappears. The children leave. The room empties.
+She underlines it. She grabs her bag and runs. The children leave. The room empties.
 
 Дед is alone. He walks to Лиля's desk. He picks up the book she left behind — she forgot it in the rush. He turns it over. Black cover. No title. No picture. He looks at the spine. No name.
 
