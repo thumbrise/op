@@ -30,7 +30,7 @@ The operation evolved independently at least fourteen times — in quantum mecha
 
 In software, the same form has been approached from many directions. gRPC found it through protobuf. OpenAPI found it through HTTP. tRPC found it through TypeScript. Each one carried part of the form along with one particular transport, language, or vendor. Each one is a shoulder Op stands on.
 
-Op tries to name the form on its own — without the transport, without the language, without the vendor.
+Op tries to name the form on its own — without the transport, without the language, without the vendor, without an opinion on how granular each operation has to be.
 
 ## What it is
 

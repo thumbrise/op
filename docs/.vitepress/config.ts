@@ -127,6 +127,7 @@ export default withMermaid(defineConfig({
             {text: '#17 — Postgres Is a JIT', link: '/universal/017-postgres-is-a-jit'},
             {text: '#18 — Hand-Written Deopt Guards', link: '/universal/018-hand-written-deopt-guards'},
             {text: '#19 — Nobody Chooses MongoDB', link: '/universal/019-nobody-chooses-mongodb'},
+            {text: '#20 — How Much You Promise', link: '/universal/020-how-much-you-promise'},
           ],
         },
       ],

@@ -201,7 +201,7 @@ graph LR
     style INT8 fill:#f87171,color:#000
 ```
 
-Forty-nine systems. Four layers. Each one independently arrives at the same five fields — a name, an input, an output, and the possibility of failure — and carries them along with one transport, one language, or one vendor.
+Forty-nine systems. Four layers. Each one independently arrives at the same five fields — a name, an input, an output, and the possibility of failure — and carries them along with one transport, one language, one vendor, or one opinion on how granular each operation must be.
 
 Eighteen RPC systems. Fourteen generators. Nine IDLs. Eight introspection mechanisms. And this is only what fit on the diagram. Each one approaches the same form. None of them names the form on its own — because the form on its own had not been a target.
 
