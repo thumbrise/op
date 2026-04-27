@@ -167,6 +167,14 @@ Cerf and Kahn wrote TCP/IP in 1974. Layered, end-to-end, minimal in the middle, 
 
 The deeper inheritance is methodological. They specified a protocol where the network does the minimum and the endpoints do the rest. Op tries to inherit that discipline at the operation layer: the protocol does the minimum (five fields, no opinions), the compilers and vendors do the rest. The hourglass shape Op aspires to — narrow waist, wide top, wide bottom — is the same shape TCP/IP gave the internet. They named it first.
 
+### [David D. Clark](https://en.wikipedia.org/wiki/David_D._Clark) — the narrow waist, named
+
+Clark formalised the *hourglass* shape of the internet in *«Designing a Protocol for the Internet»* (MIT, 1988) — the thin layer in the middle that enables the broad surfaces above and below. The [Primitive Range Conjecture](reference/the-primitive-range-conjecture) generalises this principle from network protocols to any shared agreement. Clark named the shape first; we use it directly.
+
+### [Noam Chomsky](https://en.wikipedia.org/wiki/Noam_Chomsky) — universal grammar
+
+Chomsky proposed that all human languages share a common structural core — subject, verb, object in some order — not because languages borrowed from each other, but because the human brain is shaped to produce language in that form. This is one of the convergent witnesses cited in the [Primitive Range Conjecture](reference/the-primitive-range-conjecture): the same minimum, arrived at independently, across every language on the planet.
+
 ### [Dmitri Mendeleev](https://en.wikipedia.org/wiki/Dmitri_Mendeleev) — the empty cell
 
 Mendeleev did not invent the elements. Chemistry knew sodium behaved like potassium for a century before him. He named the pattern. He drew the table that predicted where elements *had to* exist by their properties — eka-silicon, eka-aluminum — and the elements arrived later. The cells were there first.
@@ -534,6 +542,16 @@ The documentation site at https://thumbrise.github.io/op/ runs on VitePress, the
 ### [Mermaid](https://mermaid.js.org/) — the diagrams
 
 Every diagram in the devlogs — the tree of fifteen attempts, the four rails, the L+M vs L×M comparison, the gallium architecture — is rendered by Mermaid from a few lines of declarative source inside the markdown. Knut Sveidqvist and the Mermaid maintainers built a tool that takes diagrams from *expensive thing you commission a designer for* to *cheap thing you write inline next to the prose*. The cost of explaining Op's topology dropped by an order of magnitude because Mermaid existed.
+
+### Technologies named in the Universal field notes
+
+The [Universal field notes](universal/) mention several technologies by name in passing — as landscape examples, not as deep comparisons. Each deserves recording in this ledger because the rule is simple: if a name appears in the materials, it appears here.
+
+- **[Caddy](https://caddyserver.com/)** and **[Nginx](https://nginx.org/)** — web servers and reverse proxies referenced in [#3](universal/003-roadrunner-bleeds-across-layers) as examples of transport-layer separation.
+- **[PHP-FPM](https://www.php.net/manual/en/install.fpm.php)** — the PHP process manager, referenced alongside RoadRunner in [#3](universal/003-roadrunner-bleeds-across-layers).
+- **[envsubst](https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html)** — the variable-substitution tool referenced in [#5](universal/005-single-source-of-truth) as a symptom of config duplication.
+- **[Helm](https://helm.sh/)**, **[Terraform](https://www.terraform.io/)**, **[Prometheus](https://prometheus.io/)** — infrastructure tools referenced in [#7](universal/007-why-we-dont-call-linus) as examples of the infrastructure axes application programmers currently maintain by hand.
+- **[dlmalloc](https://gee.cs.oswego.edu/dl/html/malloc.html)**, **[tcmalloc](https://github.com/google/tcmalloc)**, **[jemalloc](https://github.com/jemalloc/jemalloc)**, **[mimalloc](https://github.com/microsoft/mimalloc)** — memory allocators referenced in [#8](universal/008-configuration-is-not-parameterization) as examples of the allocator-switching pattern versus thousand-parameter configuration.
 
 ### [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
