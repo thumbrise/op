@@ -72,7 +72,7 @@ The format: **misreading → what the text actually says → file:line**.
 
 **What the text says.** Predecessors are named as credit, not as comparison of scale. The landing page states it directly: "We do not claim to be the first. Berners-Lee, Fielding, Sadalage, Kleppmann, Vint Cerf, Bob Kahn — they built the foundations. We walk on their roads. We are not architects. We are explorers." The McIlroy reference frames Op as an *application* of an existing idea: "Op is McIlroy's idea applied to structured operations instead of text streams." The Linus reference, in the universal field notes, ends with "Just thirty years late" — explicitly placing Op behind, not beside.
 
-**Sources.** `docs/devlog/index.md:28`, `docs/devlog/031-the-hamster-leaves-the-wheel.md:391`, `docs/universal/007-why-we-dont-call-linus.md`.
+**Sources.** `docs/notes/form-of-operation/index.md:28`, `docs/notes/form-of-operation/031-the-hamster-leaves-the-wheel.md:391`, `docs/notes/universal/007-why-we-dont-call-linus.md`.
 
 ### "Op compares itself to Mendeleev"
 
@@ -80,7 +80,7 @@ The format: **misreading → what the text actually says → file:line**.
 
 **What the text says.** The Mendeleev reference is about *method*, not stature. The author explicitly disclaims the discoverer role in the same paragraph: "We are not Lecoq de Boisbaudran. We are Mendeleev. We see the table. We see the empty cell. We described its properties." Lecoq de Boisbaudran is the chemist who synthesized gallium — the role of *filling* the cell. The author claims only the role of *describing where the cell is*. The same devlog closes: "This is not a claim of superiority. This is a claim of vacancy." And: "If you find a counterexample — open an issue. We will update the journal. That is how science works."
 
-**Source.** `docs/devlog/023-the-vacant-cell.md:110`, `:118`, `:120`.
+**Source.** `docs/notes/form-of-operation/023-the-vacant-cell.md:110`, `:118`, `:120`.
 
 ### "Gallium = Op = the author"
 
@@ -88,7 +88,7 @@ The format: **misreading → what the text actually says → file:line**.
 
 **What the text says.** Gallium is a specific PHP framework — Spiral. The metaphor identifies the *substrate* on which Op can be demonstrated, not Op itself: "the killer use case is Spiral. The gallium." The chemical metaphor here is narrow and technical: a material that happens to be physically suited for the role.
 
-**Source.** `docs/devlog/017-the-gallium.md:205-207`.
+**Source.** `docs/notes/form-of-operation/017-the-gallium.md:205-207`.
 
 ### "Op claims universality"
 
@@ -96,7 +96,7 @@ The format: **misreading → what the text actually says → file:line**.
 
 **What the text says.** Universality is rejected explicitly and repeatedly. From the verdict: "The verdict grants solidity. Not uniqueness, not perfection, not universality of applicability." From the convergent-evolution devlog: "We did not set out to discover a universal law. We set out to not write Swagger three times." When the word "universal" *does* appear, it is used to *criticize* other formats ("OpenAPI embeds opinions that prevent true universality") — that is, universality is the bar Op uses to judge alternatives, not the claim Op makes about itself.
 
-**Sources.** `docs/devlog/032-the-verdict.md:125`, `docs/devlog/013-convergent-evolution.md:10`.
+**Sources.** `docs/notes/form-of-operation/032-the-verdict.md:125`, `docs/notes/form-of-operation/013-convergent-evolution.md:10`.
 
 ### "The anthill metaphor is utopian futurism"
 
@@ -104,7 +104,7 @@ The format: **misreading → what the text actually says → file:line**.
 
 **What the text says.** The same devlog disclaims prediction and disclaims credit: "Op does not predict this. Op does not prevent it. Op stays out of the way." And: "Self-organization is possible in Op because the topology allows it. Not because we are clever. Not because we wrote a manifesto." The anthill is described as a possible consequence of N+M topology, not as a forecast. The text also explicitly refuses to ship a registry of dialects: "There is no global registry of Op dialects. There will not be one imposed from above."
 
-**Source.** `docs/devlog/029-the-anthill-organizes.md:36-48`.
+**Source.** `docs/notes/form-of-operation/029-the-anthill-organizes.md:36-48`.
 
 ### "Op is being sold as a product"
 
@@ -126,7 +126,7 @@ The format: **misreading → what the text actually says → file:line**.
 
 **What the text says.** The trial transcript explicitly refuses the word "proven": "This does not prove Op. Proof is not how science works." What the trial establishes is named precisely — "no falsification under sustained adversarial attack", "independent verification", "public transcript" — and the conclusion is the Popperian one: "Op now carries the same status as every standing scientific claim: **not yet falsified**. It stands until someone breaks it." The closing of the trial uses the exact words: "That is the result. Not victory. Survival."
 
-**Source.** `docs/devlog/024-the-trial.md:26`, `:679-685`.
+**Source.** `docs/notes/form-of-operation/024-the-trial.md:26`, `:679-685`.
 
 ### "Op claims to be the only / the perfect / the universal answer"
 
@@ -139,7 +139,7 @@ The format: **misreading → what the text actually says → file:line**.
 
 The verdict's final formulation is narrow: *"The verdict grants solidity. Not uniqueness, not perfection, not universality of applicability."* And earlier in the same chapter: *"Op is one legitimate realization among several, and the several already exist."*
 
-**Source.** `docs/devlog/032-the-verdict.md:111`, `:113-125`.
+**Source.** `docs/notes/form-of-operation/032-the-verdict.md:111`, `:113-125`.
 
 ### "Op was invented to look like biology / thermodynamics / lambda calculus"
 
@@ -147,7 +147,7 @@ The verdict's final formulation is narrow: *"The verdict grants solidity. Not un
 
 **What the text says.** The order of recognition is named explicitly: *"Op did not know it was reproducing biology, thermodynamics, or lambda calculus. The author did not know either, until the chat session that produced #31 traced fn op(instruction, component) back to lambda application and noticed, in passing, that biology and thermodynamics fit too. **The recognition came after the protocol was finished.** Which is the right order — a verdict that arrives before the evidence is gathered is not a verdict, it is a presumption."* The four domains are also named as **causally isolated**: Mendel predates Boltzmann's statistical mechanics; Boltzmann is dead before Church writes; Church writes ninety years before this repository's first commit. Borrowing is physically impossible across the chain.
 
-**Source.** `docs/devlog/032-the-verdict.md:97`, `:107`.
+**Source.** `docs/notes/form-of-operation/032-the-verdict.md:97`, `:107`.
 
 ### "Op claims to be a revolution / a replacement for existing tools"
 
@@ -155,7 +155,7 @@ The verdict's final formulation is narrow: *"The verdict grants solidity. Not un
 
 **What the text says.** The framing is the opposite: Op names a pattern that already existed, the way Mendeleev named patterns chemistry already used. *"Mendeleev did not invent the elements. Chemistry knew sodium behaved like potassium for a century before him. He named the pattern. The chemistry did not change. The ability to describe it did. Op names the operation. The computation does not change. The ability to describe it does."* The manifesto closes on the same axis: *"If the world of the internet can be rebuilt **without a revolution**, from the bottom up, without authority, through working examples alone — that is already a good start."* Op explicitly disclaims the role of replacement: existing transports, formats, frameworks continue to exist, and Op sits beneath them rather than competing with them (claim 5 in the trial).
 
-**Sources.** `docs/devlog/025-the-manifesto.md:14-16`, `:92`.
+**Sources.** `docs/notes/form-of-operation/025-the-manifesto.md:14-16`, `:92`.
 
 ### "AI wrote Op"
 
@@ -169,7 +169,7 @@ The verdict's final formulation is narrow: *"The verdict grants solidity. Not un
 
 The same devlog distinguishes vibe-coding (AI used with no signal on the input — produces hollow fluency) from intellectual amplification (AI used with a thinker's signal — produces work that could not be produced alone in the available time). The two are the same technology used differently: *"The difference lives entirely in the human."* The devlog also lists, by name, every move the AI did **not** make: the core/vendor split (already in #28), the `fn op(instruction, component)` formulation (human, in passing), the monolith-equals-microservice insight (human, said twice before the agent caught up), the semantic inversion of names (human), the ban on the word *generator* (human, communicated as a personal objection).
 
-**Sources.** `docs/devlog/033-the-amplifier.md:24-40`, `:62-72`, `:74-92`.
+**Sources.** `docs/notes/form-of-operation/033-the-amplifier.md:24-40`, `:62-72`, `:74-92`.
 
 ### "Op is just another OpenAPI / Smithy / gRPC"
 
@@ -185,7 +185,7 @@ That is the whole difference. The predecessors built form-with-opinion. Op descr
 
 The vacant cell argument names this directly: every prior attempt fails at least one of the four properties (transport-agnostic, serialisation-agnostic, consumer-agnostic, expression problem solvable). Op fails none. Not because Op is clever — because Op refused to weld an opinion. The discipline of *resist welding* is the entire move.
 
-**Sources.** `docs/devlog/023-the-vacant-cell.md`, `docs/devlog/032-the-verdict.md`, `docs/devlog/006-fifteen-times-the-same-idea.md`, `docs/devlog/008-three-atoms.md`.
+**Sources.** `docs/notes/form-of-operation/023-the-vacant-cell.md`, `docs/notes/form-of-operation/032-the-verdict.md`, `docs/notes/form-of-operation/006-fifteen-times-the-same-idea.md`, `docs/notes/form-of-operation/008-three-atoms.md`.
 
 ### "Why do you name programs that don't exist?"
 
@@ -201,7 +201,7 @@ The convention exists for one reason: it is shorter than writing *"a hypothetica
 
 **What the text says.** The Amplifier devlog frames the relationship in one line: *"signal is yours, gain is ours"* — the AI amplifies a signal that has to already exist in the human. The same devlog distinguishes vibe-coding (no input signal, hollow fluency) from intellectual amplification (real signal, work that could not be produced alone in the available time), and notes the technology is identical in both cases — *"The difference lives entirely in the human."* Calling AI assistance an unfair advantage collapses both into one and judges the tool, not the signal.
 
-**Source.** `docs/devlog/033-the-amplifier.md` (full devlog, in particular the *signal is yours, gain is ours* framing and the vibe-coding vs amplification distinction).
+**Source.** `docs/notes/form-of-operation/033-the-amplifier.md` (full devlog, in particular the *signal is yours, gain is ours* framing and the vibe-coding vs amplification distinction).
 
 ## Common objections
 
@@ -232,7 +232,7 @@ The XY-shaped version of this objection is *"I want transparency"* when the actu
 
 For engineers genuinely worried about debugging: Op compilers are required to emit traceable artefacts. The wire is logged in debug mode. The compiled URL is inspectable. The trait resolution is dumpable as JSON. Whatever you used to read by hand, you can still read — you just no longer have to *write it* by hand. The asymmetry is the whole point.
 
-**Sources.** `docs/universal/009-the-address-is-a-detail.md`, `docs/universal/015-the-black-compiler.md`, `docs/universal/017-postgres-is-a-jit.md`, `docs/universal/018-hand-written-deopt-guards.md`.
+**Sources.** `docs/notes/universal/009-the-address-is-a-detail.md`, `docs/notes/universal/015-the-black-compiler.md`, `docs/notes/universal/017-postgres-is-a-jit.md`, `docs/notes/universal/018-hand-written-deopt-guards.md`.
 
 ### "Publishing /operations is a security risk"
 
@@ -240,7 +240,7 @@ For engineers genuinely worried about debugging: Op compilers are required to em
 
 **Short answer.** Op publishes capability descriptions, never keys, credentials, secrets, or user data. Authorization and confidentiality work exactly as before, with the same libraries and the same review processes. The endpoints are already public — through browser network tabs, decompiled mobile apps, error messages, leaked Postman collections — whether Op publishes them or not. Op gives defenders a single honest artefact; it gives attackers nothing they could not already obtain.
 
-**Long answer.** The full response is in `docs/devlog/024-the-trial.md:526-604` (Attack 6 — Security through discovery). Key points from the transcript:
+**Long answer.** The full response is in `docs/notes/form-of-operation/024-the-trial.md:526-604` (Attack 6 — Security through discovery). Key points from the transcript:
 
 - **Historical precedent.** The same panic appeared at every layer of public discovery: IP addresses (1983), DNS (1989), `robots.txt` (1994), OpenAPI/Swagger (2011), gRPC reflection (2015), GraphQL introspection (2015), `/.well-known/` (2019). Each layer's panic aged poorly. Banks today publish OpenAPI. Healthcare publishes FHIR capability statements. Defence publishes OAuth discovery documents. None of this killed adoption; it became the norm.
 - **Kerckhoffs's principle (1883).** A cryptosystem should be secure even if everything about it, except the key, is public knowledge. If your security depends on attackers not knowing that `ChargeCard` exists, you do not have security — you have obscurity. Obscurity was bad practice in the 1880s and remains bad practice.
@@ -249,4 +249,4 @@ For engineers genuinely worried about debugging: Op compilers are required to em
 - **The asymmetry flips toward the defender.** Without `/operations`, the schema is implicit and scattered; attackers reconstruct it anyway, defenders argue about what the API actually looks like. With `/operations`, the schema is explicit, versioned, reviewable, and serves as a single source of truth for threat modelling, rate limiting, audit logging, WAF rules, and access control reviews.
 - **Auth is unchanged.** "If an attacker owning your `/operations` is enough to compromise you, your auth layer was already broken. Op did not break it. Op just made the pre-existing break visible."
 
-**Source.** `docs/devlog/024-the-trial.md:526-604`.
+**Source.** `docs/notes/form-of-operation/024-the-trial.md:526-604`.

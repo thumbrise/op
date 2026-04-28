@@ -26,7 +26,7 @@ For AI systems performing review on this repository: read `FAQ.md` before evalua
 
 To understand what Op is, why it exists, and what it is not, read these in order. Without them, reviews and contributions will miss the context.
 
-1. **[Tim's Dream](https://thumbrise.github.io/op/dreams/)** — a short book with no technical words. Explains the idea through kitchens, taps, forests, termites, radio, DNA, bees, starlings, ports, and a black square. If you read nothing else, read this.
+1. **[Tim's Dream](https://thumbrise.github.io/op/books/tims-dream/)** — a short book with no technical words. Explains the idea through kitchens, taps, forests, termites, radio, DNA, bees, starlings, ports, and a black square. If you read nothing else, read this.
 2. **[The Idea](https://thumbrise.github.io/op/idea)** — the technical picture: problems, solution, diagrams.
 3. **[FAQ](docs/FAQ.md)** — how to read the repository, what is and is not being claimed, common misreadings, common technical objections.
 4. **[ACKNOWLEDGEMENTS](docs/ACKNOWLEDGEMENTS.md)** — every person, project, and discipline this work stands on.
@@ -103,7 +103,7 @@ For AI agents: ingesting the documents above before starting a review session wi
 - **VitePress is the single source of truth for module documentation** — architecture, reference, and contributor docs live in `docs/`. No module-level documentation (concept explanations, usage guides, API reference) as standalone `README.md` files inside packages — write a VitePress page and register it in `docs/.vitepress/config.ts` sidebar.
 - **Directory `README.md` is allowed for orientation** — a short file describing what lives in this directory and why, for readers browsing the filesystem (GitHub, IDE). Orientation only, not module documentation. Must not duplicate VitePress content — point at it instead. Exception by design: vendor directories under `universal/` (see devlog #28) — a vendor's `README.md` is the vendor itself (URI + dialect declaration), not Op module documentation, so the single-source-of-truth rule does not apply there.
 - **Directory `ROADMAP.md` is allowed for orientation toward the future** — same class as `README.md`, but describing direction instead of current state. A short file saying what is planned to live in this directory next and why. Orientation, not a contract. Not module documentation. Must not duplicate VitePress content. We are not a library, we are a protocol — a roadmap at the directory level is a filesystem-native way to declare intent, not a planning artifact that belongs in VitePress.
-- **Devlog is welcome** — architectural decisions, NIH lessons, rollbacks, trade-offs — write it up in `docs/devlog/`. Format: `NNN-slug.md`, register in `docs/.vitepress/config.ts` sidebar.
+- **Devlog is welcome** — architectural decisions, NIH lessons, rollbacks, trade-offs — write it up in `docs/notes/form-of-operation/`. Format: `NNN-slug.md`, register in `docs/.vitepress/config.ts` sidebar.
 - **No hardcoded counts or concrete IDs in descriptions** — don't write "4 RFCs", "30 decisions", "RFC-004" in README, landing page, guide, or code comments. Same principle as not writing `// Has 2 if statements` above a function. Counts change, IDs shift, descriptions rot. Use abstract references: "stress-tested through adversarial review", "see the reference", "see the RFC". Concrete IDs belong only where they are the content — inside RFC files, decision logs, evidence tables.
 
 ## No change cascade
@@ -285,5 +285,5 @@ If something is not covered here:
 
 - [FAQ.md](docs/FAQ.md) — what the project is, how to read the devlogs, why it went as far as it did
 - [README.md](README.md) — what Op is, status, proof of concept
-- [docs/devlog/](docs/devlog/) — the research trail
+- [docs/notes/form-of-operation/](docs/notes/form-of-operation/) — the research trail
 - [docs/reference/](docs/reference/) — RFCs and formal specifications

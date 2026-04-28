@@ -19,7 +19,7 @@ Five fields. Extensions attached from outside. Nothing more.
 
 Read the following documents, in this order, before the rest:
 
-1. **[Tim's Dream](https://thumbrise.github.io/op/dreams/)** — a short book. No technical words. Start here if you want to understand what this is about before reading anything else.
+1. **[Tim's Dream](https://thumbrise.github.io/op/books/tims-dream/)** — a short book. No technical words. Start here if you want to understand what this is about before reading anything else.
 2. **[ACKNOWLEDGEMENTS](https://thumbrise.github.io/op/ACKNOWLEDGEMENTS)** — every person, project, and discipline this work stands on. Standing on the shoulders of the founders. Respect comes first.
 3. **[FAQ](https://thumbrise.github.io/op/FAQ)** — how this repository is meant to be read, what is and is not being claimed, common misreadings, common technical objections.
 4. **The rest of this README, the devlogs, and the materials** — what we found, after the credit and the framing are in place.
@@ -46,15 +46,15 @@ Op is not a framework, not a compiler, not a DSL. It is the boundary between phy
 
 ## The research
 
-The [devlog](https://thumbrise.github.io/op/devlog/) documents the full journey — from "I don't want to write Swagger three times" to "the second law of thermodynamics guarantees a non-empty error rail."
+The [notes](https://thumbrise.github.io/op/notes/) documents the full journey — from "I don't want to write Swagger three times" to "the second law of thermodynamics guarantees a non-empty error rail."
 
 The [landing page](https://thumbrise.github.io/op/) shows the problems, the solution, and what it unlocks — in diagrams.
 
 Key findings:
-- The operation is [convergent evolution](https://thumbrise.github.io/op/devlog/013-convergent-evolution) — fourteen disciplines, one pattern, zero coordination
-- Emitters and receivers are [compilers, not generators](https://thumbrise.github.io/op/devlog/010-there-is-no-generation) — with contracts and guarantees
-- The instruction [is the operation](https://thumbrise.github.io/op/devlog/014-the-fact), not a description of it — zero drift between map and territory
-- Tim Berners-Lee [dreamed of this in 2001](https://thumbrise.github.io/op/devlog/016-the-founders-dream) — he built seven layers, we built five fields
+- The operation is [convergent evolution](https://thumbrise.github.io/op/notes/form-of-operation/013-convergent-evolution) — fourteen disciplines, one pattern, zero coordination
+- Emitters and receivers are [compilers, not generators](https://thumbrise.github.io/op/notes/form-of-operation/010-there-is-no-generation) — with contracts and guarantees
+- The instruction [is the operation](https://thumbrise.github.io/op/notes/form-of-operation/014-the-fact), not a description of it — zero drift between map and territory
+- Tim Berners-Lee [dreamed of this in 2001](https://thumbrise.github.io/op/notes/form-of-operation/016-the-founders-dream) — he built seven layers, we built five fields
 
 ## Proof of concept — v1.0
 
@@ -81,9 +81,9 @@ what we can list today.
 If you read this far — you are not a user. You are an early hand.
 What is below is for those who want to understand.
 
-- [The Devlog](https://thumbrise.github.io/op/devlog/) — how the form was found.
+- [The Devlog](https://thumbrise.github.io/op/notes/form-of-operation/) — how the form was found.
 - [The Conjecture](https://thumbrise.github.io/op/reference/the-primitive-range-conjecture) — the law that holds it.
-- [Tim's Dream](https://thumbrise.github.io/op/dreams/) — a book about a world where it worked.
+- [Tim's Dream](https://thumbrise.github.io/op/books/tims-dream/) — a book about a world where it worked.
 - [The Schema](https://thumbrise.github.io/op/schema/instruction.v1.json) — the form itself.
 
 There is no «Get Started» button here. Op is not for sale.

@@ -52,11 +52,11 @@ Three reasons. Independent of each other. We do not need all three to make the c
 
 ### One — Op is built this way
 
-Op is five fields: identifier, input, output, error, optional context. Nothing more. The five fields describe themselves in JSON Schema; without one of them, the form does not hold. With one more, the form becomes a particular case. The form was found by removing what did not belong, until removing the next thing would break it. The remaining shape is the primitive of operation. Argument from inside the work. See [#8 — Three Atoms](../devlog/008-three-atoms), [#18 — The Fourth Rail](../devlog/018-the-fourth-rail), [#23 — The Vacant Cell](../devlog/023-the-vacant-cell), [#32 — The Verdict](../devlog/032-the-verdict).
+Op is five fields: identifier, input, output, error, optional context. Nothing more. The five fields describe themselves in JSON Schema; without one of them, the form does not hold. With one more, the form becomes a particular case. The form was found by removing what did not belong, until removing the next thing would break it. The remaining shape is the primitive of operation. Argument from inside the work. See [#8 — Three Atoms](../notes/form-of-operation/008-three-atoms), [#18 — The Fourth Rail](../notes/form-of-operation/018-the-fourth-rail), [#23 — The Vacant Cell](../notes/form-of-operation/023-the-vacant-cell), [#32 — The Verdict](../notes/form-of-operation/032-the-verdict).
 
 ### Two — the industry is moving in one direction
 
-Independent attempts to name an operation have been made since 1989: WSDL+UDDI (2000), Schema.org (2011), OpenAPI (2011), GraphQL Introspection (2015), MCP (2024), and others. Each attempt drops one opinion the previous one carried. WSDL dropped committees and kept XML. Schema.org dropped XML and kept HTML. OpenAPI dropped HTML and kept HTTP. GraphQL dropped HTTP and kept its own runtime. MCP dropped runtime and kept the consumer. The direction is not a forecast; it is what each attempt did relative to the one before it. The next attempt may continue the line or it may not — the line is recorded, not predicted. Argument from observation. See [#16 — The Founder's Dream](../devlog/016-the-founders-dream).
+Independent attempts to name an operation have been made since 1989: WSDL+UDDI (2000), Schema.org (2011), OpenAPI (2011), GraphQL Introspection (2015), MCP (2024), and others. Each attempt drops one opinion the previous one carried. WSDL dropped committees and kept XML. Schema.org dropped XML and kept HTML. OpenAPI dropped HTML and kept HTTP. GraphQL dropped HTTP and kept its own runtime. MCP dropped runtime and kept the consumer. The direction is not a forecast; it is what each attempt did relative to the one before it. The next attempt may continue the line or it may not — the line is recorded, not predicted. Argument from observation. See [#16 — The Founder's Dream](../notes/form-of-operation/016-the-founders-dream).
 
 ### Three — nature has done this before, without speech
 
@@ -70,7 +70,7 @@ The same shape — a small primitive enabling broad interaction — has been doc
 - **Universal grammar.** Subject-Verb-Object structure across all human languages.
 - **Process algebras.** CSP (Hoare, 1978), π-calculus (Milner, 1992), session types (Honda et al., 1998).
 
-Argument from history and biology. See [#13 — Convergent Evolution](../devlog/013-convergent-evolution), [#32 — The Verdict](../devlog/032-the-verdict), and the peer-reviewed verification in [Appendix A — Raw Notes](./rfc-operation-protocol-appendix-a-raw).
+Argument from history and biology. See [#13 — Convergent Evolution](../notes/form-of-operation/013-convergent-evolution), [#32 — The Verdict](../notes/form-of-operation/032-the-verdict), and the peer-reviewed verification in [Appendix A — Raw Notes](./rfc-operation-protocol-appendix-a-raw).
 
 The narrow-waist principle (Cerf and Kahn, TCP/IP, 1974; Clark, MIT, 1988) names the same shape in network protocols. We generalise it to any shared form.
 
@@ -131,8 +131,8 @@ This is the discipline that produced TCP/IP, USB, the genetic code, and the univ
 ## See also
 
 - [Acknowledgements](../ACKNOWLEDGEMENTS) — every name this document leans on.
-- [#13 — Convergent Evolution](../devlog/013-convergent-evolution) — convergence across fourteen disciplines.
-- [#32 — The Verdict](../devlog/032-the-verdict) — four witnesses.
-- [#23 — The Vacant Cell](../devlog/023-the-vacant-cell) — the four-property hole in protocol space.
+- [#13 — Convergent Evolution](../notes/form-of-operation/013-convergent-evolution) — convergence across fourteen disciplines.
+- [#32 — The Verdict](../notes/form-of-operation/032-the-verdict) — four witnesses.
+- [#23 — The Vacant Cell](../notes/form-of-operation/023-the-vacant-cell) — the four-property hole in protocol space.
 - [RFC — Operation Protocol](./rfc-operation-protocol) — the protocol that motivated this conjecture.
 - [Appendix A — Raw Notes](./rfc-operation-protocol-appendix-a-raw) — peer-reviewed convergence evidence.

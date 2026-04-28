@@ -373,7 +373,7 @@ Write a JSON file by hand. Once. Five facts per operation. No DSL. No tooling. J
 
 From that one file, every receiver in the ecosystem works. OpenAPI receiver generates a spec. MCP receiver generates a tool. Angular receiver generates a client. Laravel receiver generates a handler. A catalog of standardized reactions to your set of operations. No "but." No "or." No "only if you also install."
 
-Before Op: declare the operation three times — handler, swagger annotation, CLI command ([devlog #1](/devlog/001-why)). After Op, worst case: declare it once in JSON, pick receivers from a catalog. Best case: an emitter reads your code and you declare nothing at all.
+Before Op: declare the operation three times — handler, swagger annotation, CLI command ([devlog #1](/notes/form-of-operation/001-why)). After Op, worst case: declare it once in JSON, pick receivers from a catalog. Best case: an emitter reads your code and you declare nothing at all.
 
 ## The AWS Conversation
 AWS: "What can you give us? You're dumb as a cork."

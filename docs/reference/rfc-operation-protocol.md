@@ -22,7 +22,7 @@ This RFC is an **append-only court record**. It is governed by the following rul
 
 1. **Append-only body.** Once a section is published in a numbered version, its text MUST NOT be rewritten in place. Corrections are made by appending a new section, a new version, or a new appendix. The history of what was said is part of the artifact.
 2. **Versioning.** Each substantive change increments the version number at the top. The changelog records every version with date, author, and a one-line summary. Old versions remain readable in the git history and SHOULD be linkable from the changelog where practical.
-3. **Disputed points are court records.** When a design decision is contested — by a reviewer, by an adversarial analysis, by an external verifier — the dispute is recorded in the *Disputed points* section in the form *attack / defense / verdict*, exactly like the trial in [#24](../devlog/024-the-trial.md). The dispute MUST NOT be summarized into a single resolved paragraph that erases the conflict; the conflict is part of the evidence.
+3. **Disputed points are court records.** When a design decision is contested — by a reviewer, by an adversarial analysis, by an external verifier — the dispute is recorded in the *Disputed points* section in the form *attack / defense / verdict*, exactly like the trial in [#24](../notes/form-of-operation/024-the-trial.md). The dispute MUST NOT be summarized into a single resolved paragraph that erases the conflict; the conflict is part of the evidence.
 4. **Falsifiability.** Every normative claim MUST be stated in a form that admits a counterexample. The conventional closing of any non-trivial claim is *"if you find a counterexample, open an issue"* — same discipline as the devlogs.
 5. **RFC 2119 keywords.** When this RFC records a position that is intended to survive into the terse normative document, the words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, **MAY** are used in their RFC 2119 sense. They are not used in informational sections, prologues, or appendices unless explicitly noted. Discussion text in the RFC body remains discussion; only positions explicitly marked with these keywords are candidates for the future normative document.
 6. **Stub appendices are honest.** When an appendix is reserved but not yet integrated, the appendix MUST say so explicitly: what material is parked, when it was obtained, where the raw notes live, and what completion looks like. A stub appendix is a public commitment to integrate, not a placeholder for vapor.
@@ -72,7 +72,7 @@ How instructions evolve. How traits evolve. How conformance evolves. The breakag
 
 This section holds the court record of formal disputes against the protocol once normative content exists.
 
-The first such record is already published in [#24 — The Trial](../devlog/024-the-trial.md), where six attacks against the fundamentality of the protocol were submitted to an external adversarial reviewer (Codex / GPT-5.4) and answered on record. Once the normative specification lands in this RFC, the trial transcript will be cross-referenced here as Disputed Point 1, and any future formal challenges will be appended in the same form.
+The first such record is already published in [#24 — The Trial](../notes/form-of-operation/024-the-trial.md), where six attacks against the fundamentality of the protocol were submitted to an external adversarial reviewer (Codex / GPT-5.4) and answered on record. Once the normative specification lands in this RFC, the trial transcript will be cross-referenced here as Disputed Point 1, and any future formal challenges will be appended in the same form.
 
 *Status: reserved. To be populated when normative sections are written.*
 
@@ -80,9 +80,9 @@ The first such record is already published in [#24 — The Trial](../devlog/024-
 
 **Status: stub.**
 
-[Devlog #13 — Convergent Evolution](../devlog/013-convergent-evolution.md) lists fourteen disciplines that, without coordination, arrived at the same five-field structure for describing a unit of interaction. The claim is foundational to the protocol's status as *discovered, not invented*.
+[Devlog #13 — Convergent Evolution](../notes/form-of-operation/013-convergent-evolution.md) lists fourteen disciplines that, without coordination, arrived at the same five-field structure for describing a unit of interaction. The claim is foundational to the protocol's status as *discovered, not invented*.
 
-To test the claim under the [Popper standard](https://en.wikipedia.org/wiki/Falsifiability) — the same standard applied in [#24 — The Trial](../devlog/024-the-trial.md) — an external peer review was commissioned. A formal query was submitted to **DeepSeek**, an AI with broad access to academic and technical literature. The query's instructions were explicit: *do not flatter, do not invent quotes, find counterexamples or refuse to confirm*.
+To test the claim under the [Popper standard](https://en.wikipedia.org/wiki/Falsifiability) — the same standard applied in [#24 — The Trial](../notes/form-of-operation/024-the-trial.md) — an external peer review was commissioned. A formal query was submitted to **DeepSeek**, an AI with broad access to academic and technical literature. The query's instructions were explicit: *do not flatter, do not invent quotes, find counterexamples or refuse to confirm*.
 
 DeepSeek returned a structural assessment of all fourteen disciplines, with verification mode (verbatim quote, paraphrase of named work, or field consensus) and a structural match level (strong / surface / strained) for each. Summary of the response:
 
@@ -102,19 +102,19 @@ The author commits to integrating the full assessment into this appendix when no
 
 **Reviewer:** DeepSeek (external).
 
-**Methodology:** falsification-first peer review, identical in structure to the methodology used for [#23 — The Vacant Cell](../devlog/023-the-vacant-cell.md) and [#24 — The Trial](../devlog/024-the-trial.md).
+**Methodology:** falsification-first peer review, identical in structure to the methodology used for [#23 — The Vacant Cell](../notes/form-of-operation/023-the-vacant-cell.md) and [#24 — The Trial](../notes/form-of-operation/024-the-trial.md).
 
 *Status: stub. Integration pending.*
 
 ## Appendix B — External attacks (reserved)
 
-Reserved for adversarial reviews submitted against future normative sections of this RFC. The first such review — six attacks against the fundamentality of the operation primitive — is already on record in [#24 — The Trial](../devlog/024-the-trial.md) and will be linked here when normative content exists for it to attach to.
+Reserved for adversarial reviews submitted against future normative sections of this RFC. The first such review — six attacks against the fundamentality of the operation primitive — is already on record in [#24 — The Trial](../notes/form-of-operation/024-the-trial.md) and will be linked here when normative content exists for it to attach to.
 
 *Status: reserved.*
 
 ## Appendix C — Vacant cell evidence (reserved)
 
-Reserved for the structured evidence record from [#23 — The Vacant Cell](../devlog/023-the-vacant-cell.md), establishing that no prior protocol satisfies all four properties (transport-agnostic, serialization-agnostic, consumer-agnostic, expression problem solvable).
+Reserved for the structured evidence record from [#23 — The Vacant Cell](../notes/form-of-operation/023-the-vacant-cell.md), establishing that no prior protocol satisfies all four properties (transport-agnostic, serialization-agnostic, consumer-agnostic, expression problem solvable).
 
 *Status: reserved.*
 
@@ -124,5 +124,5 @@ Reserved for the structured evidence record from [#23 — The Vacant Cell](../de
 - [FAQ.md](../FAQ.md) — how to read this repository, common misreadings, common objections
 - [ACKNOWLEDGEMENTS.md](/ACKNOWLEDGEMENTS.md) — every reference cited in the materials
 - [REVIEW.md](https://github.com/thumbrise/op/blob/main/REVIEW.md) — review and contribution discipline
-- [docs/devlog/](../devlog/) — the research trail (closed, append-only)
-- [docs/universal/](../universal/) — field notes from compiler work
+- [docs/notes/form-of-operation/](../notes/form-of-operation/) — the research trail (closed, append-only)
+- [docs/notes/universal/](../notes/universal/) — field notes from compiler work

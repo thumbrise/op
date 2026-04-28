@@ -37,4 +37,4 @@ Maybe the answer is yes. Maybe the answer is no. The journal will tell.
 
 ---
 
-*Want to challenge an entry or write the next one? [Open a PR.](https://github.com/thumbrise/op/edit/main/docs/devlog/)*
+*Want to challenge an entry or write the next one? [Open a PR.](https://github.com/thumbrise/op/edit/main/docs/notes/form-of-operation/)*

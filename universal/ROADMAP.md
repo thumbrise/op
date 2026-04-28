@@ -4,7 +4,7 @@ What we plan to build next inside `universal/`. Not a contract. A direction.
 
 Each milestone is a verifiable state of the world, not a category of work. A milestone closes when someone from the outside can run it and observe the result.
 
-See [devlog #28 — Dobby Is Free](../docs/devlog/028-dobby-is-free.md) for why `universal/` exists at all, and [devlog #29 — The Anthill Organizes](../docs/devlog/029-the-anthill-organizes.md) for why we do not plan beyond the horizon of real need.
+See [devlog #28 — Dobby Is Free](../docs/notes/form-of-operation/028-dobby-is-free.md) for why `universal/` exists at all, and [devlog #29 — The Anthill Organizes](../docs/notes/form-of-operation/029-the-anthill-organizes.md) for why we do not plan beyond the horizon of real need.
 
 ## Fixtures — shared across all milestones
 
@@ -48,7 +48,7 @@ Proof: a runnable Gin application compiled from the fixture. Requests to declare
 
 ## Milestone 4 — Gin emitter. Gin application → instruction. Round trip closes
 
-An emitter extracts an instruction from a Gin application that already exists in the world. This is archaeology of the guts — scaffolding against the era of amnesia, per [devlog #30](../docs/devlog/030-the-first-stranger.md).
+An emitter extracts an instruction from a Gin application that already exists in the world. This is archaeology of the guts — scaffolding against the era of amnesia, per [devlog #30](../docs/notes/form-of-operation/030-the-first-stranger.md).
 
 - The emitter reads Gin source, walks routes, extracts methods, paths, types, statuses.
 - Output is an instruction with `universal/http` traits.

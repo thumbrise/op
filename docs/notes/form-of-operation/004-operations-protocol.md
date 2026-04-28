@@ -501,7 +501,7 @@ php artisan op:emit | tee \
 <details>
 <summary><b>Wait, isn't this just like Protobuf?</b></summary>
 
-No. And we already buried that argument. Protobuf generates code from a schema that is **itself an opinion**—a wire format, field numbers, binary serialization baked into the IDL. Its generators translate from one specific projection to another. Op generates from the **semantic truth** of the operation. The difference is the foundation, not the act of generation. (We dissected Protobuf at length in [devlog #2](/devlog/002-research-trail). The autopsy is public.)
+No. And we already buried that argument. Protobuf generates code from a schema that is **itself an opinion**—a wire format, field numbers, binary serialization baked into the IDL. Its generators translate from one specific projection to another. Op generates from the **semantic truth** of the operation. The difference is the foundation, not the act of generation. (We dissected Protobuf at length in [devlog #2](/notes/form-of-operation/002-research-trail). The autopsy is public.)
 
 </details>
 

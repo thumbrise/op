@@ -467,7 +467,7 @@ what we can list today.
 If you read this far — you are not a user. You are an early hand.
 What is below is for those who want to understand.
 
-- [The Devlog](/devlog/) — how the form was found.
+- [The Devlog](/notes/form-of-operation/) — how the form was found.
 - [The Conjecture](/reference/the-primitive-range-conjecture) — the law that holds it.
-- [Tim's Dream](/dreams/) — a book about a world where it worked.
+- [Tim's Dream](/books/tims-dream/) — a book about a world where it worked.
 - [The Schema](/schema/instruction.v1.json) — the form itself.
