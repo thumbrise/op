@@ -42,14 +42,30 @@ export default withMermaid(defineConfig({
 
   themeConfig: {
     nav: [
-      {text: 'Playground', link: '/playground'},
-      {text: 'Devlog', link: '/devlog/'},
-      {text: 'Universal', link: '/universal/'},
-      {text: "Tim's Dream", link: '/dreams/'},
       {text: 'The Idea', link: '/idea'},
-      {text: 'Reference', link: '/reference/rfc-operation-protocol'},
-      // Specific link case
-      {text: 'Schema', link: '/op/schema/instruction.v1.json'},
+      {
+        text: 'Notes',
+        items: [
+          {text: 'Form Of Operation', link: '/notes/form-of-operation/'},
+          {text: 'Form Of Operation — Postscript', link: '/notes/form-of-operation-postscript/'},
+          {text: 'Form Of Instruction', link: '/notes/form-of-instruction/'},
+          {text: 'Universal', link: '/notes/universal/'},
+        ],
+      },
+      {
+        text: 'Books',
+        items: [
+          {text: "Tim's Dream", link: '/books/tims-dream/'},
+        ],
+      },
+      {
+        text: 'Reference',
+        items: [
+          {text: 'Operation', link: '/reference/operation/'},
+          {text: 'Instruction', link: '/reference/instruction/'},
+        ],
+      },
+      {text: 'Playground', link: '/playground'},
       {text: 'GitHub', link: 'https://github.com/thumbrise/op'},
     ],
 
