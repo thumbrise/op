@@ -1,0 +1,39 @@
+name: "op_poc_spiral-emit"
+
+services:
+  php:
+    build:
+      args:
+        DOCKER_HOST_UID: ${DOCKER_HOST_UID:?}
+        DOCKER_HOST_GID: ${DOCKER_HOST_GID:?}
+      context: ./
+    environment:
+      TZ: "Europe/Moscow"
+      XDG_CONFIG_HOME: "/var/www/.xdg"
+    user: ${DOCKER_HOST_UID:?}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./:/var/www
+      - ./.docker/php/conf.d/app.ini:/usr/local/etc/php/conf.d/app.ini
+      - ./.docker/php/custom.d/:/usr/local/etc/php/custom.d/
+      - composer-cache:/composer
+    working_dir: /var/www
+
+  roadrunner:
+    extends:
+      service: php
+    command:
+      - sh
+      - -c
+      - |
+        if [ ! -x ./rr ]; then
+          composer install --no-interaction --prefer-dist
+          chmod +x ./rr
+        fi
+        exec ./rr serve
+    ports:
+      - "8080:8080"
+
+volumes:
+  composer-cache:

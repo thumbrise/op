@@ -15,17 +15,26 @@ Five fields. Extensions attached from outside. Nothing more.
 
 **Status:** forming. No public API yet. Apache 2.0.
 
+## Before you read anything else
+
+Read the following documents, in this order, before the rest:
+
+1. **[Tim's Dream](https://thumbrise.github.io/op/books/tims-dream/)** — a short book. No technical words. Start here if you want to understand what this is about before reading anything else.
+2. **[ACKNOWLEDGEMENTS](https://thumbrise.github.io/op/ACKNOWLEDGEMENTS)** — every person, project, and discipline this work stands on. Standing on the shoulders of the founders. Respect comes first.
+3. **[FAQ](https://thumbrise.github.io/op/FAQ)** — how this repository is meant to be read, what is and is not being claimed, common misreadings, common technical objections.
+4. **The rest of this README, the devlogs, and the materials** — what we found, after the credit and the framing are in place.
+
 ## Why this exists
 
 The operation evolved independently at least fourteen times — in quantum mechanics, biology, neuroscience, CPU architecture, programming languages, game theory, economics, law, and linguistics. Each discipline arrived at the same five-field pattern without coordination. Like the eye evolved forty times because light exists, the operation evolved because interaction exists.
 
-Yet the software industry has no shared format for it. Every framework reinvents the same five fields and welds them to one transport. gRPC locks you to protobuf. OpenAPI locks you to HTTP. tRPC locks you to TypeScript. Generators convert one shadow into another shadow. Nobody describes the thing itself.
+In software, the same form has been approached from many directions. gRPC found it through protobuf. OpenAPI found it through HTTP. tRPC found it through TypeScript. Each one carried part of the form along with one particular transport, language, or vendor. Each one is a shoulder Op stands on.
 
-Op is the thing itself.
+Op tries to name the form on its own — without the transport, without the language, without the vendor, without an opinion on how granular each operation has to be.
 
 ## What it is
 
-Op (Operations Protocol) is a formalization of the operation as a universal primitive:
+Op (Operation Protocol) is a formalization of the operation as a universal primitive:
 
 - **Five fields** — `id`, `comment`, `input`, `output`, `errors` — describe any operation at any level. Not an opinion. A fact. Like Church's lambda calculus formalized computation in 1936.
 - **Traits** — namespaced key-value extensions attached from outside. HTTP routes, gRPC services, authentication, CLI flags. The operation does not change when a trait is added or removed. Traits are opinions. The operation is the fact.
@@ -37,30 +46,15 @@ Op is not a framework, not a compiler, not a DSL. It is the boundary between phy
 
 ## The research
 
-The [devlog](https://thumbrise.github.io/op/devlog/) documents the full journey — from "I don't want to write Swagger three times" to "the second law of thermodynamics guarantees a non-empty error rail."
+The [notes](https://thumbrise.github.io/op/notes/) documents the full journey — from "I don't want to write Swagger three times" to "the second law of thermodynamics guarantees a non-empty error rail."
 
 The [landing page](https://thumbrise.github.io/op/) shows the problems, the solution, and what it unlocks — in diagrams.
 
 Key findings:
-- The operation is [convergent evolution](https://thumbrise.github.io/op/devlog/013-convergent-evolution) — fourteen disciplines, one pattern, zero coordination
-- Emitters and receivers are [compilers, not generators](https://thumbrise.github.io/op/devlog/010-there-is-no-generation) — with contracts and guarantees
-- The instruction [is the operation](https://thumbrise.github.io/op/devlog/014-the-fact), not a description of it — zero drift between map and territory
-- Tim Berners-Lee [dreamed of this in 2001](https://thumbrise.github.io/op/devlog/016-the-founders-dream) — he built seven layers, we built five fields
-
-## What this is not
-
-- Op is not a framework. It does not dictate how to build.
-- Op is not transport. It does not dictate how to deliver.
-- Op is not an RPC system. It does not dictate how to call.
-- Op is not a schema language. It does not dictate how to validate.
-- Op is not a serialization format. It does not dictate how to encode.
-- Op is not a runtime. It does not dictate how to execute.
-- Op is not a standard library. It does not dictate how to implement.
-- Op is not a code generator. Typed clients, documentation, OpenAPI specs, MCP tool definitions — those are consequences, not the point.
-
-**Op is the formal definition of the operation** — the primitive that every framework, every transport, every RPC system, every schema language has been reinventing independently since 1957. It does not dictate. It does not compete. It cannot be broken, because there is nothing to break — five fields is the minimum that describes interaction, and the second law of thermodynamics guarantees the error rail cannot be removed.
-
-Op is the future that Berners-Lee dreamed of in 2001 — machines understanding what services can do — approached from the opposite direction. He built seven layers from the top. We found five fields from the bottom. The destination is the same. The road is not. And this time the road has no committees, no ontologies, and no XML. Just a primitive so simple that the ecosystem self-organizes around it. Like language. Like money. Like the internet itself.
+- The operation is [convergent evolution](https://thumbrise.github.io/op/notes/form-of-operation/013-convergent-evolution) — fourteen disciplines, one pattern, zero coordination
+- Emitters and receivers are [compilers, not generators](https://thumbrise.github.io/op/notes/form-of-operation/010-there-is-no-generation) — with contracts and guarantees
+- The instruction [is the operation](https://thumbrise.github.io/op/notes/form-of-operation/014-the-fact), not a description of it — zero drift between map and territory
+- Tim Berners-Lee [dreamed of this in 2001](https://thumbrise.github.io/op/notes/form-of-operation/016-the-founders-dream) — he built seven layers, we built five fields
 
 ## Proof of concept — v1.0
 
@@ -71,6 +65,29 @@ The theory predicts that one instruction format can replace N×M integrations wi
 - [ ] **Real operations** — at least three operations from a production domain (not toy examples) described, compiled, and deployed. The five fields hold under real-world pressure
 - [ ] **Validation** — a schema-level proof that every instruction conforms to the five-field structure. Invalid input → precise error. The contract is machine-enforceable
 - [ ] **Formal specification** — RFC, JSON Schema (`instruction.v1.json`), versioned and frozen. The protocol is citable, auditable, and forkable
+
+## Forget everything above
+
+This was the bait. Lists. Diagrams. Five fields. The PoC checklist.
+All of it true. None of it the point.
+
+Op is not an optimization. Op is a form. Found through long subtractions.
+Each subtraction made it more applicable. What remained was five fields.
+
+The goal is not to remove boilerplate. The goal is for programs to
+understand each other's capabilities. The consequences run wider than
+what we can list today.
+
+If you read this far — you are not a user. You are an early hand.
+What is below is for those who want to understand.
+
+- [The Devlog](https://thumbrise.github.io/op/notes/form-of-operation/) — how the form was found.
+- [The Conjecture](https://thumbrise.github.io/op/reference/the-primitive-range-conjecture) — the law that holds it.
+- [Tim's Dream](https://thumbrise.github.io/op/books/tims-dream/) — a book about a world where it worked.
+- [The Schema](https://thumbrise.github.io/op/schema/instruction.v1.json) — the form itself.
+
+There is no «Get Started» button here. Op is not for sale.
+Op either surfaces in you on its own — or it does not.
 
 ## License
 
