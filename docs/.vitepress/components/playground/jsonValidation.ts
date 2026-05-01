@@ -16,10 +16,10 @@ import {
     type ParseError,
 } from 'jsonc-parser'
 
-// Master copy lives in .vitepress/schema/ and is copied into /public at build
-// time by vite-plugin-static-copy (see vite config). That keeps the public URL
-// (`$id`) valid for external tools while the TS bundle imports directly.
-import schema from '../../schema/instruction.v1.json'
+import nota from '../../../reference/nota.v1.json'
+import rail from '../../../reference/rail.v1.json'
+import operation from '../../../reference/operation.v1.json'
+import schema from '../../../reference/instruction.v1.json'
 
 export type ErrorKind = 'syntax' | 'schema' | 'domain'
 
@@ -44,6 +44,9 @@ export interface PlaygroundError {
 }
 
 const ajv = new Ajv2020({allErrors: true, strict: false})
+ajv.addSchema(nota, nota.$id)
+ajv.addSchema(rail, rail.$id)
+ajv.addSchema(operation, operation.$id)
 const validateInstruction = ajv.compile(schema)
 
 /**
