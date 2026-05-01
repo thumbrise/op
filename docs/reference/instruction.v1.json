@@ -1,0 +1,32 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://thumbrise.github.io/op/reference/instruction.v1.json",
+    "title": "OP Instruction",
+    "description": "Operation Protocol Instruction. A program is an instruction — an identifiable container that holds one or more operations and optional top-level traits. The id makes the program addressable. Without it, the program cannot be invoked, discovered, or distinguished. The traits on instruction are the same structure as the traits on operation: a rail of terms. Receivers that understand a trait use it; others ignore it silently.",
+    "allOf": [
+        {
+            "$ref": "https://thumbrise.github.io/op/reference/nota.v1.json"
+        },
+        {
+            "type": "object",
+            "properties": {
+                "version": {
+                    "type": "string",
+                    "description": "Instruction format version. Allows receivers to detect breaking changes and choose the correct parser."
+                },
+                "operations": {
+                    "type": "array",
+                    "description": "The list of operations described by this instruction. Each operation follows the operation schema.",
+                    "items": {
+                        "$ref": "https://thumbrise.github.io/op/reference/operation.v1.json"
+                    }
+                },
+                "trait": {
+                    "$ref": "https://thumbrise.github.io/op/reference/rail.v1.json",
+                    "description": "Top-level traits — opinions about the whole program. SEO metadata, licensing, code generation preferences, anything that is not a fact about operations but an opinion about the container. Same trait philosophy that applies to operations: ignore silently if you don't understand."
+                }
+            },
+            "required": ["version", "id", "comment", "operations", "trait"]
+        }
+    ]
+}

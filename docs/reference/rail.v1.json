@@ -1,0 +1,56 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://thumbrise.github.io/op/reference/rail.v1.json",
+    "title": "OP Rail",
+    "description": "Rail and Term — the fundamental vocabulary of Op. A rail is a direction the data takes. A term is a unit of meaning on that rail. Both are primitive concepts, not tied to any language, framework, or transport. They are the atoms from which operations and instructions are built.",
+    "type": "array",
+    "items": {
+        "$ref": "#/$defs/term"
+    },
+    "$defs": {
+        "rail": {
+            "type": "array",
+            "description": "A direction the result takes. Not a type. Not a struct. A semantic path. The word 'rail' carries no baggage from any language, framework, or transport. It is new. And it is precise.",
+            "items": {
+                "$ref": "#/$defs/term"
+            }
+        },
+        "term": {
+            "allOf": [
+                {
+                    "$ref": "https://thumbrise.github.io/op/reference/nota.v1.json"
+                },
+                {
+                    "type": "object",
+                    "description": "A unit of meaning. From formal logic — an atomic proposition. 'This thing has a name and a type.' Not tied to any language's concept of field, property, parameter, or argument. A term is neutral. Universal. It works on any rail, without changing its nature. A term carries meaning, but meaning does not exist without a semantic rail — a term always rides on a rail, never floats alone.",
+                    "properties": {
+                        "required": {
+                            "type": "boolean",
+                            "description": "Whether this term must be present. In chemistry — oxygen is required for combustion, a catalyst is not. In a function — some arguments are mandatory, some have defaults. When absent, the term is optional. When true, omitting it is a violation of the contract."
+                        },
+                        "value": {
+                            "type": ["string", "integer", "number", "boolean"],
+                            "description": "An optional concrete value. When present, the term carries not just a type but a specific value — useful for enums, defaults, and constants."
+                        },
+                        "kind": {
+                            "type": "string",
+                            "description": "What kind of data this term represents. Nine kinds — not because we chose nine, but because when we looked at what receivers need to compile code, these nine kept appearing. Boolean is a transistor. Integer is a register interpretation. Float is IEEE 754. String is bytes with encoding. Binary is raw truth. Datetime is Earth's rotation. Array is repetition. Object is composition. Enum is a finite set of states. Formalizations of physics, not programming abstractions.",
+                            "enum": ["string", "integer", "float", "boolean", "binary", "datetime", "array", "object", "enum"]
+                        },
+                        "of": {
+                            "type": "array",
+                            "description": "What this term consists of. One word for three containers: object + of = composition (what am I composed of), array + of = repetition (what repeats in me), enum + of = choice (what can I be). Composition, repetition, choice — there is no fourth. Not in physics. Not in mathematics. Not in programming.",
+                            "items": {
+                                "$ref": "#/$defs/term"
+                            }
+                        }
+                    },
+                    "dependentRequired": {
+                        "of": ["kind"]
+                    },
+                    "required": ["id", "comment"]
+                }
+            ]
+        }
+    }
+}
