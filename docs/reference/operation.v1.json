@@ -1,0 +1,33 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://thumbrise.github.io/op/reference/operation.v1.json",
+    "title": "OP Operation",
+    "description": "An operation is the fundamental primitive of computation — a named unit of work with typed input, typed output, and the possibility of failure. The same structure appears at every level: transistors, syscalls, functions, services, legal proceedings, speech acts. Op does not invent this structure. Op formalizes it.",
+    "allOf": [
+        {
+            "$ref": "https://thumbrise.github.io/op/reference/nota.v1.json"
+        },
+        {
+            "type": "object",
+            "properties": {
+                "input": {
+                    "$ref": "https://thumbrise.github.io/op/reference/rail.v1.json",
+                    "description": "The input rail. What goes into the operation."
+                },
+                "output": {
+                    "$ref": "https://thumbrise.github.io/op/reference/rail.v1.json",
+                    "description": "The output rail. What comes out on success."
+                },
+                "error": {
+                    "$ref": "https://thumbrise.github.io/op/reference/rail.v1.json",
+                    "description": "The error rail. What comes out on failure. Required — not by design, but by physics."
+                },
+                "trait": {
+                    "$ref": "https://thumbrise.github.io/op/reference/rail.v1.json",
+                    "description": "The trait rail. Opinions attached from outside. HTTP routes, gRPC services, auth requirements, rate limits, CLI flags — all are traits. Remove a trait — the operation does not change. Add a trait — the operation does not change."
+                }
+            },
+            "required": ["id", "comment", "input", "output", "error", "trait"]
+        }
+    ]
+}

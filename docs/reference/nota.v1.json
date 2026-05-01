@@ -1,0 +1,18 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://thumbrise.github.io/op/reference/nota.v1.json",
+    "title": "OP Nota",
+    "description": "A Nota is the minimal act of recognition — an id and a comment together. It does not describe, it testifies. It does not create a fact, it records one. Every element in Op that exists in human knowledge carries a Nota: a term, an operation, an instruction. The word comes from Latin 'nota' — a mark, a sign, a note. In Roman law, the censor's nota was an official mark placed beside a citizen's name, testifying to their standing without altering the law. In music, a nota is both instruction (which note to play) and action (recorded on the staff). In diplomacy, a nota is an official communication between states. Across two thousand years, humanity has used nota to mean: something exists, and I have marked it so.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "description": "Machine-readable identifier. Not a URL. Not a path. A name. Like an opcode names a CPU instruction, or a function name names a unit of work. 'id' was chosen over 'name' because name sounds human and approximate. Id is unambiguous. One word. One meaning. Without it, the thing is indistinguishable from noise."
+        },
+        "comment": {
+            "type": "string",
+            "description": "Human-readable note. Not a spec. Not a definition. A note. 'comment' was chosen over 'description' because description is a reserved keyword in JSON Schema with a different meaning. The comment is the bridge from fact to understanding — without it, the thing describes itself to machines; with it, to people. This is where humanity lives."
+        }
+    },
+    "required": ["id", "comment"]
+}

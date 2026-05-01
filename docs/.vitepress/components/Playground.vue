@@ -15,7 +15,7 @@ interface Snapshot {
 // key (dead weight), new ones land in the new key. Users lose history but
 // the page works. Cheap version negotiation via the storage key itself.
 const history = usePlaygroundHistory<Snapshot>({
-  storageKey: 'op:playground:v2',
+  storageKey: 'op:playground:v3',
   maxEntries: 50,
   debounceMs: 500,
 })
@@ -247,10 +247,16 @@ function removeOperation(i: number) {
 }
 
 // ── JSON export ────────────────────────────────────────
+const programId = ref('playground-instruction')
+const programComment = ref('Playground demonstration instruction')
+const programTraits = ref([] as Term[])
 const json = computed(() => {
   const instruction = {
+    id: programId.value,
+    comment: programComment.value,
     version: '1.0.0',
     operations: operations.value,
+    trait: programTraits.value,
   }
   return JSON.stringify(instruction, null, 2)
 })
@@ -291,7 +297,18 @@ function onJsonEdit(text: string) {
   const {value, errors} = validateJson(text)
 
   // Domain-level invariant: at least one operation.
-  const parsed = value as {operations?: unknown[]} | undefined
+  const parsed = value as {
+      id?: string
+      comment?: string
+      trait?: any[]
+      operations?: any[]
+    } | undefined
+
+  // Update program-level refs if present
+  if (parsed?.id && typeof parsed.id === 'string') programId.value = parsed.id
+  if (parsed?.comment && typeof parsed.comment === 'string') programComment.value = parsed.comment
+  if (parsed?.trait && Array.isArray(parsed.trait)) programTraits.value = parsed.trait.map(normalizeTerm)
+
   if (errors.length === 0 && (!parsed?.operations || parsed.operations.length === 0)) {
     errors.push(domainError('Instruction must contain at least one operation'))
   }
@@ -360,7 +377,7 @@ function confirmRemove() {
           🧹 Clear
         </button>
       </div>
-      <div class="pg-toolbar-status" :title="`Buffer stored in localStorage (op:playground:v2)`">
+      <div class="pg-toolbar-status" :title="`Buffer stored in localStorage (op:playground:v3)`">
         <span
           v-if="savedLabel"
           class="pg-toolbar-saved"
@@ -373,6 +390,21 @@ function confirmRemove() {
     <div class="pg">
     <!-- ── LEFT: Constructor ── -->
     <div ref="leftPanel" class="pg-left">
+      <!-- Program info -->
+      <div class="pg-section">
+        <label class="pg-label">program id</label>
+        <input v-model="programId" class="pg-input" placeholder="ProgramName" />
+      </div>
+      <div class="pg-section">
+        <label class="pg-label">program comment</label>
+        <input v-model="programComment" class="pg-input" placeholder="What does this program do?" />
+      </div>
+      <!-- Program traits -->
+      <div class="pg-section">
+        <label class="pg-label">program traits</label>
+        <TermEditor :terms="programTraits" />
+      </div>
+
       <!-- Operation list -->
       <div class="pg-ops">
         <div
