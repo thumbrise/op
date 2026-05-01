@@ -1,5 +1,5 @@
 {
-    "$schema": "https://thumbrise.github.io/op/schema/instruction.v1.json",
+    "$schema": "https://thumbrise.github.io/op/reference/instruction.v1.json",
     "version": "1.0.0",
     "operations": [
         {

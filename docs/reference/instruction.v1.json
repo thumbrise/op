@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://thumbrise.github.io/op/schema/instruction.v1.json",
+    "$id": "https://thumbrise.github.io/op/reference/instruction.v1.json",
     "title": "OP",
     "description": "Operation Protocol Instruction. A fully resolved, versioned unit that describes operations — the fundamental primitives of computation. Four rails per operation — input, output, error, trait — plus id and comment. One Term structure everywhere.",
     "type": "object",
