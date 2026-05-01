@@ -30,13 +30,3 @@ The watch is quiet again. Then: *confirmed. Tuesday at ten. Doctor Иванов�
 That is it. The whole exchange is maybe twelve seconds. Ольга stirs the pot. The pot accepts the spoon and gives back its small tide of steam. Лена goes back to her phone. The girl with the green pencil does not look up — she has not noticed that anything happened at all, and in the world she is growing into, nothing did happen. Things like this are not events. They are weather.
 
 In the courtyard the tram finishes braking and pulls away.
-
----
-
-*This is the dream of Sir Tim Berners-Lee.*
-
-*He wrote it down in 2001, at a desk, on an afternoon not unlike this one. He hoped that one day a daughter would speak to a small thing on her wrist, and the thing would find her mother a doctor — close to home, on the right insurance, on a day that fit the calendar — and say so, and book it, and that would be the end of the matter.*
-
-*Here is that day.*
-
-*The book that follows is set in it.*
