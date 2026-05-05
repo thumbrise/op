@@ -1,0 +1,12 @@
+{
+  "id": "ins_20260505_154655",
+  "text": "OP does not generalize Avro - bound to Avro serialization",
+  "tags": [
+    "rpc",
+    "bound",
+    "serialization"
+  ],
+  "scope": "work",
+  "created": "2026-05-05T15:46:55.554260",
+  "linked_node": "apache_avro"
+}

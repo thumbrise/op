@@ -1,0 +1,12 @@
+{
+  "id": "ins_20260505_154643",
+  "text": "OP does not generalize Thrift - bound to Thrift serialization",
+  "tags": [
+    "rpc",
+    "bound",
+    "serialization"
+  ],
+  "scope": "work",
+  "created": "2026-05-05T15:46:43.259572",
+  "linked_node": "apache_thrift"
+}

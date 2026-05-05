@@ -1,0 +1,250 @@
+{
+  "version": 1,
+  "description": "Memory index - maps node_id to memory_ids (traits, like OP traits)",
+  "updated": "2024-01-01",
+  "readme_berners_lee": [
+    "ins_20260505_154251",
+    "ins_20260505_155139_78"
+  ],
+  "corba_idl": [
+    "ins_20260505_154600",
+    "ins_20260505_155641"
+  ],
+  "wsdl": [
+    "ins_20260505_154612"
+  ],
+  "protobuf": [
+    "ins_20260505_154614"
+  ],
+  "readme_grpc": [
+    "ins_20260505_154617",
+    "ins_20260505_155139_69"
+  ],
+  "readme_openapi": [
+    "ins_20260505_154620",
+    "ins_20260505_155139_68"
+  ],
+  "graphql": [
+    "ins_20260505_154623"
+  ],
+  "smithy": [
+    "ins_20260505_154626"
+  ],
+  "apache_thrift": [
+    "ins_20260505_154631",
+    "ins_20260505_154643",
+    "ins_20260505_154652"
+  ],
+  "apache_avro": [
+    "ins_20260505_154631",
+    "ins_20260505_154655"
+  ],
+  "mcp": [
+    "ins_20260505_154631",
+    "ins_20260505_154700"
+  ],
+  "asyncapi": [
+    "ins_20260505_154631",
+    "ins_20260505_154704"
+  ],
+  "man_page_tradition": [
+    "ins_20260505_154631",
+    "ins_20260505_154704"
+  ],
+  "capnproto": [
+    "ins_20260505_154631",
+    "ins_20260505_154704"
+  ],
+  "grpc": [
+    "ins_20260505_154721"
+  ],
+  "openapi": [
+    "ins_20260505_154721",
+    "ins_20260505_154743_06"
+  ],
+  "jsonrpc": [
+    "ins_20260505_154721",
+    "ins_20260505_154743_72"
+  ],
+  "json_schema": [
+    "ins_20260505_154756_69"
+  ],
+  "fastapi": [
+    "ins_20260505_154756_81"
+  ],
+  "trpc": [
+    "ins_20260505_154756_84"
+  ],
+  "matrix_not_adapt": [
+    "ins_20260505_154936_28"
+  ],
+  "matrix_wasteful": [
+    "ins_20260505_154936_65"
+  ],
+  "brain_activates_needed_only": [
+    "ins_20260505_154936_06"
+  ],
+  "brain_optimizes": [
+    "ins_20260505_154936_26"
+  ],
+  "game_of_life": [
+    "ins_20260505_154936_77"
+  ],
+  "lenia_continuous": [
+    "ins_20260505_154936_01"
+  ],
+  "lenia_creatures_live": [
+    "ins_20260505_154936_33"
+  ],
+  "flow_lenia_conservation": [
+    "ins_20260505_154936_57"
+  ],
+  "substrate_neural_per_cell": [
+    "ins_20260505_154936_73"
+  ],
+  "op_not_matrix_agents": [
+    "ins_20260505_154936_18"
+  ],
+  "agents_live_not_calculate": [
+    "ins_20260505_154936_53"
+  ],
+  "agent_zero_matrices": [
+    "ins_20260505_154936_21"
+  ],
+  "brain_is_runtime_not_computer": [
+    "ins_20260505_154936_63"
+  ],
+  "book_matrices_dead_cells_future": [
+    "ins_20260505_154942_05"
+  ],
+  "game_of_life_economy": [
+    "ins_20260505_154942_69"
+  ],
+  "brain_orchestra": [
+    "ins_20260505_154942_45"
+  ],
+  "brain_components_dance": [
+    "ins_20260505_154942_85"
+  ],
+  "program_cell": [
+    "ins_20260505_154942_37"
+  ],
+  "program_emergent_ecosystem": [
+    "ins_20260505_154942_85"
+  ],
+  "op_protocol": [
+    "ins_20260505_155125_85"
+  ],
+  "trait_system": [
+    "ins_20260505_155125_73",
+    "ins_20260505_155132_44"
+  ],
+  "five_fields_primitive": [
+    "ins_20260505_155125_85",
+    "ins_20260505_155132_96"
+  ],
+  "layers_welded_shut": [
+    "ins_20260505_155125_90"
+  ],
+  "op_gravity_economics": [
+    "ins_20260505_155125_76"
+  ],
+  "ai_has_economy": [
+    "ins_20260505_155125_83"
+  ],
+  "ai_makes_discovery": [
+    "ins_20260505_155125_75"
+  ],
+  "son_makes_discovery": [
+    "ins_20260505_155125_73"
+  ],
+  "reflex_primitive": [
+    "ins_20260505_155125_40"
+  ],
+  "reflex_is_primitive": [
+    "ins_20260505_155125_54"
+  ],
+  "program_roots_operations": [
+    "ins_20260505_155125_01"
+  ],
+  "desert_tree_roots": [
+    "ins_20260505_155125_88"
+  ],
+  "op_water_for_roots": [
+    "ins_20260505_155125_97"
+  ],
+  "n_plus_m_topology": [
+    "ins_20260505_155125_11",
+    "ins_20260505_155132_20"
+  ],
+  "open_closed": [
+    "ins_20260505_155125_35"
+  ],
+  "single_responsibility": [
+    "ins_20260505_155125_97"
+  ],
+  "fail_early": [
+    "ins_20260505_155125_43"
+  ],
+  "safe_zero_values": [
+    "ins_20260505_155125_28"
+  ],
+  "universal_milestone_1": [
+    "ins_20260505_155125_87",
+    "ins_20260505_155139_74"
+  ],
+  "universal_milestone_2": [
+    "ins_20260505_155125_39",
+    "ins_20260505_155139_46"
+  ],
+  "universal_milestone_3": [
+    "ins_20260505_155125_12",
+    "ins_20260505_155139_75"
+  ],
+  "five_fields_treaty": [
+    "ins_20260505_155132_01"
+  ],
+  "n_plus_m_economics": [
+    "ins_20260505_155132_97"
+  ],
+  "n_plus_m_for_agents": [
+    "ins_20260505_155132_10"
+  ],
+  "readme_operation_protocol": [
+    "ins_20260505_155139_22"
+  ],
+  "readme_five_fields": [
+    "ins_20260505_155139_58"
+  ],
+  "readme_n_plus_m": [
+    "ins_20260505_155139_01"
+  ],
+  "readme_trpc": [
+    "ins_20260505_155139_89"
+  ],
+  "agents_knowledge_base": [
+    "ins_20260505_155139_88"
+  ],
+  "agents_fallback_rule": [
+    "ins_20260505_155139_18"
+  ],
+  "review_code_style": [
+    "ins_20260505_155139_65"
+  ],
+  "universal_roadmap": [
+    "ins_20260505_155139_24"
+  ],
+  "docs_faq": [
+    "ins_20260505_155139_93",
+    "ins_20260505_161259_192982"
+  ],
+  "docs_idea": [
+    "ins_20260505_155139_69"
+  ],
+  "we_invented_neural_network": [
+    "ins_20260505_160323"
+  ],
+  "Playground": [
+    "ins_20260505_190410_6e1ff6"
+  ]
+}

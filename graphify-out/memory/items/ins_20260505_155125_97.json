@@ -1,0 +1,12 @@
+{
+  "id": "ins_20260505_155125_97",
+  "text": "Single Responsibility - one purpose per module",
+  "tags": [
+    "responsibility",
+    "purpose",
+    "module"
+  ],
+  "scope": "work",
+  "created": "2026-05-05T15:51:25.654627",
+  "linked_node": "single_responsibility"
+}

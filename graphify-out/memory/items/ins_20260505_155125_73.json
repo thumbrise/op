@@ -1,0 +1,12 @@
+{
+  "id": "ins_20260505_155125_73",
+  "text": "Child/agent makes discoveries - learns from environment",
+  "tags": [
+    "learning",
+    "environment",
+    "adapt"
+  ],
+  "scope": "work",
+  "created": "2026-05-05T15:51:25.645400",
+  "linked_node": "son_makes_discovery"
+}

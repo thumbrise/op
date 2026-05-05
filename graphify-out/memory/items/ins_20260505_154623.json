@@ -1,0 +1,12 @@
+{
+  "id": "ins_20260505_154623",
+  "text": "OP does not generalize GraphQL - bound to Query/Mutation runtime",
+  "tags": [
+    "rpc",
+    "bound",
+    "runtime"
+  ],
+  "scope": "work",
+  "created": "2026-05-05T15:46:23.064602",
+  "linked_node": "graphql"
+}
