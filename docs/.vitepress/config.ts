@@ -10,6 +10,20 @@ export default withMermaid(defineConfig({
   },
   description: 'Anything-agnostic operation protocol. For operations-driven future.',
   base: '/op/',
+
+  vite: {
+    plugins: process.env.NODE_ENV === 'production' ? [
+      viteStaticCopy({
+        targets: [
+          {
+            src: 'reference/*.json',
+            dest: 'reference'
+          }
+        ]
+      })
+    ] : []
+  },
+
   mermaid: {
     flowchart: {
       useMaxWidth: false,
