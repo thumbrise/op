@@ -1,0 +1,12 @@
+{
+  "id": "ins_20260505_154721",
+  "text": "OP does not generalize JSON-RPC - bound to JSON and HTTP",
+  "tags": [
+    "rpc",
+    "bound",
+    "format"
+  ],
+  "scope": "work",
+  "created": "2026-05-05T15:47:21.999360",
+  "linked_node": "jsonrpc"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "ins_20260505_155139_68",
+  "text": "OpenAPI is trait - HTTP transport bound",
+  "tags": [
+    "trait",
+    "http",
+    "transport"
+  ],
+  "scope": "work",
+  "created": "2026-05-05T15:51:39.907282",
+  "linked_node": "readme_openapi"
+}

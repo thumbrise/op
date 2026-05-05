@@ -1,0 +1,12 @@
+{
+  "id": "ins_20260505_155125_28",
+  "text": "Safe zero values - initialize to avoid crashes",
+  "tags": [
+    "zero",
+    "init",
+    "safety"
+  ],
+  "scope": "work",
+  "created": "2026-05-05T15:51:25.656747",
+  "linked_node": "safe_zero_values"
+}

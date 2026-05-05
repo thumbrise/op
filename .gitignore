@@ -1,2 +1,5 @@
 .idea
 node_modules
+.DS_Store
+graphify-out/manifest.json
+graphify-out/cost.json

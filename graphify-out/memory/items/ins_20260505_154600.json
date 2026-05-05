@@ -1,0 +1,13 @@
+{
+  "id": "ins_20260505_154600",
+  "text": "OP does not generalize CORBA IDL - bound to CORBA runtime transport",
+  "tags": [
+    "rpc",
+    "bound",
+    "transport"
+  ],
+  "scope": "work",
+  "created": "2026-05-05T15:46:00.592765",
+  "linked_node": "corba_idl",
+  "superseded_by": "ins_20260505_155641"
+}
