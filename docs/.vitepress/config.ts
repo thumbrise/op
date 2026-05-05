@@ -1,9 +1,13 @@
 import {defineConfig} from 'vitepress'
 import {withMermaid} from 'vitepress-plugin-mermaid'
 import {viteStaticCopy} from 'vite-plugin-static-copy'
+import path from 'path'
 
 export default withMermaid(defineConfig({
   title: 'op',
+  alias: {
+    '@op-sdk': path.resolve(__dirname, '../../sdk/ts/op.ts'),
+  },
   description: 'Anything-agnostic operation protocol. For operations-driven future.',
   base: '/op/',
   mermaid: {
@@ -142,6 +146,7 @@ export default withMermaid(defineConfig({
           text: 'Form Of Rail',
           items: [
             {text: 'About', link: '/notes/form-of-rail/'},
+            {text: '#001 — The Rails', link: '/notes/form-of-rail/001-the-rails'},
           ],
         },
       ],
@@ -173,6 +178,7 @@ export default withMermaid(defineConfig({
             {text: '#21 — Equality', link: '/notes/universal/021-all-programs-are-equal'},
             {text: '#22 — Nothing', link: '/notes/universal/022-why-nothing-lands'},
             {text: '#23 — Treaty', link: '/notes/universal/023-treaty-of-five'},
+            {text: '#24 — Banana', link: '/notes/universal/024-banana'},
           ],
         },
       ],

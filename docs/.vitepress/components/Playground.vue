@@ -2,132 +2,161 @@
 import {ref, computed, watch, onMounted, onBeforeUnmount} from 'vue'
 import JsonEditor from './playground/JsonEditor.vue'
 import {validateJson, domainError, type PlaygroundError} from './playground/jsonValidation'
-import {usePlaygroundHistory} from './playground/usePlaygroundHistory'
-import {demoOperations, emptyOperation as emptyOp, type Operation, type Term} from './playground/demoOperations'
+import {useHistory} from './playground/useHistory'
+import {presets, emptyOperation as emptyOp} from './playground/presets'
+import { jsonCodec } from '../packages/opformat/json'
+import type {Instruction, Operation, Term} from '@op-sdk'
 
-// ── History / persistence ──────────────────────────────
-interface Snapshot {
+// ── Consolidated Program model ─────────────────────────
+interface Program {
+  version: string
+  id: string
+  comment: string
+  trait: Term[]
   operations: Operation[]
   activeIndex: number
 }
 
-// Bump `v1 → v2` when the Snapshot shape changes. Old buffers stay on the old
-// key (dead weight), new ones land in the new key. Users lose history but
-// the page works. Cheap version negotiation via the storage key itself.
-const history = usePlaygroundHistory<Snapshot>({
-  storageKey: 'op:playground:v3',
-  maxEntries: 50,
-  debounceMs: 500,
-})
-
-/**
- * Normalize a Term recursively — every level gets sane defaults. Missing
- * fields stay undefined (they are all optional except id), arrays get reset
- * to [] if they come back as anything else.
- */
-function normalizeTerm(raw: any): Term {
-  const t: Term = {id: typeof raw?.id === 'string' ? raw.id : ''}
-  if (typeof raw?.comment === 'string') t.comment = raw.comment
-  if (typeof raw?.required === 'boolean') t.required = raw.required
-  if (typeof raw?.kind === 'string') t.kind = raw.kind
-  if (raw?.value !== undefined && raw?.value !== null) t.value = raw.value
-  if (Array.isArray(raw?.of)) t.of = raw.of.map(normalizeTerm)
-  return t
-}
-
-/**
- * Normalize anything loosely shaped like an operation to the current form.
- * Handles:
- *   - missing rails (undefined → empty array so `v-for` doesn't crash)
- *   - legacy field names from pre-devlog-018 buffers (`errors`, `traits`)
- *   - raw JSON imports where some fields were omitted
- *   - corrupted Term trees deep inside rails (each term goes through normalizeTerm)
- * The storageKey bump above is the primary defence; this is a belt-and-braces
- * guard against corrupted/hand-edited localStorage.
- */
-function normalizeOperation(raw: any): Operation {
-  const normalizeRail = (v: any): Term[] => (Array.isArray(v) ? v.map(normalizeTerm) : [])
+// Convert Instruction ↔ Program
+function instructionToProgram(instruction: Instruction): Program {
   return {
-    id: typeof raw?.id === 'string' ? raw.id : '',
-    comment: typeof raw?.comment === 'string' ? raw.comment : '',
-    input: normalizeRail(raw?.input),
-    output: normalizeRail(raw?.output),
-    error: normalizeRail(raw?.error ?? raw?.errors),
-    trait: normalizeRail(raw?.trait ?? raw?.traits),
+    version: instruction.version,
+    id: instruction.id,
+    comment: instruction.comment,
+    trait: instruction.trait,
+    operations: instruction.operations,
+    activeIndex: 0,
   }
 }
 
-// ── State ──────────────────────────────────────────────
+function programToInstruction(program: Program): Instruction {
+  return {
+    version: program.version,
+    id: program.id,
+    comment: program.comment,
+    trait: program.trait,
+    operations: program.operations,
+  }
+}
+
+// ── History / persistence ──────────────────────────────
+interface Snapshot extends Program {}
+
+// Bump `v1 → v2` when the Snapshot shape changes. Old buffers stay on the old
+// key (dead weight), new ones land in the new key. Users lose history but
+// the page works. Cheap version negotiation via the storage key itself.
+const {
+  current,
+  canUndo,
+  canRedo,
+  savedAt,
+  bufferBytes,
+  snapshot,
+  undo,
+  redo,
+  clear,
+} = useHistory<Snapshot>({
+  storageKey: 'op:playground:v3',
+  maxEntries: 50,
+})
+
 // Seed: either the last state from a previous session, or the demo fixture.
-// Deep clone is critical — otherwise `operations.value` shares the same object
-// as `history.entries[cursor].operations`. Every form edit would mutate both,
-// the dedup check `equals(head, state)` would always return true, and no new
-// snapshot would ever be recorded (only JSON-editor commits via `operations.value =`
-// would break the shared reference and land in the buffer).
-// Hydrate from storage inside try/catch — a silent throw here leaves the
-// whole component unmounted (white screen with no console error). Falling
-// back to the demo fixture is safer than crashing.
-let seed: Snapshot
+let seed: Program
 try {
-  const storedSeed = history.current.value
-  // normalizeOperation creates fresh objects (it rebuilds each term), so the
-  // resulting `seed.operations` is a new tree disconnected from the one
-  // stored inside history.entries. Subsequent form edits mutate seed only;
-  // the history buffer stays immutable.
+  const storedSeed = current.value as Program
   seed = storedSeed
     ? {
-        operations: storedSeed.operations.map(normalizeOperation),
+        version: storedSeed.version,
+        id: storedSeed.id,
+        comment: storedSeed.comment,
+        trait: storedSeed.trait,
+        operations: storedSeed.operations,
         activeIndex: storedSeed.activeIndex,
       }
-    : {operations: demoOperations(), activeIndex: 0}
+    : {
+        version: '1.0.0',
+        id: 'dog-shop',
+        comment: 'Dog Shop API — demonstrates HTTP, CLI, errors, nested objects',
+        trait: [],
+        operations: JSON.parse(presets[0].json).operations,
+        activeIndex: 0,
+      }
 } catch (err) {
-  console.error('[Playground] failed to hydrate from storage, falling back to demo:', err)
-  history.clear()
-  seed = {operations: demoOperations(), activeIndex: 0}
+  console.error('[Playground] failed to hydrate from storage, falling back to preset:', err)
+  seed = {
+    version: '1.0.0',
+    id: 'dog-shop',
+    comment: 'Dog Shop API — demonstrates HTTP, CLI, errors, nested objects',
+    trait: [],
+    operations: JSON.parse(presets[0].json).operations,
+    activeIndex: 0,
+  }
 }
-const operations = ref<Operation[]>(seed.operations)
-const activeIndex = ref(
-  // Clamp after normalize — if the stored index points past the end of a
-  // corrupted buffer, fall back to 0 instead of rendering `undefined`.
-  Math.max(0, Math.min(seed.activeIndex, seed.operations.length - 1)),
-)
+
+// Consolidated Program ref
+const program = ref<Program>({
+  version: seed.version,
+  id: seed.id,
+  comment: seed.comment,
+  trait: seed.trait,
+  operations: seed.operations,
+  activeIndex: Math.max(0, Math.min(seed.activeIndex, seed.operations.length - 1)),
+})
+
+// ── State ──────────────────────────────────────────────
 
 // If we seeded from demo (nothing in storage), record the initial snapshot
 // so undo cannot empty the buffer.
-if (history.current.value === null) {
-  history.snapshot({operations: operations.value, activeIndex: activeIndex.value})
+if (current.value === null) {
+  snapshot({
+    operations: program.value.operations,
+    activeIndex: program.value.activeIndex,
+    id: program.value.id,
+    comment: program.value.comment,
+    trait: program.value.trait,
+  })
 }
 
 // Any change to the model → new snapshot (deduped inside the composable).
 // Deep watch catches nested edits to Term arrays through TermEditor.
 let applyingSnapshot = false
 watch(
-  [operations, activeIndex],
-  () => {
-    if (applyingSnapshot) return
-    history.snapshot({operations: operations.value, activeIndex: activeIndex.value})
-  },
-  {deep: true},
+    program,
+    () => {
+      if (applyingSnapshot) return
+      snapshot({ ...program.value })
+    },
+    { deep: true }
 )
 
 function applySnapshot(s: Snapshot | null) {
   if (!s) return
   applyingSnapshot = true
-  // JSON clone — Vue reactive proxies sometimes make structuredClone throw
-  // DataCloneError. Our snapshots are plain data, so the round-trip is safe.
-  operations.value = JSON.parse(JSON.stringify(s.operations))
-  activeIndex.value = s.activeIndex
+  program.value.operations = JSON.parse(JSON.stringify(s.operations))
+  program.value.activeIndex = Math.max(0, Math.min(s.activeIndex, program.value.operations.length - 1))
+
   // Release on next microtask so Vue's watchers fire with applyingSnapshot=true.
   queueMicrotask(() => {
     applyingSnapshot = false
   })
 }
-
+function manualSave() {
+  snapshot({
+    operations: program.value.operations,
+    activeIndex: program.value.activeIndex,
+    id: program.value.id,
+    comment: program.value.comment,
+    trait: program.value.trait,
+  })
+  // UI feedback – same pulse used for auto‑save
+  saveAck.value = true
+  setTimeout(() => (saveAck.value = false), 1200)
+}
 function onUndo() {
-  applySnapshot(history.undo())
+  applySnapshot(undo())
 }
 function onRedo() {
-  applySnapshot(history.redo())
+  applySnapshot(redo())
 }
 /**
  * Clear everything — buffer, localStorage, all operations. Leaves a single
@@ -135,31 +164,82 @@ function onRedo() {
  */
 function clearAll() {
   if (!confirm('Clear all operations and history? This cannot be undone.')) return
-  history.clear()
+  clear()
   applyingSnapshot = true
-  operations.value = [emptyOp()]
-  activeIndex.value = 0
+  program.value.operations = [emptyOp()]
+  program.value.activeIndex = 0
   queueMicrotask(() => {
     applyingSnapshot = false
-    history.snapshot({operations: operations.value, activeIndex: activeIndex.value})
+    snapshot({
+      operations: program.value.operations,
+      activeIndex: program.value.activeIndex,
+      id: "",
+      comment: "",
+      trait: [],
+    })
   })
 }
 
 /**
- * Append the tutorial demo operations to whatever the user already has. Never
- * destructive. Duplicate ids get a numeric suffix so the user can tell them
- * apart.
+ * Apply preset — replaces entire model after confirm.
+ * This is the new behavior (vs old append).
  */
-function loadTutorial() {
-  const existingIds = new Set(operations.value.map((o) => o.id))
-  const demos = demoOperations().map((o) => {
-    if (!existingIds.has(o.id)) return o
-    let suffix = 2
-    while (existingIds.has(`${o.id}${suffix}`)) suffix++
-    return {...o, id: `${o.id}${suffix}`}
+function applyPreset(index: number) {
+  const preset = presets[index]
+  const instruction = JSON.parse(preset.json)
+
+  if (!confirm(`Apply ${preset.name} preset? ⚠️ This will replace the entire model. ⚠️`)) {
+    return
+  }
+
+  // Replace entire state
+program.value.id = instruction.id
+program.value.comment = instruction.comment
+program.value.trait = instruction.trait
+program.value.operations = instruction.operations
+program.value.activeIndex = 0
+
+  // Add to history
+  snapshot({
+    version: program.value.version,
+    operations: program.value.operations,
+    activeIndex: program.value.activeIndex,
+    id: program.value.id,
+    comment: program.value.comment,
+    trait: program.value.trait,
   })
-  operations.value = [...operations.value, ...demos]
-  activeIndex.value = operations.value.length - demos.length
+}
+
+/**
+ * Apply JSON string to model — full replacement.
+ * Used by: JSON view "Apply to model" button, preset loading.
+ */
+function applyJSON(jsonString: string): boolean {
+  const result = jsonCodec.decode(jsonString)
+
+  if (!result.success) {
+    jsonErrors.value = [{
+      kind: 'schema',
+      message: result.error.message,
+      path: result.error.path,
+    }]
+    return false
+  }
+
+  const instruction = result.value
+
+  // Apply to model
+  program.value.version = instruction.version
+  program.value.id = instruction.id
+  program.value.comment = instruction.comment
+  program.value.trait = instruction.trait
+  program.value.operations = instruction.operations
+  program.value.activeIndex = 0
+
+  // Add to history
+  snapshot({ ...program.value })
+
+  return true
 }
 
 // Human-friendly "saved 3s ago" indicator.
@@ -186,21 +266,18 @@ function isEditableTarget(t: EventTarget | null): boolean {
 }
 
 function onKeydown(e: KeyboardEvent) {
-  // Ctrl+S / Cmd+S
+  // Ctrl+S / Cmd+S → manual save
   if ((e.ctrlKey || e.metaKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 's') {
     e.preventDefault()
-    saveAck.value = true
-    setTimeout(() => {
-      saveAck.value = false
-    }, 1200)
+    manualSave()
     return
   }
-  // Backspace outside of editable controls
+
+  // Backspace outside of editable controls → prevent navigation
   if (e.key === 'Backspace' && !isEditableTarget(e.target)) {
     e.preventDefault()
   }
 }
-
 onMounted(() => {
   nowTimer = setInterval(() => {
     now.value = Date.now()
@@ -214,7 +291,7 @@ onBeforeUnmount(() => {
 })
 
 const savedLabel = computed(() => {
-  const t = history.savedAt.value
+  const t = savedAt.value
   if (!t) return ''
   const ago = Math.max(0, Math.floor((now.value - t) / 1000))
   if (ago < 2) return 'Saved just now'
@@ -224,39 +301,35 @@ const savedLabel = computed(() => {
 })
 
 const bufferLabel = computed(() => {
-  const b = history.bufferBytes.value
+  const b = bufferBytes.value
   if (b === 0) return ''
   if (b < 1024) return `${b} B`
   if (b < 1024 * 1024) return `${(b / 1024).toFixed(1)} KB`
   return `${(b / 1024 / 1024).toFixed(2)} MB`
 })
 
-const op = computed(() => operations.value[activeIndex.value])
+const op = computed(() => program.value.operations[program.value.activeIndex])
 
 function addOperation() {
-  operations.value.push(emptyOp())
-  activeIndex.value = operations.value.length - 1
+  program.value.operations.push(emptyOp())
+  program.value.activeIndex = program.value.operations.length - 1
 }
 
 function removeOperation(i: number) {
-  if (operations.value.length <= 1) return
-  operations.value.splice(i, 1)
-  if (activeIndex.value >= operations.value.length) {
-    activeIndex.value = operations.value.length - 1
+  if (program.value.operations.length <= 1) return
+  program.value.operations.splice(i, 1)
+  if (program.value.activeIndex >= program.value.operations.length) {
+    program.value.activeIndex = program.value.operations.length - 1
   }
 }
 
-// ── JSON export ────────────────────────────────────────
-const programId = ref('playground-instruction')
-const programComment = ref('Playground demonstration instruction')
-const programTraits = ref([] as Term[])
 const json = computed(() => {
   const instruction = {
-    id: programId.value,
-    comment: programComment.value,
+    id: program.value.id,
+    comment: program.value.comment,
     version: '1.0.0',
-    operations: operations.value,
-    trait: programTraits.value,
+    operations: program.value.operations,
+    trait: program.value.trait,
   }
   return JSON.stringify(instruction, null, 2)
 })
@@ -274,7 +347,7 @@ const jsonDraft = ref('')
 // Re-seed the draft from `json` whenever the user switches to JSON view
 // or changes the active operation — i.e. when the source of truth may have
 // changed outside the textarea.
-watch([showJson, activeIndex], ([visible]) => {
+watch([showJson, () => program.value.activeIndex], ([visible]) => {
   if (visible) {
     jsonDraft.value = json.value
     jsonErrors.value = []
@@ -282,7 +355,9 @@ watch([showJson, activeIndex], ([visible]) => {
 }, {immediate: true})
 
 function copyJson() {
-  navigator.clipboard.writeText(jsonDraft.value || json.value)
+  void navigator.clipboard.writeText(jsonDraft.value || json.value).catch(() => {
+      alert("clipboard not available in you browser")
+  })
 }
 
 function resetJson() {
@@ -304,23 +379,21 @@ function onJsonEdit(text: string) {
       operations?: any[]
     } | undefined
 
-  // Update program-level refs if present
-  if (parsed?.id && typeof parsed.id === 'string') programId.value = parsed.id
-  if (parsed?.comment && typeof parsed.comment === 'string') programComment.value = parsed.comment
-  if (parsed?.trait && Array.isArray(parsed.trait)) programTraits.value = parsed.trait.map(normalizeTerm)
-
-  if (errors.length === 0 && (!parsed?.operations || parsed.operations.length === 0)) {
+  // Domain-level invariant: at least one operation.
+  if (!parsed?.operations || parsed.operations.length === 0) {
     errors.push(domainError('Instruction must contain at least one operation'))
   }
 
   jsonErrors.value = errors
   if (errors.length > 0) return
 
-  // All clean — commit to the model.
-  const nextOps: Operation[] = (parsed!.operations as any[]).map(normalizeOperation)
-  operations.value = nextOps
-  if (activeIndex.value >= operations.value.length) {
-    activeIndex.value = operations.value.length - 1
+  // Update program-level refs if present
+  if (parsed?.id && typeof parsed.id === 'string') program.value.id = parsed.id
+  if (parsed?.comment && typeof parsed.comment === 'string') program.value.comment = parsed.comment
+  if (parsed?.trait && Array.isArray(parsed.trait)) program.value.trait = parsed.trait as Term[]
+  if (parsed?.operations) program.value.operations = parsed.operations as Operation[]
+  if (program.value.activeIndex >= program.value.operations.length) {
+    program.value.activeIndex = program.value.operations.length - 1
   }
 }
 
@@ -328,7 +401,7 @@ function onJsonEdit(text: string) {
 // Track expanded traits by reference, not index — indices shift when traits are
 // added/removed from anywhere (left TermEditor, right JSON panel, etc.).
 const expandedTraits = ref<Set<Term>>(new Set())
-watch(activeIndex, () => expandedTraits.value.clear())
+watch(() => program.value.activeIndex, () => expandedTraits.value.clear())
 
 function toggleTrait(term: Term) {
   if (expandedTraits.value.has(term)) {
@@ -341,16 +414,18 @@ function toggleTrait(term: Term) {
 function confirmRemove() {
   const name = op.value.id || 'this operation'
   if (confirm(`Remove "${name}"?`)) {
-    removeOperation(activeIndex.value)
+    removeOperation(program.value.activeIndex)
   }
 }
 </script>
 
 <template>
   <div class="pg-wrapper">
-    <div class="pg-header">
-      <h1>Playground</h1>
-      <p>Build an instruction. See it live. Remove a trait — the operation does not change.</p>
+    <div class="pg-unavailable-full">
+      <div class="pg-unavailable-icon">🏗️</div>
+      <h2>Playground Temporarily Unavailable</h2>
+      <p>Dima is building a proper sandbox on a separate domain.</p>
+      <p class="pg-unavailable-sub">We'll be back with a much better experience.</p>
     </div>
 
     <!-- ── Tool bar: history + storage ── -->
@@ -358,20 +433,20 @@ function confirmRemove() {
       <div class="pg-toolbar-group">
         <button
           class="pg-tool"
-          :disabled="!history.canUndo.value"
+          :disabled="!canUndo.value"
           @click="onUndo"
           title="Undo"
         >↶ Undo</button>
         <button
           class="pg-tool"
-          :disabled="!history.canRedo.value"
+          :disabled="!canRedo.value"
           @click="onRedo"
           title="Redo"
         >↷ Redo</button>
       </div>
       <div class="pg-toolbar-group">
-        <button class="pg-tool" @click="loadTutorial" title="Append the tutorial operations">
-          📚 Tutorial
+        <button class="pg-tool" @click="applyPreset(0)" title="Apply Dog Shop preset">
+          📚 Apply Preset
         </button>
         <button class="pg-tool pg-tool--danger" @click="clearAll" title="Wipe all operations and history">
           🧹 Clear
@@ -393,26 +468,26 @@ function confirmRemove() {
       <!-- Program info -->
       <div class="pg-section">
         <label class="pg-label">program id</label>
-        <input v-model="programId" class="pg-input" placeholder="ProgramName" />
+        <input v-model="program.id" class="pg-input" placeholder="ProgramName" />
       </div>
       <div class="pg-section">
         <label class="pg-label">program comment</label>
-        <input v-model="programComment" class="pg-input" placeholder="What does this program do?" />
+        <input v-model="program.comment" class="pg-input" placeholder="What does this program do?" />
       </div>
       <!-- Program traits -->
       <div class="pg-section">
         <label class="pg-label">program traits</label>
-        <TermEditor :terms="programTraits" />
+        <TermEditor :terms="program.trait" />
       </div>
 
       <!-- Operation list -->
       <div class="pg-ops">
         <div
-          v-for="(o, i) in operations"
+          v-for="(o, i) in program.operations"
           :key="i"
           class="pg-ops-item"
-          :class="{'pg-ops-item--active': i === activeIndex}"
-          @click="activeIndex = i"
+          :class="{'pg-ops-item--active': i === program.activeIndex}"
+          @click="program.activeIndex = i"
         >
           <span class="pg-ops-item-id">{{ o.id || '…' }}</span>
           <span v-if="o.comment" class="pg-ops-item-comment">{{ o.comment }}</span>
@@ -437,7 +512,7 @@ function confirmRemove() {
       </div>
 
       <!-- Actions -->
-      <div v-if="operations.length > 1" class="pg-section pg-json-section">
+      <div v-if="program.operations.length > 1" class="pg-section pg-json-section">
         <button
           class="pg-btn pg-btn-danger"
           @click="confirmRemove"
@@ -569,6 +644,37 @@ function confirmRemove() {
   max-width: 100%;
   padding: 24px 32px 48px;
   box-sizing: border-box;
+}
+.pg-unavailable-full {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 48px;
+  background: var(--vp-c-bg-soft);
+  border: 1px dashed var(--vp-c-divider);
+  border-radius: 12px;
+}
+.pg-unavailable-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+.pg-unavailable-full h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+}
+.pg-unavailable-full p {
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: var(--vp-c-text-2);
+}
+.pg-unavailable-sub {
+  color: var(--vp-c-text-3) !important;
+  font-size: 14px !important;
 }
 .pg-header {
   margin-bottom: 24px;
