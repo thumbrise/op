@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Endpoint\Web\Request;
 
-use Spiral\Filter\Filterable;
+use Spiral\Filters\Model\FilterInterface;
 
-final class OrderListRequest implements Filterable
+final class OrderListRequest implements FilterInterface
 {
     public ?string $status = null;
 

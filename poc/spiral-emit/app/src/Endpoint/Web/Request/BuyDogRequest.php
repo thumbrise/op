@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Endpoint\Web\Request;
 
-use Spiral\Filter\Filterable;
+use Spiral\Filters\Model\FilterInterface;
 
-final class BuyDogRequest implements Filterable
+final class BuyDogRequest implements FilterInterface
 {
     public string $breed;
 

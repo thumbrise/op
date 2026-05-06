@@ -13,18 +13,28 @@ dotenv: [
 
 tasks:
   c:
-    desc: docker compose и аргументы. Рабочий пример [task c -- up -d]. -- обязательно.
+    desc: docker compose and args. Example [task c -- up -d]. -- mandatory.
     cmd: docker compose {{.CLI_ARGS}}
 
   bash:
-    desc: Войти в терминал app.
+    desc: Application terminal
     interactive: true
     cmd: task c -- run --rm -it php bash
 
   up:
-    desc: Поднять окружение.
+    desc: Up application
     cmd: task c -- up -d --build
 
   down:
-    desc: Остановить окружение.
+    desc: Down application
     cmd: task c -- down --remove-orphans
+
+  emit:
+    desc: emit instruction
+    cmds:
+      - task c -- exec roadrunner php app.php op:i:e | jq
+
+  emit-validate:
+    desc: emit instruction and validate
+    cmds:
+      - task emit | tee /dev/stderr | check-jsonschema --schemafile https://thumbrise.github.io/op/reference/instruction.v1.json -
