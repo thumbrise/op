@@ -13,7 +13,6 @@ use Spiral\Exceptions\Renderer\ConsoleRenderer;
 use Spiral\Exceptions\Renderer\JsonRenderer;
 use Spiral\Exceptions\Reporter\FileReporter;
 use Spiral\Exceptions\Reporter\LoggerReporter;
-use Spiral\Http\ErrorHandler\PlainRenderer;
 use Spiral\Http\ErrorHandler\RendererInterface;
 use Spiral\Http\Middleware\ErrorHandlerMiddleware\EnvSuppressErrors;
 use Spiral\Http\Middleware\ErrorHandlerMiddleware\SuppressErrorsInterface;
@@ -21,19 +20,18 @@ use Spiral\Http\Middleware\ErrorHandlerMiddleware\SuppressErrorsInterface;
 /**
  * The exception handler bootloader is responsible for registering the exception renderers and reporters.
  *
- * @link https://spiral.dev/docs/basics-errors
+ * @see https://spiral.dev/docs/basics-errors
  */
 final class ExceptionHandlerBootloader extends Bootloader
 {
     protected const BINDINGS = [
         SuppressErrorsInterface::class => EnvSuppressErrors::class,
-        RendererInterface::class => ViewRenderer::class,
+        RendererInterface::class       => ViewRenderer::class,
     ];
 
     public function __construct(
         private readonly ExceptionHandler $handler,
-    ) {
-    }
+    ) {}
 
     public function init(AbstractKernel $kernel): void
     {

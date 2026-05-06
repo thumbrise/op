@@ -7,6 +7,7 @@ namespace App\Infrastructure\CycleORM\Typecaster;
 use Cycle\Database\DatabaseInterface;
 use Cycle\ORM\Parser\CastableInterface;
 use Cycle\ORM\Parser\UncastableInterface;
+use Override;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -18,11 +19,11 @@ final class UuidTypecast implements CastableInterface, UncastableInterface
         private readonly DatabaseInterface $database,
     ) {}
 
-    #[\Override]
+    #[Override]
     public function setRules(array $rules): array
     {
         foreach ($rules as $key => $rule) {
-            if ($rule === 'uuid') {
+            if ('uuid' === $rule) {
                 unset($rules[$key]);
                 $this->rules[$key] = $rule;
             }
@@ -31,11 +32,11 @@ final class UuidTypecast implements CastableInterface, UncastableInterface
         return $rules;
     }
 
-    #[\Override]
+    #[Override]
     public function cast(array $data): array
     {
         foreach ($this->rules as $column => $_) {
-            if (!isset($data[$column])) {
+            if (! isset($data[$column])) {
                 continue;
             }
 
@@ -45,11 +46,11 @@ final class UuidTypecast implements CastableInterface, UncastableInterface
         return $data;
     }
 
-    #[\Override]
+    #[Override]
     public function uncast(array $data): array
     {
         foreach ($this->rules as $column => $_) {
-            if (!isset($data[$column]) || !$data[$column] instanceof UuidInterface) {
+            if (! isset($data[$column]) || ! $data[$column] instanceof UuidInterface) {
                 continue;
             }
 

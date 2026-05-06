@@ -62,7 +62,10 @@
         "psalm": "psalm",
         "psalm:baseline": "psalm --set-baseline=psalm-baseline.xml",
         "test": "phpunit",
-        "test-coverage": "phpunit --coverage"
+        "test-coverage": "phpunit --coverage",
+        "lint": [
+            "@php vendor/bin/php-cs-fixer fix"
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true

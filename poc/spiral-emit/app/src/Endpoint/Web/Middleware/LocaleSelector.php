@@ -4,11 +4,18 @@ declare(strict_types=1);
 
 namespace App\Endpoint\Web\Middleware;
 
+use Generator;
+use Override;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Spiral\Translator\Translator;
+
+use function explode;
+use function in_array;
+use function strpos;
+use function substr;
 
 /**
  * The middleware that sets the application locale based on the "Accept-Language" header.
@@ -25,15 +32,16 @@ final class LocaleSelector implements MiddlewareInterface
         $this->availableLocales = $this->translator->getCatalogueManager()->getLocales();
     }
 
-    #[\Override]
+    #[Override]
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $defaultLocale = $this->translator->getLocale();
 
         try {
             foreach ($this->fetchLocales($request) as $locale) {
-                if ($locale !== '' && \in_array($locale, $this->availableLocales, true)) {
+                if ('' !== $locale && in_array($locale, $this->availableLocales, true)) {
                     $this->translator->setLocale($locale);
+
                     break;
                 }
             }
@@ -45,13 +53,13 @@ final class LocaleSelector implements MiddlewareInterface
         }
     }
 
-    public function fetchLocales(ServerRequestInterface $request): \Generator
+    public function fetchLocales(ServerRequestInterface $request): Generator
     {
         $header = $request->getHeaderLine('accept-language');
-        foreach (\explode(',', $header) as $value) {
-            $pos = \strpos($value, ';');
-            if ($pos !== false) {
-                yield \substr($value, 0, $pos);
+        foreach (explode(',', $header) as $value) {
+            $pos = strpos($value, ';');
+            if (false !== $pos) {
+                yield substr($value, 0, $pos);
             }
 
             yield $value;

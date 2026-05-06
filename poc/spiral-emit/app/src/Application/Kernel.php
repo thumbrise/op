@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application;
 
+use Override;
 use Spiral\Boot\Bootloader\CoreBootloader;
 use Spiral\Bootloader as Framework;
 use Spiral\Bootloader\Http\HttpBootloader;
@@ -29,7 +30,7 @@ use Spiral\YiiErrorHandler\Bootloader\YiiErrorHandlerBootloader;
  */
 class Kernel extends \Spiral\Framework\Kernel
 {
-    #[\Override]
+    #[Override]
     public function defineSystemBootloaders(): array
     {
         return [
@@ -41,7 +42,7 @@ class Kernel extends \Spiral\Framework\Kernel
         ];
     }
 
-    #[\Override]
+    #[Override]
     public function defineBootloaders(): array
     {
         return [
@@ -112,7 +113,7 @@ class Kernel extends \Spiral\Framework\Kernel
         ];
     }
 
-    #[\Override]
+    #[Override]
     public function defineAppBootloaders(): array
     {
         return [

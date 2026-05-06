@@ -8,7 +8,7 @@ use Spiral\Stempler\Transform\Finalizer;
 use Spiral\Stempler\Transform\Visitor;
 use Spiral\Views\Processor;
 
-/**
+/*
  * Stempler configuration.
  *
  * @link https://spiral.dev/docs/views-stempler#installation-and-configuration
