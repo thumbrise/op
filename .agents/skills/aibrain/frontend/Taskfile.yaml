@@ -1,0 +1,9 @@
+#schema: https://taskfile.dev/schema.json
+version: '3.17'
+
+tasks:
+  lint:
+    desc: Format and lint all code
+    cmds:
+      - npx prettier --write .
+      - npm run lint

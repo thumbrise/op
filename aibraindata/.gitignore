@@ -1,0 +1,7 @@
+# Raw extraction staging - temporary
+raw/
+*.json.tmp
+.tracking
+
+# Embeddings - heavy, recreated by warmup
+embed.db
