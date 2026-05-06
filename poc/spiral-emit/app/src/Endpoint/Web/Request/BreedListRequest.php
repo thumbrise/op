@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Endpoint\Web\Request;
 
-use Spiral\Filter\Filterable;
+use Spiral\Filters\Model\FilterInterface;
 
-final class BreedListRequest implements Filterable
+final class BreedListRequest implements FilterInterface
 {
     public ?string $size = null;
 
