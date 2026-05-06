@@ -1,0 +1,53 @@
+{
+  "skill_name": "aibrain",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add a new concept 'Neural Network' to the knowledge graph",
+      "expected_output": "Node added to aibrain/graph.json with proper structure",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Change the community of node 'ai' to community 5",
+      "expected_output": "Node community field updated in graph.json",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Find all nodes related to RPC",
+      "expected_output": "List of connected nodes returned via query",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Remove node 'test_node' from the graph",
+      "expected_output": "Node removed from graph.json",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Validate the current graph for structural issues",
+      "expected_output": "Validation report showing any problems",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Make me a coffee",
+      "expected_output": "Should not trigger aibrain skill - unrelated task",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Add an edge between 'api' and 'rpc' nodes with relation 'related_to'",
+      "expected_output": "Edge added to graph.json",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "What is the structure of a node in graph.json?",
+      "expected_output": "Explanation of node fields: id, label, file_type, community, etc.",
+      "files": []
+    }
+  ]
+}

@@ -28,6 +28,7 @@ header:
     - '.gitignore'
     - '.releaserc.js'
     - 'release-template.hbs'
+    - '.agents'
 
   comment: on-failure
   license-location-threshold: 80

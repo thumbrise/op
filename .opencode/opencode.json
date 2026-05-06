@@ -3,10 +3,8 @@
     "instructions": [
         "AGENTS.md",
         "REVIEW.md",
-        ".agents/skills/graphify/SKILL.md"
-    ],
-    "plugin": [
-        ".opencode/plugins/graphify.js"
+        ".agents/skills/aibrain/SKILL.md",
+        ".agents/skills/aibrain/rules.md",
+        ".agents/skills/books/SKILL.md"
     ]
-
 }

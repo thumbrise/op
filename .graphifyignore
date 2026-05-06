@@ -1,9 +1,0 @@
-*node_modules*
-*vendor*
-*spiral*
-.git/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
