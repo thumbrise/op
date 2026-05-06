@@ -10,6 +10,8 @@ services:
     environment:
       TZ: "Europe/Moscow"
       XDG_CONFIG_HOME: "/var/www/.xdg"
+      PHP_INI_SCAN_DIR: ":/usr/local/etc/php/custom.d"
+      PHP_IDE_CONFIG: "serverName=debug-spiral"
     user: ${DOCKER_HOST_UID:?}
     extra_hosts:
       - "host.docker.internal:host-gateway"
