@@ -10,7 +10,7 @@ use Spiral\Domain\GuardInterceptor;
 use Spiral\Interceptors\HandlerInterface;
 
 /**
- * @link https://spiral.dev/docs/http-interceptors
+ * @see https://spiral.dev/docs/http-interceptors
  */
 final class AppBootloader extends DomainBootloader
 {

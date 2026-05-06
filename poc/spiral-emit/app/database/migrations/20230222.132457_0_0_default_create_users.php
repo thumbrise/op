@@ -18,7 +18,8 @@ class OrmDefault6b37c029f83df5d5b93667bad89b5fc9 extends Migration
             ->addColumn('username', 'string', ['nullable' => false, 'default' => null])
             ->addColumn('email', 'string', ['nullable' => false, 'default' => null])
             ->setPrimaryKeys(['id'])
-            ->create();
+            ->create()
+        ;
     }
 
     public function down(): void

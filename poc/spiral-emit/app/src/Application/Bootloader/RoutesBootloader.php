@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Application\Bootloader;
 
 use App\Endpoint\Web\Middleware\LocaleSelector;
+use Override;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Spiral\Bootloader\Http\RoutesBootloader as BaseRoutesBootloader;
@@ -22,13 +23,13 @@ use Spiral\Session\Middleware\SessionMiddleware;
 /**
  * A bootloader that configures the application's routes and middleware.
  *
- * @link https://spiral.dev/docs/http-routing
+ * @see https://spiral.dev/docs/http-routing
  */
 final class RoutesBootloader extends BaseRoutesBootloader
 {
     protected const DEPENDENCIES = [AnnotatedRoutesBootloader::class];
 
-    #[\Override]
+    #[Override]
     protected function globalMiddleware(): array
     {
         return [
@@ -40,7 +41,7 @@ final class RoutesBootloader extends BaseRoutesBootloader
         ];
     }
 
-    #[\Override]
+    #[Override]
     protected function middlewareGroups(): array
     {
         return [
@@ -48,12 +49,12 @@ final class RoutesBootloader extends BaseRoutesBootloader
                 CookiesMiddleware::class,
                 SessionMiddleware::class,
                 CsrfMiddleware::class,
-                ValidationHandlerMiddleware::class
+                ValidationHandlerMiddleware::class,
             ],
         ];
     }
 
-    #[\Override]
+    #[Override]
     protected function defineRoutes(RoutingConfigurator $routes): void
     {
         // Fallback route if no other route matched
