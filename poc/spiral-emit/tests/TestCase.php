@@ -12,8 +12,38 @@ use Spiral\Testing\TestCase as BaseTestCase;
 use Spiral\Translator\TranslatorInterface;
 use Tests\App\TestKernel;
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class TestCase extends BaseTestCase
 {
+    protected function setUp(): void
+    {
+        $this->beforeBooting(static function (ConfiguratorInterface $config): void {
+            if (! $config->exists('session')) {
+                return;
+            }
+
+            $config->modify('session', new Set('handler', null));
+        });
+
+        parent::setUp();
+
+        $container = $this->getContainer();
+
+        if ($container->has(TranslatorInterface::class)) {
+            $container->get(TranslatorInterface::class)->setLocale('en');
+        }
+    }
+
+    protected function tearDown(): void
+    {
+        // Uncomment this line if you want to clean up runtime directory.
+        // $this->cleanUpRuntimeDirectory();
+    }
+
     public function createAppInstance(Container $container = new Container()): TestableKernelInterface
     {
         return TestKernel::create(
@@ -34,30 +64,5 @@ class TestCase extends BaseTestCase
         return [
             'root' => $root,
         ];
-    }
-
-    protected function setUp(): void
-    {
-        $this->beforeBooting(static function (ConfiguratorInterface $config): void {
-            if (!$config->exists('session')) {
-                return;
-            }
-
-            $config->modify('session', new Set('handler', null));
-        });
-
-        parent::setUp();
-
-        $container = $this->getContainer();
-
-        if ($container->has(TranslatorInterface::class)) {
-            $container->get(TranslatorInterface::class)->setLocale('en');
-        }
-    }
-
-    protected function tearDown(): void
-    {
-        // Uncomment this line if you want to clean up runtime directory.
-        // $this->cleanUpRuntimeDirectory();
     }
 }

@@ -1,16 +1,16 @@
 <?php
 
 declare(strict_types=1);
-
+use Cycle\ORM\Collection\DoctrineCollectionFactory;
 
 /**
  * Configuration for Cycle ORM.
  *
- * @link https://spiral.dev/docs/basics-orm#orm
+ * @see https://spiral.dev/docs/basics-orm#orm
  */
 return [
     'schema' => [
-        /**
+        /*
          * true (Default) - Schema will be stored in a cache after compilation.
          * It won't be changed after entity modification. Use `php app.php cycle` to update schema.
          *
@@ -19,7 +19,7 @@ return [
          */
         'cache' => env('CYCLE_SCHEMA_CACHE', true),
 
-        /**
+        /*
          * The CycleORM provides the ability to manage default settings for
          * every schema with not defined segments
          */
@@ -33,11 +33,11 @@ return [
         ],
 
         'collections' => [
-            'default' => 'doctrine',
-            'factories' => ['doctrine' => new Cycle\ORM\Collection\DoctrineCollectionFactory()],
+            'default'   => 'doctrine',
+            'factories' => ['doctrine' => new DoctrineCollectionFactory()],
         ],
 
-        /**
+        /*
          * Schema generators (Optional)
          * null (default) - Will be used schema generators defined in bootloaders
          */
@@ -58,11 +58,9 @@ return [
         // ],
     ],
 
-    'warmup' => env('RR_MODE') === null ? false : env('CYCLE_SCHEMA_WARMUP', false),
+    'warmup' => null === env('RR_MODE') ? false : env('CYCLE_SCHEMA_WARMUP', false),
 
-    /**
-     * Custom relation types for entities
-     */
+    // Custom relation types for entities
     'customRelations' => [
         // \Cycle\ORM\Relation::EMBEDDED => [
         //     \Cycle\ORM\Config\RelationConfig::LOADER => \Cycle\ORM\Select\Loader\EmbeddedLoader::class,

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Exception;
 
+use Override;
 use Spiral\Exceptions\ExceptionHandler;
 
 /**
@@ -12,7 +13,7 @@ use Spiral\Exceptions\ExceptionHandler;
  */
 final class Handler extends ExceptionHandler
 {
-    #[\Override]
+    #[Override]
     protected function bootBasicHandlers(): void
     {
         parent::bootBasicHandlers();
