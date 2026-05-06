@@ -15,6 +15,7 @@ http:
         num_workers: 1
         supervisor:
             max_worker_memory: 100
+        debug: true
 server:
     command: 'php app.php'
     relay: pipes
