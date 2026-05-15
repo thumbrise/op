@@ -194,6 +194,7 @@ export default withMermaid(defineConfig({
             {text: '#22 — Nothing', link: '/notes/universal/022-why-nothing-lands'},
             {text: '#23 — Treaty', link: '/notes/universal/023-treaty-of-five'},
             {text: '#24 — Banana', link: '/notes/universal/024-banana'},
+            {text: '#25 — Domain', link: '/notes/universal/025-domain'},
           ],
         },
       ],
