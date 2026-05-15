@@ -43,12 +43,16 @@
                             "items": {
                                 "$ref": "#/$defs/term"
                             }
+                        },
+                        "trait": {
+                            "$ref": "https://thumbrise.github.io/op/reference/rail.v1.json",
+                            "description": "Term-level traits — opinions about this specific term. That a term is an HTTP path parameter, that it should be rendered in bold, that it belongs to a specific SEO category — these are opinions, not facts. The rail is always present - when a term carries no opinions, the rail is empty. Each trait within it is ignorable and composable: a receiver that doesn't understand a trait remains silent, a receiver that does may act on it. This is the same philosophy that applies to operation-level traits, now available at the granularity of a single term. Facts define the shape. Traits define the opinions. Both are necessary for a term to be useful in the real world."
                         }
                     },
                     "dependentRequired": {
                         "of": ["kind"]
                     },
-                    "required": ["id", "comment"]
+                    "required": ["id", "comment", "trait"]
                 }
             ]
         }
