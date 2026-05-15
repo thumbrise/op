@@ -161,6 +161,7 @@ export default withMermaid(defineConfig({
           items: [
             {text: 'About', link: '/notes/form-of-rail/'},
             {text: '#001 — The Rails', link: '/notes/form-of-rail/001-the-rails'},
+            {text: '#002 — The Term Opinion', link: '/notes/form-of-rail/002-the-term-opinion'},
           ],
         },
       ],
