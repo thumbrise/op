@@ -1,0 +1,24 @@
+#schema: https://taskfile.dev/schema.json
+version: '3.17'
+
+tasks:
+  lint:
+    desc: Run lint with auto-fix where possible (dev workflow)
+    cmds:
+      - golangci-lint run --fix
+
+  build:
+    desc: Build
+    cmd: go build -o ./runtime/build/op-to-openapi
+
+  run:
+    desc: Run
+    cmds:
+      - task emit
+      - go run . --input ./runtime/cache/instruction.yaml --output ./runtime/output/oa3.yaml
+
+  emit:
+    desc: Emit instruction
+    cmds:
+      - mkdir -p cache/
+      - curl --fail --show-error --silent --max-time 10 http://localhost:8080/op/instruction -o ./runtime/cache/instruction.yaml
