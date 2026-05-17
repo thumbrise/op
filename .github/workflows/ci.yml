@@ -21,38 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup Go
-        uses: actions/setup-go@v6
-        with:
-          go-version-file: go.mod
-
-      - name: Install Task
-        uses: go-task/setup-task@v2
-        with:
-          version: ${{ env.TASK_VERSION }}
-
-      - name: Install golangci-lint
-        uses: golangci/golangci-lint-action@v9
-        with:
-          args: --help
-
-      - name: Run lint
-        run: task lint:ci
-
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Setup Go
-        uses: actions/setup-go@v6
-        with:
-          go-version-file: go.mod
-
-      - name: Test
-        run: go test ./... -v
+      - uses: apache/skywalking-eyes@v0.8.0
 
   commitlint:
     name: Lint commit messages
