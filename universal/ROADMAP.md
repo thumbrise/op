@@ -1,5 +1,12 @@
 # universal/ — roadmap
 
+<details>
+<summary>
+Warning
+</summary>
+This content may be stale.
+</details>
+
 What we plan to build next inside `universal/`. Not a contract. A direction.
 
 Each milestone is a verifiable state of the world, not a category of work. A milestone closes when someone from the outside can run it and observe the result.

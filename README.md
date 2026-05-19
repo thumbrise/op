@@ -22,7 +22,7 @@ Read the following documents, in this order, before the rest:
 1. **[Dream](https://thumbrise.github.io/op/books/dream/)** — a short book. No technical words. Start here if you want to understand what this is about before reading anything else.
 2. **[ACKNOWLEDGEMENTS](https://thumbrise.github.io/op/ACKNOWLEDGEMENTS)** — every person, project, and discipline this work stands on. Standing on the shoulders of the founders. Respect comes first.
 3. **[FAQ](https://thumbrise.github.io/op/FAQ)** — how this repository is meant to be read, what is and is not being claimed, common misreadings, common technical objections.
-4. **The rest of this README, the devlogs, and the materials** — what we found, after the credit and the framing are in place.
+4. **The rest of this README, the notes, and the materials** — what we found, after the credit and the framing are in place.
 
 ## Why this exists
 
@@ -36,8 +36,8 @@ Op tries to name the form on its own — without the transport, without the lang
 
 Op (Operation Protocol) is a formalization of the operation as a universal primitive:
 
-- **Five fields** — `id`, `comment`, `input`, `output`, `errors` — describe any operation at any level. Not an opinion. A fact. Like Church's lambda calculus formalized computation in 1936.
-- **Traits** — namespaced key-value extensions attached from outside. HTTP routes, gRPC services, authentication, CLI flags. The operation does not change when a trait is added or removed. Traits are opinions. The operation is the fact.
+- **Five fields** — `id`, `comment`, `input`, `output`, `error` — describe any operation at any level. Not an opinion. A fact. Like Church's lambda calculus formalized computation in 1936.
+- **Traits** — namespaced extensions attached from outside. HTTP routes, gRPC services, authentication, CLI flags. The operation does not change when a trait is added or removed. Traits are opinions. The operation is the fact.
 - **Instructions** — versioned, fully resolved units that flow between **emitters** (DSL compilers, scrapers, handwritten JSON) and **receivers** (framework compilers, documentation portals, AI tool registries, security scanners) through any transport.
 
 **N + M instead of N × M.** New emitter — all receivers for free. New receiver — all emitters for free. The economics of LLVM applied one floor higher.
@@ -66,7 +66,7 @@ The theory predicts that one instruction format can replace N×M integrations wi
 - [ ] **Validation** — a schema-level proof that every instruction conforms to the five-field structure. Invalid input → precise error. The contract is machine-enforceable
 - [ ] **Formal specification** — RFC, JSON Schema versioned and frozen. The protocol is citable, auditable, and forkable
 
-## Forget everything above
+## Anti-CTA
 
 Lists. Diagrams. Five fields. The PoC checklist.
 All of it true. None of it the point.
@@ -78,17 +78,31 @@ The goal is not to remove boilerplate. The goal is for programs to
 understand each other's capabilities. The consequences run wider than
 what we can list today.
 
-If you read this far — you are not a user. You are an early hand.
+If you read this far - you are not a user. You are an early hand.
 What is below is for those who want to understand.
-
-- [The Notes: form of operation](https://thumbrise.github.io/op/notes/form-of-operation/) — how the form was found.
-- [The Conjecture](https://thumbrise.github.io/op/reference/the-primitive-range-conjecture) — the law that holds it.
-- [Dream](https://thumbrise.github.io/op/books/dream/) — a book about a world where it worked.
-- [The Schema Of Instruction](https://thumbrise.github.io/op/reference/instruction.v1.json) — the form of instruction. (WIP)
-- [The Schema Of Operation](https://thumbrise.github.io/op/reference/operation.v1.json) — the form of Operation itself.
 
 There is no «Get Started» button here. Op is not for sale.
 Op either surfaces in you on its own — or it does not.
+
+### The forms
+
+- [The Schema Of Instruction](https://thumbrise.github.io/op/reference/instruction.v1.json)
+- [The Schema Of Nota](https://thumbrise.github.io/op/reference/nota.v1.json)
+- [The Schema Of Data Rail](https://thumbrise.github.io/op/reference/rail.v1.json)
+- [The Schema Of Operation](https://thumbrise.github.io/op/reference/operation.v1.json)
+
+### How the forms were found
+
+- [The Notes: form of Instruction](https://thumbrise.github.io/op/notes/form-of-instruction/)
+- [The Notes: form of Nota](https://thumbrise.github.io/op/notes/form-of-nota/)
+- [The Notes: form of Data Rail](https://thumbrise.github.io/op/notes/form-of-rail/)
+- [The Notes: form of Operation](https://thumbrise.github.io/op/notes/form-of-operation/)
+
+### Misc
+
+- [Dream](https://thumbrise.github.io/op/books/dream/) — a book about a world where it worked.
+- [The Conjecture](https://thumbrise.github.io/op/reference/the-primitive-range-conjecture) — the law that holds it.
+- [Operation Protocol RFC](https://thumbrise.github.io/op/reference/rfc-operation-protocol.md) - request for comments.
 
 ## License
 
