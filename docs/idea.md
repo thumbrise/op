@@ -446,14 +446,9 @@ Every service describes itself. `any://any.com/operations/` — and in the respo
 
 **The developer never sees Op.** Like you never see TCP when you open Gmail. The protocol is invisible. Vendors compile from instructions — their reputation depends on the quality. The developer writes business logic. Everything else is compiled.
 
-## The Schema
+## Anti-CTA
 
-- [The Schema Of Instruction](reference/instruction.v1.json) — the form of instruction. (WIP)
-- [The Schema Of Operation](reference/operation.v1.json) — the form of Operation itself.
-
-## Forget everything above
-
-Lists. Diagrams. Forty-nine systems. Seven unlocks.
+Lists. Diagrams. Five fields. The PoC checklist.
 All of it true. None of it the point.
 
 Op is not an optimization. Op is a form. Found through long subtractions.
@@ -463,11 +458,28 @@ The goal is not to remove boilerplate. The goal is for programs to
 understand each other's capabilities. The consequences run wider than
 what we can list today.
 
-If you read this far — you are not a user. You are an early hand.
+If you read this far - you are not a user. You are an early hand.
 What is below is for those who want to understand.
 
-- [The Notes: form of operation](/notes/form-of-operation/) — how the form was found.
-- [The Conjecture](/reference/the-primitive-range-conjecture) — the law that holds it.
-- [Dream](/books/dream/) — a book about a world where it worked.
-- [The Schema Of Instruction](reference/instruction.v1.json) — the form of instruction. (WIP)
-- [The Schema Of Operation](reference/operation.v1.json) — the form of Operation itself.
+There is no «Get Started» button here. Op is not for sale.
+Op either surfaces in you on its own — or it does not.
+
+### The forms
+
+- [The Schema Of Instruction](https://thumbrise.github.io/op/reference/instruction.v1.json)
+- [The Schema Of Nota](https://thumbrise.github.io/op/reference/nota.v1.json)
+- [The Schema Of Data Rail](https://thumbrise.github.io/op/reference/rail.v1.json)
+- [The Schema Of Operation](https://thumbrise.github.io/op/reference/operation.v1.json)
+
+### How the forms were found
+
+- [The Notes: form of Instruction](https://thumbrise.github.io/op/notes/form-of-instruction/)
+- [The Notes: form of Nota](https://thumbrise.github.io/op/notes/form-of-nota/)
+- [The Notes: form of Data Rail](https://thumbrise.github.io/op/notes/form-of-rail/)
+- [The Notes: form of Operation](https://thumbrise.github.io/op/notes/form-of-operation/)
+
+### Misc
+
+- [Dream](https://thumbrise.github.io/op/books/dream/) — a book about a world where it worked.
+- [The Conjecture](https://thumbrise.github.io/op/reference/the-primitive-range-conjecture) — the law that holds it.
+- [Operation Protocol RFC](https://thumbrise.github.io/op/reference/rfc-operation-protocol.md) - request for comments.

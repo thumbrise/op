@@ -25,8 +25,5 @@ Read the following documents, in this order, before the rest:
 
 If you want to see the technical picture — the problems, the solution, the diagrams — see [The Idea](/idea).
 
-- [The Schema Of Instruction](reference/instruction.v1.json) — the form of instruction. (WIP)
-- [The Schema Of Operation](reference/operation.v1.json) — the form of Operation itself.
-
 There is no «Get Started» button here. Op is not for sale.
 Op either surfaces in you on its own — or it does not.
