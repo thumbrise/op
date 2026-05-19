@@ -15,6 +15,7 @@
         "doctrine/collections": "^2.3",
         "phpdocumentor/reflection-docblock": "^6.0",
         "spatie/php-attribute-reader": "^1.1",
+        "spiral-packages/swagger-php": "^1.0",
         "spiral-packages/yii-error-handler-bridge": "^1.1",
         "spiral/cycle-bridge": "^2.11",
         "spiral/filters": "^3.16.2",
