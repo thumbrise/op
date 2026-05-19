@@ -482,4 +482,4 @@ Op either surfaces in you on its own — or it does not.
 
 - [Dream](https://thumbrise.github.io/op/books/dream/) — a book about a world where it worked.
 - [The Conjecture](https://thumbrise.github.io/op/reference/the-primitive-range-conjecture) — the law that holds it.
-- [Operation Protocol RFC](https://thumbrise.github.io/op/reference/rfc-operation-protocol.md) - request for comments.
+- [Operation Protocol RFC](https://thumbrise.github.io/op/reference/rfc-operation-protocol) - request for comments.
