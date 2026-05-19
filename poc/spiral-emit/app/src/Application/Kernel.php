@@ -15,6 +15,7 @@ use Spiral\Debug\Bootloader\DumperBootloader;
 use Spiral\DotEnv\Bootloader\DotenvBootloader;
 use Spiral\Monolog\Bootloader\MonologBootloader;
 use Spiral\Nyholm\Bootloader\NyholmBootloader;
+use Spiral\OpenApi\Bootloader\SwaggerBootloader;
 use Spiral\Prototype\Bootloader\PrototypeBootloader;
 use Spiral\RoadRunnerBridge\Bootloader as RoadRunnerBridge;
 use Spiral\Scaffolder\Bootloader\ScaffolderBootloader;
@@ -39,6 +40,8 @@ class Kernel extends \Spiral\Framework\Kernel
             TokenizerListenerBootloader::class,
 
             DumperBootloader::class,
+
+            SwaggerBootloader::class,
         ];
     }
 

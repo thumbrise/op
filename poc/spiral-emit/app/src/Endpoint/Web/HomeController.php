@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Endpoint\Web;
 
 use Exception;
+use OpenApi\Attributes as OA;
 use Spiral\Prototype\Traits\PrototypeTrait;
 use Spiral\Router\Annotation\Route;
 use Thumbrise\OP\Universal\Schema\Attributes\OPComment;
@@ -42,6 +43,7 @@ final class HomeController
 
     /**
      * Example of exception page.
+     * @throws Exception
      */
     #[OPID(value: 'HomeException')]
     #[OPComment(value: 'Throws Exception')]
@@ -55,6 +57,15 @@ final class HomeController
         new Verb('GET'),
     ])]
     #[Route(route: '/exception', name: 'exception')]
+    #[OA\Get(
+        path: '/exception',
+        responses: [
+            new OA\Response(
+                response: 500,
+                description: 'test exception',
+            ),
+        ]
+    )]
     public function exception(): never
     {
         throw new Exception('This is a test exception.');
