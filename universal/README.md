@@ -1,4 +1,10 @@
 # universal/ — first vendors, not a standard library
+<details>
+<summary>
+Warning
+</summary>
+This content may be stale. See the Appended section below.
+</details>
 
 This directory holds the vendors we are bootstrapping for Op. They are not a standard library. They are the first inhabitants of an otherwise empty world, written so that instructions have somewhere to land while the protocol gets its legs.
 
@@ -19,3 +25,15 @@ It is also not a contract that the vendors we ship will be the best ones. Our su
 - [`ROADMAP.md`](./ROADMAP.md) — what we plan to build inside `universal/` next.
 - [Devlog #28](../docs/notes/form-of-operation/028-dobby-is-free.md) — why this directory exists at all.
 - [Devlog #29](../docs/notes/form-of-operation/029-the-anthill-organizes.md) — why we do not plan beyond the horizon of real need.
+
+## Appended
+
+Many implementations were moved to personal repos.
+
+| Name                           | Link                                                      |
+|--------------------------------|-----------------------------------------------------------|
+| Universal Schema (Golang)      | https://github.com/thumbrise/op-universal-schema-go       |
+| Universal Schema (PHP)         | https://github.com/thumbrise/op-universal-schema-php      |
+| HTTP universal vendor          | https://github.com/thumbrise/op-universal-vendor-http     |
+| HTTP universal vendor (Golang) | https://github.com/thumbrise/op-universal-vendor-http-go  |
+| HTTP universal vendor (PHP)    | https://github.com/thumbrise/op-universal-vendor-http-php |
