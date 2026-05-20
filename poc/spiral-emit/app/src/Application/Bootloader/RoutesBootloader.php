@@ -60,15 +60,18 @@ final class RoutesBootloader extends BaseRoutesBootloader
     {
         $routes
             ->add('swagger-ui', '/api/docs')
-            ->action(DocumentationController::class, 'html');
+            ->action(DocumentationController::class, 'html')
+        ;
 
         $routes
             ->add('swagger-json', '/api/docs.json')
-            ->action(DocumentationController::class, 'json');
+            ->action(DocumentationController::class, 'json')
+        ;
 
         $routes
             ->add('swagger-yaml', '/api/docs.yaml')
-            ->action(DocumentationController::class, 'yaml');
+            ->action(DocumentationController::class, 'yaml')
+        ;
         // Fallback route if no other route matched
         // Will show 404 page
         // $routes->default('/<path:.*>')
