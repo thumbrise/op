@@ -11,9 +11,9 @@ use Spiral\OpenApi\Renderer\YamlRenderer;
 return [
     'documentation' => [
         'info' => [
-            'title' => 'My API',
+            'title'       => 'My API',
             'description' => 'API documentation',
-            'version' => '1.0.0',
+            'version'     => '1.0.0',
         ],
         'servers' => [
             ['url' => 'https://api.example.com', 'description' => 'Production'],
@@ -36,11 +36,11 @@ return [
         directory('app') . '/src',
     ],
 
-    'exclude' => null,
-    'pattern' => '*.php',
-    'version' => null,
+    'exclude'   => null,
+    'pattern'   => '*.php',
+    'version'   => null,
     'cache_key' => 'swagger_docs',
-    'use_cache' => env('DEBUG', false) === false,
+    'use_cache' => false === env('DEBUG', false),
 
     'generator_config' => [
         'operationId' => [

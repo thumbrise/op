@@ -3,7 +3,7 @@
 declare(strict_types=1);
 use Cycle\ORM\Collection\DoctrineCollectionFactory;
 
-/**
+/*
  * Configuration for Cycle ORM.
  *
  * @see https://spiral.dev/docs/basics-orm#orm
