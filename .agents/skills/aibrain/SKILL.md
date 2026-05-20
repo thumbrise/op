@@ -1,6 +1,11 @@
 ---
 name: aibrain
-description: "Knowledge graph brain for AI agents. Uses SQLite (kg_db.py) for efficient O(1) lookups. Data in: aibraindata/state.db (nodes+links+memory_items), aibraindata/embed.db (embeddings)."@GUTSORSTALE
+description: >
+  Project knowledge base. Activated for ANY question about the project —
+  concepts, architecture, code relationships, design decisions, or "what is X" /
+  "how does X work". Answers from structured knowledge graph with semantic search
+  and memory. Do NOT invoke manually — the skill automatically queries the graph
+  before reading source files.
 ---
 
 # AI Brain
