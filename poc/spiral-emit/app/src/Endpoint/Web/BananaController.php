@@ -1,0 +1,217 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Endpoint\Web;
+
+use App\Endpoint\Web\Request\BananaListRequest;
+use App\Endpoint\Web\Request\BananaShowRequest;
+use App\Endpoint\Web\Request\BuyBananaRequest;
+use App\Endpoint\Web\Response\BananaListResponse;
+use App\Endpoint\Web\Response\BananaShowResponse;
+use App\Endpoint\Web\Response\BuyBananaResponse;
+use OpenApi\Attributes as OA;
+use Psr\Http\Message\ResponseInterface;
+use Spiral\Http\ResponseWrapper;
+use Spiral\Router\Annotation\Route;
+use Thumbrise\OP\Universal\Schema\Attributes\OPComment;
+use Thumbrise\OP\Universal\Schema\Attributes\OPID;
+use Thumbrise\OP\Universal\Schema\Attributes\OPInput;
+use Thumbrise\OP\Universal\Schema\Attributes\OPOutput;
+use Thumbrise\OP\Universal\Schema\Attributes\OPTrait;
+use Thumbrise\OP\Universal\Schema\Kind;
+use Thumbrise\OP\Universal\Schema\Term;
+use Thumbrise\OP\Universal\Vendors\Http\Path;
+use Thumbrise\OP\Universal\Vendors\Http\Verb;
+
+use function bin2hex;
+use function random_bytes;
+
+#[OA\Tag(name: 'bananas', description: 'Banana operations')]
+final class BananaController
+{
+    #[OPID('BananaList')]
+    #[OPComment('List available banana varieties')]
+    #[OPInput([
+        new Term('variety', 'Filter by variety', kind: Kind::String),
+        new Term('ripeness', 'Filter by ripeness', kind: Kind::String),
+        new Term('limit', 'Max results', kind: Kind::Integer),
+        new Term('offset', 'Skip results', kind: Kind::Integer),
+    ])]
+    #[OPOutput([
+        new Term('bananas', 'List of bananas', kind: Kind::Array, of: [
+            new Term('id', 'Banana ID', kind: Kind::String),
+            new Term('variety', 'Variety name', kind: Kind::String),
+            new Term('ripeness', 'Ripeness level', kind: Kind::String),
+            new Term('origin', 'Country of origin', kind: Kind::String),
+        ]),
+        new Term('total', 'Total count', kind: Kind::Integer),
+    ])]
+    #[OPTrait([new Path('/bananas'), new Verb('GET')])]
+    #[Route(route: '/bananas', name: 'bananas.list', methods: 'GET')]
+    #[OA\Get(
+        path: '/bananas',
+        summary: 'List available banana varieties',
+        tags: ['bananas'],
+        parameters: [
+            new OA\Parameter(name: 'variety', in: 'query', schema: new OA\Schema(type: 'string')),
+            new OA\Parameter(name: 'ripeness', in: 'query', schema: new OA\Schema(type: 'string')),
+            new OA\Parameter(name: 'limit', in: 'query', schema: new OA\Schema(type: 'integer')),
+            new OA\Parameter(name: 'offset', in: 'query', schema: new OA\Schema(type: 'integer')),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'List of banana varieties',
+                content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'total', type: 'integer'),
+                        new OA\Property(
+                            property: 'bananas',
+                            type: 'array',
+                            items: new OA\Items(
+                                properties: [
+                                    new OA\Property(property: 'id', type: 'string'),
+                                    new OA\Property(property: 'variety', type: 'string'),
+                                    new OA\Property(property: 'ripeness', type: 'string'),
+                                    new OA\Property(property: 'origin', type: 'string'),
+                                ],
+                                type: 'object',
+                            ),
+                        ),
+                    ],
+                    type: 'object',
+                ),
+            ),
+        ],
+    )]
+    public function list(BananaListRequest $request, ResponseWrapper $response): ResponseInterface
+    {
+        $output = new BananaListResponse(
+            bananas: [
+                ['id' => 'cavendish', 'variety' => 'Cavendish', 'ripeness' => 'yellow', 'origin' => 'Ecuador'],
+                ['id' => 'plantain', 'variety' => 'Plantain', 'ripeness' => 'green', 'origin' => 'Ghana'],
+                ['id' => 'red', 'variety' => 'Red Dacca', 'ripeness' => 'red-purple', 'origin' => 'Costa Rica'],
+            ],
+            total: 3,
+        );
+
+        return $response->json($output);
+    }
+
+    #[OPID('BananaShow')]
+    #[OPComment('Show details of a specific banana variety')]
+    #[OPInput([
+        new Term('variety', 'Variety identifier', required: true, kind: Kind::String),
+        new Term('includeNutrition', 'Include nutrition data', kind: Kind::Boolean),
+    ])]
+    #[OPOutput([
+        new Term('id', 'Banana ID', kind: Kind::String),
+        new Term('variety', 'Variety name', kind: Kind::String),
+        new Term('ripeness', 'Ripeness level', kind: Kind::String),
+        new Term('weightGrams', 'Weight in grams', kind: Kind::Integer),
+        new Term('priceCents', 'Price in cents', kind: Kind::Integer),
+        new Term('origin', 'Country of origin', kind: Kind::String),
+    ])]
+    #[OPTrait([new Path('/bananas/{variety}'), new Verb('GET')])]
+    #[Route(route: '/bananas/<variety>', name: 'bananas.show', methods: 'GET')]
+    #[OA\Get(
+        path: '/bananas/{variety}',
+        summary: 'Show details of a specific banana variety',
+        tags: ['bananas'],
+        parameters: [
+            new OA\Parameter(name: 'variety', in: 'path', required: true, schema: new OA\Schema(type: 'string')),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Banana variety details',
+                content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'id', type: 'string'),
+                        new OA\Property(property: 'variety', type: 'string'),
+                        new OA\Property(property: 'ripeness', type: 'string'),
+                        new OA\Property(property: 'weightGrams', type: 'integer'),
+                        new OA\Property(property: 'priceCents', type: 'integer'),
+                        new OA\Property(property: 'origin', type: 'string'),
+                    ],
+                    type: 'object',
+                ),
+            ),
+        ],
+    )]
+    public function show(BananaShowRequest $request, ResponseWrapper $response): ResponseInterface
+    {
+        $output = new BananaShowResponse(
+            id: 'banana_' . $request->variety,
+            variety: $request->variety,
+            ripeness: 'yellow',
+            weightGrams: 120,
+            priceCents: 150,
+            origin: 'Ecuador',
+        );
+
+        return $response->json($output);
+    }
+
+    #[OPID('BuyBanana')]
+    #[OPComment('Purchase bananas with optional delivery')]
+    #[OPInput([
+        new Term('variety', 'Variety to buy', required: true, kind: Kind::String),
+        new Term('quantity', 'Number of bananas', required: true, kind: Kind::Integer),
+        new Term('budget', 'Maximum budget in cents', required: true, kind: Kind::Integer),
+        new Term('express', 'Express delivery', kind: Kind::Boolean),
+        new Term('deliveryAddress', 'Delivery address', kind: Kind::String),
+    ])]
+    #[OPOutput([
+        new Term('orderId', 'Order identifier', kind: Kind::String),
+        new Term('status', 'Order status', kind: Kind::String),
+        new Term('bananaId', 'Purchased banana ID', kind: Kind::String),
+        new Term('totalPriceCents', 'Total price in cents', kind: Kind::Integer),
+    ])]
+    #[OPTrait([new Path('/bananas/buy'), new Verb('POST')])]
+    #[Route(route: '/bananas/buy', name: 'bananas.buy', methods: 'POST')]
+    #[OA\Post(
+        path: '/bananas/buy',
+        summary: 'Purchase bananas with optional delivery',
+        requestBody: new OA\RequestBody(
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(property: 'variety', type: 'string'),
+                    new OA\Property(property: 'quantity', type: 'integer'),
+                    new OA\Property(property: 'budget', type: 'integer'),
+                    new OA\Property(property: 'express', type: 'boolean'),
+                    new OA\Property(property: 'deliveryAddress', type: 'string'),
+                ],
+                type: 'object',
+            ),
+        ),
+        tags: ['bananas'],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Order confirmed',
+                content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: 'orderId', type: 'string'),
+                        new OA\Property(property: 'status', type: 'string'),
+                        new OA\Property(property: 'bananaId', type: 'string'),
+                        new OA\Property(property: 'totalPriceCents', type: 'integer'),
+                    ],
+                    type: 'object',
+                ),
+            ),
+        ],
+    )]
+    public function buy(BuyBananaRequest $request, ResponseWrapper $response): ResponseInterface
+    {
+        $output = new BuyBananaResponse(
+            orderId: 'ord_' . bin2hex(random_bytes(8)),
+            status: 'confirmed',
+            bananaId: 'banana_' . $request->variety,
+            totalPriceCents: $request->budget,
+        );
+
+        return $response->json($output);
+    }
+}

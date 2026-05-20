@@ -24,8 +24,8 @@ class InstructionEmitter
         );
 
         return new SerializableInstruction(
-            id: 'Dog shop',
-            comment: 'Dowg',
+            id: 'Banana Shop',
+            comment: 'Banana shop operations',
             version: '1.0.0',
             operations: $operations,
             trait: [
