@@ -16,7 +16,6 @@ return [
             'version'     => '1.0.0',
         ],
         'servers' => [
-            ['url' => 'https://api.example.com', 'description' => 'Production'],
             ['url' => 'http://localhost:8080', 'description' => 'Development'],
         ],
     ],
