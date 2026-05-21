@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Endpoint\Web\Response;
+namespace App\Domain\Banana\Operations\Show;
 
-final class BananaShowResponse
+class Banana_Show_Output
 {
     public function __construct(
         public string $id,
