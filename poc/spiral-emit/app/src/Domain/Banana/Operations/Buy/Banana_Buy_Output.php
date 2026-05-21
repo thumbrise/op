@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Endpoint\Web\Response;
+namespace App\Domain\Banana\Operations\Buy;
 
-final class BuyBananaResponse
+class Banana_Buy_Output
 {
     public function __construct(
         public string $orderId,

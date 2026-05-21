@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Endpoint\Web\Response;
+namespace App\Domain\Banana\Operations\List;
 
-final class BananaListResponse
+class Banana_List_Output
 {
     /**
      * @param array{array{id: string, variety: string, ripeness: string, origin: string}} $bananas

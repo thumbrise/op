@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace App\Endpoint\Web;
 
+use App\Domain\Banana\Operations\Buy\Banana_Buy;
+use App\Domain\Banana\Operations\Buy\Banana_Buy_Input;
+use App\Domain\Banana\Operations\List\Banana_List;
+use App\Domain\Banana\Operations\List\Banana_List_Input;
+use App\Domain\Banana\Operations\Show\Banana_Show;
+use App\Domain\Banana\Operations\Show\Banana_Show_Input;
 use App\Endpoint\Web\Request\BananaListRequest;
 use App\Endpoint\Web\Request\BananaShowRequest;
 use App\Endpoint\Web\Request\BuyBananaRequest;
-use App\Endpoint\Web\Response\BananaListResponse;
-use App\Endpoint\Web\Response\BananaShowResponse;
-use App\Endpoint\Web\Response\BuyBananaResponse;
 use OpenApi\Attributes as OA;
 use Psr\Http\Message\ResponseInterface;
+use Random\RandomException;
 use Spiral\Http\ResponseWrapper;
 use Spiral\Router\Annotation\Route;
 use Thumbrise\OP\Universal\Schema\Attributes\OPComment;
@@ -23,9 +27,6 @@ use Thumbrise\OP\Universal\Schema\Kind;
 use Thumbrise\OP\Universal\Schema\Term;
 use Thumbrise\OP\Universal\Vendors\Http\Path;
 use Thumbrise\OP\Universal\Vendors\Http\Verb;
-
-use function bin2hex;
-use function random_bytes;
 
 #[OA\Tag(name: 'bananas', description: 'Banana operations')]
 final class BananaController
@@ -85,16 +86,15 @@ final class BananaController
             ),
         ],
     )]
-    public function list(BananaListRequest $request, ResponseWrapper $response): ResponseInterface
+    public function list(BananaListRequest $request, ResponseWrapper $response, Banana_List $operation): ResponseInterface
     {
-        $output = new BananaListResponse(
-            bananas: [
-                ['id' => 'cavendish', 'variety' => 'Cavendish', 'ripeness' => 'yellow', 'origin' => 'Ecuador'],
-                ['id' => 'plantain', 'variety' => 'Plantain', 'ripeness' => 'green', 'origin' => 'Ghana'],
-                ['id' => 'red', 'variety' => 'Red Dacca', 'ripeness' => 'red-purple', 'origin' => 'Costa Rica'],
-            ],
-            total: 3,
+        $input = new Banana_List_Input(
+            variety: $request->variety,
+            ripeness: $request->ripeness,
+            limit: $request->limit,
+            offset: $request->offset,
         );
+        $output = $operation($input);
 
         return $response->json($output);
     }
@@ -140,20 +140,20 @@ final class BananaController
             ),
         ],
     )]
-    public function show(BananaShowRequest $request, ResponseWrapper $response): ResponseInterface
+    public function show(BananaShowRequest $request, ResponseWrapper $response, Banana_Show $operation): ResponseInterface
     {
-        $output = new BananaShowResponse(
-            id: 'banana_' . $request->variety,
+        $input = new Banana_Show_Input(
             variety: $request->variety,
-            ripeness: 'yellow',
-            weightGrams: 120,
-            priceCents: 150,
-            origin: 'Ecuador',
+            includeNutrition: $request->includeNutrition,
         );
+        $output = $operation($input);
 
         return $response->json($output);
     }
 
+    /**
+     * @throws RandomException
+     */
     #[OPID('BuyBanana')]
     #[OPComment('Purchase bananas with optional delivery')]
     #[OPInput([
@@ -203,14 +203,16 @@ final class BananaController
             ),
         ],
     )]
-    public function buy(BuyBananaRequest $request, ResponseWrapper $response): ResponseInterface
+    public function buy(BuyBananaRequest $request, ResponseWrapper $response, Banana_Buy $operation): ResponseInterface
     {
-        $output = new BuyBananaResponse(
-            orderId: 'ord_' . bin2hex(random_bytes(8)),
-            status: 'confirmed',
-            bananaId: 'banana_' . $request->variety,
-            totalPriceCents: $request->budget,
+        $input = new Banana_Buy_Input(
+            variety: $request->variety,
+            quantity: $request->quantity,
+            budget: $request->budget,
+            express: $request->express,
+            deliveryAddress: $request->deliveryAddress,
         );
+        $output = $operation($input);
 
         return $response->json($output);
     }
