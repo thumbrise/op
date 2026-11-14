@@ -68,22 +68,7 @@ export default withMermaid(defineConfig({
           {text: "Dream", link: '/books/dream/'},
         ],
       },
-      {
-        text: 'Reference',
-        items: [
-          {text: 'About', link: '/reference/'},
-          {text: 'rfc-operation-protocol.md', link: '/reference/rfc-operation-protocol.md'},
-          {
-            text: 'rfc-operation-protocol-appendix-a-raw.md',
-            link: '/reference/rfc-operation-protocol-appendix-a-raw.md'
-          },
-          {text: 'the-primitive-range-conjecture.md', link: '/reference/the-primitive-range-conjecture.md'},
-          {text: 'operation.v1.json', link: '/op/reference/operation.v1.json'},
-          {text: 'nota.v1.json', link: '/op/reference/nota.v1.json'},
-          {text: 'rail.v1.json', link: '/op/reference/rail.v1.json'},
-          {text: 'instruction.v1.json', link: '/op/reference/instruction.v1.json'},
-        ],
-      },
+      {text: 'Reference', link: '/reference/'},
       {text: 'GitHub', link: 'https://github.com/thumbrise/op'},
     ],
 
@@ -162,6 +147,7 @@ export default withMermaid(defineConfig({
             {text: 'About', link: '/notes/form-of-rail/'},
             {text: '#001 — The Rails', link: '/notes/form-of-rail/001-the-rails'},
             {text: '#002 — The Term Opinion', link: '/notes/form-of-rail/002-the-term-opinion'},
+            {text: '#003 - Nullable', link: '/notes/form-of-rail/003-nullable'},
           ],
         },
       ],
@@ -232,6 +218,9 @@ export default withMermaid(defineConfig({
             {text: 'nota.v1.json', link: '/op/reference/nota.v1.json'},
             {text: 'rail.v1.json', link: '/op/reference/rail.v1.json'},
             {text: 'instruction.v1.json', link: '/op/reference/instruction.v1.json'},
+            {text: 'instruction.v1.1.json', link: '/op/reference/instruction.v1.1.json'},
+            {text: 'operation.v1.1.json', link: '/op/reference/operation.v1.1.json'},
+            {text: 'rail.v1.1.json', link: '/op/reference/rail.v1.1.json'},
           ],
         },
       ],
